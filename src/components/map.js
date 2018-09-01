@@ -8,6 +8,8 @@ import {GoogleApiWrapper, Map} from "google-maps-react";
 import "bootstrap/dist/js/bootstrap.min";
 import * as classNames from "classnames";
 import next from "../assets/icons/next.png";
+import "../assets/stylesheets/main.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 export class MapContainer extends React.Component {
@@ -17,6 +19,9 @@ export class MapContainer extends React.Component {
 
         super();
 
+        document.getElementsByTagName("body")[0].style.background = `linear-gradient(45deg, #00537e 0%,#3aa17e 100%)`;
+        document.getElementsByTagName("body")[0].style.backgroundRepeat = `no-repeat`;
+        document.getElementsByTagName("body")[0].style.backgroundAttachment = `fixed`;
         //Init the state
         this.state = {
             zoom: properties.romania_map_properties.zoom,
@@ -201,34 +206,36 @@ export class MapContainer extends React.Component {
 
             var links = ( <React.Fragment>
                 <a className={this.state.classes.romania} data-toggle="pill" role="tab"
-                   onClick={this.goToRomania}>Romania</a>
-                <a className={this.state.classes.buzau} data-toggle="pill" role="tab" onClick={this.goToBuzau}>Buzau</a>
+                   onClick={this.goToRomania}>ROMANIA</a>
+                <a className={this.state.classes.buzau} data-toggle="pill" role="tab" onClick={this.goToBuzau}>BUZAU</a>
                 <a className={this.state.classes.bozioru} data-toggle="pill" role="tab"
-                   onClick={this.goToBozioru}>Bozioru</a>
+                   onClick={this.goToBozioru}>BOZIORU</a>
                 <a className="nav-link" data-toggle="pill" role="tab"
                 >Catre demo<span><img alt="next" src={next}/></span></a>
             </React.Fragment>) /*TODO:Add the demo -> create the function,link,component and add the button action*/
         else
             var links = ( <React.Fragment>
                 <a className={this.state.classes.romania} data-toggle="pill" role="tab"
-                   onClick={this.goToRomania}>Romania</a>
-                <a className={this.state.classes.buzau} data-toggle="pill" role="tab" onClick={this.goToBuzau}>Buzau</a>
+                   onClick={this.goToRomania}>ROMANIA</a>
+                <a className={this.state.classes.buzau} data-toggle="pill" role="tab" onClick={this.goToBuzau}>BUZAU</a>
                 <a className={this.state.classes.bozioru} data-toggle="pill" role="tab"
-                   onClick={this.goToBozioru}>Bozioru</a>
+                   onClick={this.goToBozioru}>BOZIORU</a>
             </React.Fragment>)
 
         return (
-            <div className="row bg-secondary w-100 m-0">
-                <div className="col-2" style={{height: "100vh", padding: 0}}>
-                    <div className="nav flex-column nav-pills nav-fill text-light" id="v-pills-tab" role="tablist"
-                         aria-orientation="vertical">
-                        {links}
+            <div className="container ">
+                <div className="row w-100 m-0">
+                    <div className="col-2" style={{height: "85vh", padding: 0}}>
+                        <div className="nav flex-column nav-pills nav-fill text-dark" id="v-pills-tab" role="tablist"
+                             aria-orientation="vertical">
+                            {links}
+                        </div>
                     </div>
-                </div>
-                <div className="col-10" style={{height: "100vh", padding: 0}}>
-                    <Map google={this.props.google} style={{height: "100%"}}
-                         initialCenter={this.state.initCenter} center={this.state.center}
-                         zoom={this.state.zoom} onClick={this.clickHandler}/>
+                    <div className="col-10" style={{height: "85vh", padding: 0}}>
+                        <Map google={this.props.google} style={{height: "100%"}}
+                             initialCenter={this.state.initCenter} center={this.state.center}
+                             zoom={this.state.zoom} onClick={this.clickHandler}/>
+                    </div>
                 </div>
             </div>
         );
