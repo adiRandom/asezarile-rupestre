@@ -5,10 +5,22 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Link} from "react-router-dom";
+import background from "../assets/img/background.jpg";
 import next from "../assets/icons/next.png";
 import {CSSTransitionGroup} from "react-transition-group";
 import "../assets/stylesheets/animation.css";
 class Homepage extends Component {
+
+    constructor() {
+
+        super();
+
+        //Manipulate the page background
+        document.getElementsByTagName("body")[0].style.backgroundImage = `url(${background})`;
+        document.getElementsByTagName("body")[0].style.backgroundSize = `cover`;
+        document.getElementsByTagName("body")[0].style.backgroundRepeat = `no-repeat`;
+    }
+
 
     render() {
         return (
