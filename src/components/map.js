@@ -62,6 +62,7 @@ export class MapContainer extends React.Component {
     toDemo() {
 
         history.push("/demo");
+        window.location.reload();
 
     }
 
