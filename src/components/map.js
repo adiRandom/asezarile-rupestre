@@ -10,12 +10,13 @@ import * as classNames from "classnames";
 import next from "../assets/icons/next.png";
 import "../assets/stylesheets/main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import createBrowserHistory from "history/createBrowserHistory";
 
-const history = createBrowserHistory();
 
 export class MapContainer extends React.Component {
 
+//TODO: Implement the new theme
+    //TODO: Remove the current nav(don't delete it , transform it into a dropdown from the new main nav,keeping the theme
+    //TODO:Resolve the map bug
 
     constructor() {
 
@@ -61,8 +62,8 @@ export class MapContainer extends React.Component {
 
     toDemo() {
 
-        history.push("/demo");
-        window.location.reload();
+        let window = window.open('/demo', 'Tour');
+        window.focus();
 
     }
 
@@ -222,7 +223,7 @@ export class MapContainer extends React.Component {
                 <a className={this.state.classes.bozioru} data-toggle="pill" role="tab"
                    onClick={this.goToBozioru}>BOZIORU</a>
                 <a className="nav-link" onClick={this.toDemo}>Catre demo<span><img alt="next" src={next}/></span></a>
-            </React.Fragment>) /*TODO:Add the demo -> create the function,link,component and add the button action*/
+            </React.Fragment>)
         else
             var links = ( <React.Fragment>
                 <a className={this.state.classes.romania} data-toggle="pill" role="tab"

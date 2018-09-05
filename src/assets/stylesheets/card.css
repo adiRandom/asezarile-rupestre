@@ -1,0 +1,21 @@
+/*TODO:Make the text from the smaller cards not overflow*/
+
+.card:not(.active) {
+
+    width: 50%;
+    height: 50%;
+
+}
+
+.card:not(.active) card-body {
+
+    width: 50%;
+    height: 50%;
+
+}
+
+.card-body p {
+
+    word-wrap: break-word;
+
+}
