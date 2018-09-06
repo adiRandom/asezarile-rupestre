@@ -4,6 +4,7 @@
 
 export const properties = {
 
+    maps_url: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0&callback=initMap',
     maps_api_key: 'AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0',
     romania_map_properties: {
 

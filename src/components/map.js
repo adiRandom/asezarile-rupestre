@@ -58,8 +58,30 @@ export class MapContainer extends React.Component {
         this.zoomContinuation = this.zoomContinuation.bind(this);
         this.toDemo = this.toDemo.bind(this);
 
+        this.mapRef = React.createRef();
+
     }
 
+    componentDidMount() {
+
+        /*var directionsService = new window.google.maps.DirectionsService;
+         var directionsDisplay = new window.google.maps.DirectionsRenderer;
+         directionsDisplay.setMap(this.mapRef.current.map);
+         directionsService.route({
+         origin: "Buzau",
+         destination: "Brasov",
+         travelMode: 'DRIVING'
+         }, function(response, status) {
+         if (status === 'OK') {
+         directionsDisplay.setDirections(response);
+         } else {
+         window.alert('Directions request failed due to ' + status);
+         }
+         });*/
+
+    }
+
+    
     //TODO: Make the demo open in a new tab
 
     toDemo() {
@@ -191,6 +213,8 @@ export class MapContainer extends React.Component {
 
     goToBozioru() {
 
+        //TODO: After a couple of seconds add the path (code sample above)
+
         this.setState({
             zoom: properties.bozioru_map_properties.zoom,   //Bozioru link
             center: properties.bozioru_map_properties.center,
@@ -238,6 +262,7 @@ export class MapContainer extends React.Component {
             </React.Fragment>)
 
         return (
+
             <div className="mapContainer">
                 <div className="container ">
                     <div className="row w-100 m-0">
@@ -251,7 +276,7 @@ export class MapContainer extends React.Component {
                         <div className="col-10" style={{height: "85vh", padding: 0}}>
                             <Map google={this.props.google} style={{height: "100%"}}
                                  initialCenter={this.state.initCenter} center={this.state.center}
-                                 zoom={this.state.zoom} onClick={this.clickHandler}/>
+                                 zoom={this.state.zoom} onClick={this.clickHandler} ref={this.mapRef}/>
                         </div>
                     </div>
                 </div>
