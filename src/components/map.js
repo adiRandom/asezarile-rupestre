@@ -15,7 +15,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export class MapContainer extends React.Component {
 
 
-//TODO: Make the transition automate from buzau to bozioru (3 sec on buzau, then move along to bozioru auto)
     //TODO:After romania and buzao switch to a img of the map outlined
     //TODO:Photo over the map after bozioru
 
