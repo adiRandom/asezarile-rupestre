@@ -14,9 +14,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export class MapContainer extends React.Component {
 
-//TODO: Implement the new theme
-    //TODO: Remove the current nav(don't delete it , transform it into a dropdown from the new main nav,keeping the theme
-    //TODO:Resolve the map bug
+
+//TODO: Make the transition automate from buzau to bozioru (3 sec on buzau, then move along to bozioru auto)
+    //TODO:After romania and buzao switch to a img of the map outlined
+    //TODO:Photo over the map after bozioru
+    //TODO: Try https://tomchentw.github.io/react-google-maps
 
     constructor() {
 
@@ -93,6 +95,8 @@ export class MapContainer extends React.Component {
 
                 }
             });
+
+            setTimeout(this.clickHandler, 3000); //Move along
         }
         else if (this.state.stage === 1) {
 

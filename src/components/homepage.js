@@ -11,7 +11,7 @@ import {CSSTransitionGroup} from "react-transition-group";
 import "../assets/stylesheets/animation.css";
 class Homepage extends Component {
 
-    //TODO:Implement the new theme
+
 
     constructor() {
 
@@ -51,10 +51,10 @@ class Homepage extends Component {
                             transitionAppearTimeout={3000}
                             transitionEnter={false}
                             transitionLeave={false}>
-                            <Link to="/text" className="text-light" style={{textDecoration: 'none'}}><span><img
+                            <Link to="/map" className="text-light" style={{textDecoration: 'none'}}><span><img
                                 alt="next"
                                 src={next}/></span>Catre
-                                text</Link>
+                                harta</Link>
                         </CSSTransitionGroup>
                     </div>
                 </div>
