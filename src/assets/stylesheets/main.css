@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.container {
+
+    margin: 3rem 4%;
+    max-width: none;
+    width: 92%;
+
+}
+
+.nav {
+
+    background-color: rgba(186, 195, 239, 0.38);
+    margin-top: 12rem;
+
+}
+
+.mapContainer .row {
+
+    background-color: #E4E8FE;
+
+}
+
+.nav-link:hover {
+
+    color: white;
+
+}
+
+.active {
+
+    background-color: white !important;
+    color: black !important;
+
+}
