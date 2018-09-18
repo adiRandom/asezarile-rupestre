@@ -1,21 +1,8 @@
-.title-appear {
-    opacity: 0.01;
-    transform: rotateY(-90deg);
-    transform-origin: 0% 50%;
-}
-
-.title-appear.title-appear-active {
-    opacity: 1;
-    transform: rotateY(0deg);
-    transition: 1s linear;
-}
-
-.next-appear {
+.example-appear {
     opacity: 0.01;
 }
 
-.next-appear.next-appear-active {
+.example-appear.example-appear-active {
     opacity: 1;
-    transition: 2s linear;
+    transition: opacity 2s ease-in;
 }
-

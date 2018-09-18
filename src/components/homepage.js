@@ -5,10 +5,14 @@
 import React, {Component} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Link} from "react-router-dom";
-import background from "../assets/img/background.jpg";
-import next from "../assets/icons/next.png";
+import background from "../assets/img/back1.png";
+import Navbar from '../components/Navbar';
 import {CSSTransitionGroup} from "react-transition-group";
-import "../assets/stylesheets/animation.css";
+
+
+import "../assets/stylesheets/main.css"
+import "../assets/stylesheets/animation.css"
+
 class Homepage extends Component {
 
 
@@ -17,6 +21,7 @@ class Homepage extends Component {
         super();
 
         //Manipulate the page background
+        //Init the bg
         document.getElementsByTagName("body")[0].style.backgroundImage = `url(${background})`;
         document.getElementsByTagName("body")[0].style.backgroundSize = `cover`;
         document.getElementsByTagName("body")[0].style.backgroundRepeat = `no-repeat`;
@@ -25,38 +30,22 @@ class Homepage extends Component {
 
     render() {
         return (
-
-
-            <div className="container">
-                <div className="row align-items-end" style={{height: "50vh"}}>
-                    <div className="col-12">
-
-                        <CSSTransitionGroup
-                            transitionName="title"
-                            transitionAppear={true}
-                            transitionAppearTimeout={3000}
-                            transitionEnter={false}
-                            transitionLeave={false}>
-                            <h1 className="text-light text-center display-3">Asezarile Rupestre Bozioru</h1>
-                        </CSSTransitionGroup>
-
-                    </div>
-                </div>
-                <div className="row justify-content-end align-items-center" style={{height: "20vh"}}>
-                    <div className="col-3">
-                        <CSSTransitionGroup
-                            transitionName="next"
-                            transitionAppear={true}
-                            transitionAppearTimeout={3000}
-                            transitionEnter={false}
-                            transitionLeave={false}>
-                            <Link to="/map" className="text-light" style={{textDecoration: 'none'}}><span><img
-                                alt="next"
-                                src={next}/></span>Catre
-                                harta</Link>
-                        </CSSTransitionGroup>
-                    </div>
-                </div>
+            <div>
+                <Navbar/>
+                <CSSTransitionGroup
+                    transitionName="example"
+                    transitionAppear={true}
+                    transitionAppearTimeout={5000}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <h1 className="title display-4" id="title-top">Asezarile rupestre</h1>
+                    <h1 className="title display-4" id="title-bot">Bozioru</h1>
+                    <h3 className="text">O calatorie in negura istoriei judetului Buzau</h3>
+                    <h3 className="text">Ecce, festus palus!Ubi est teres parma?Ecce, ventus!</h3>
+                    <h3 className="text">Never taste a bilge rat.Scabbards hobble from passions like misty
+                        tobaccos.</h3>
+                    <Link to="/harta" className="btn btn-success mt-5">Catre harta! </Link>
+                </CSSTransitionGroup>
             </div>
 
         );

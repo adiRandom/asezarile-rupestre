@@ -1,35 +1,36 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-.container {
+.title {
 
-    margin: 3rem 4%;
-    max-width: none;
-    width: 92%;
-
-}
-
-.nav {
-
-    background-color: rgba(186, 195, 239, 0.38);
-    margin-top: 12rem;
+    font-weight: bold;
+    color: white;
+    margin-left: 12vw;
+    font-family: Bookman Old Style;
 
 }
 
-.mapContainer .row {
-
-    background-color: #E4E8FE;
-
-}
-
-.nav-link:hover {
+.text {
 
     color: white;
+    margin-left: 8vw;
+    font-family: Century Gothic;
 
 }
 
-.active {
+#title-bot {
 
-    background-color: white !important;
-    color: black !important;
+    margin-bottom: 50px;
+
+}
+
+#title-top {
+
+    margin-top: 14vh;
+
+}
+
+.btn {
+
+    margin-left: 8vw;
+    border-radius: 30px;
 
 }

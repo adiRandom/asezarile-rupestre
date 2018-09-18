@@ -2,7 +2,7 @@
  * Created by Adrian on 29-Aug-18.
  */
 
-import React, {Component} from "react";
+import React from "react";
 import {properties} from "../properties/properties";
 import {GoogleApiWrapper, Map} from "google-maps-react";
 import "bootstrap/dist/js/bootstrap.min";
@@ -16,7 +16,6 @@ export class MapContainer extends React.Component {
 
 
     //TODO:After romania and buzao switch to a img of the map outlined
-    //TODO:Photo over the map after bozioru
 
     constructor() {
 

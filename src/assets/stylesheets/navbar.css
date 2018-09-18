@@ -1,0 +1,31 @@
+.active {
+
+    font-weight: bold;
+
+}
+
+.dropdown:hover .dropdown-menu {
+
+    display: block;
+
+}
+
+.dropdown-menu {
+
+    border-top-color: #696868;
+    border-top-width: 3px;
+    background-color: #f3f3f3;
+
+}
+
+.nav-item, .dropdown-item {
+
+    font-family: Century Gothic;
+
+}
+
+.navbar {
+
+    padding-bottom: 0;
+
+}

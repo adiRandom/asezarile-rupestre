@@ -12,7 +12,7 @@ class App extends Component {
         return (
             <Switch>
                 <Route path={"/"} component={Homepage} exact={true}/>
-                <Route path={"/map"} component={MapContainer} exact={true}/>
+                <Route path={"/harta"} component={MapContainer} exact={true}/>
             </Switch>
 
         );
