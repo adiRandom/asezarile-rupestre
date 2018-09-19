@@ -1,9 +1,9 @@
-import React from 'react'
-import * as Logo from '../assets/icons/logo.png'
-import {Link} from 'react-router-dom';
-import "bootstrap/dist/js/bootstrap.min"
-import * as classNames from 'classnames';
-import "../assets/stylesheets/navbar.css"
+import React from "react";
+import * as Logo from "../assets/icons/logo.png";
+import {Link} from "react-router-dom";
+import "bootstrap/dist/js/bootstrap.min";
+import * as classNames from "classnames";
+import "../assets/stylesheets/navbar.css";
 
 export default class Homepage extends React.Component {
 
@@ -64,7 +64,6 @@ export default class Homepage extends React.Component {
 
         };
 
-        console.log(this.classes);
     }
 
     toVirtualTour() {
@@ -92,7 +91,7 @@ export default class Homepage extends React.Component {
                 <div className="ml-auto">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className={this.classes.harta} to="/">Harta</Link>
+                            <Link className={this.classes.harta} to="/harta">Harta</Link>
                         </li>
                         <li className="nav-item">
                             <Link className={this.classes.turVirtual} to="/tur" onClick={this.toVirtualTour}>Tur

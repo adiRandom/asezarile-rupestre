@@ -1,3 +1,4 @@
+@import url("./fonts.css");
 
 .title {
 
@@ -31,10 +32,10 @@
 .btn {
 
     margin-left: 8vw;
-    border-radius: 30px;
+    border-radius: 30px !important;
     font-family: Century Gothic;
-    font-weight: bold;
-    font-size: 1.8rem;
-    padding: 15px;
+    font-weight: bold !important;
+    font-size: 1.8rem !important;
+    padding: 15px !important;
 
 }
