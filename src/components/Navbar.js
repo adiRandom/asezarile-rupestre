@@ -14,6 +14,9 @@ export default class Homepage extends React.Component {
 
         this.toVirtualTour = this.toVirtualTour.bind(this);
 
+        //Keep track of the current active link
+        //Can be changed with ActiveLink from react
+
         this.classes = {
 
             harta: classNames({

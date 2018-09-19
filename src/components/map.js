@@ -16,8 +16,6 @@ import * as image from "../assets/img/traseu.png";
 export class MapContainer extends React.Component {
 
 
-    //TODO:After romania and buzao switch to a img of the map outlined
-
     constructor(props) {
 
         super(props);
@@ -53,16 +51,26 @@ export class MapContainer extends React.Component {
         };
 
 
+        //Function binfing
         this.clickHandler = this.clickHandler.bind(this);
+
+        //Can be removed
+        ///////////////////////////////////////////////
         this.goToRomania = this.goToRomania.bind(this);
         this.goToBuzau = this.goToBuzau.bind(this);
         this.goToBozioru = this.goToBozioru.bind(this);
+        ///////////////////////////////////////////////
+
+
         this.zoomContinuation = this.zoomContinuation.bind(this);
+
+        //Not used right now
         this.toDemo = this.toDemo.bind(this);
 
         this.goToRoute = this.goToRoute.bind(this);
         this.setEndReached = this.setEndReached.bind(this);
 
+        //Ref to the underlying map
         this.mapRef = React.createRef();
 
 
@@ -70,10 +78,12 @@ export class MapContainer extends React.Component {
 
     componentDidMount() {
 
-
+        //Set the style of the map
         this.mapRef.current.map.mapTypeId = 'hybrid';
 
+        //Sample code to create a route
 
+        ///////////////////////////////////////////////////////////////////////////
         /*var directionsService = new window.google.maps.DirectionsService;
          var directionsDisplay = new window.google.maps.DirectionsRenderer;
          directionsDisplay.setMap(this.mapRef.current.map);
@@ -88,11 +98,11 @@ export class MapContainer extends React.Component {
          window.alert('Directions request failed due to ' + status);
          }
          });*/
+        //////////////////////////////////////////////////////////////////////////////
 
     }
 
 
-    //TODO: Make the demo open in a new tab
 
     toDemo() {
 
@@ -103,7 +113,7 @@ export class MapContainer extends React.Component {
 
     clickHandler() {
 
-        //After every click move to the next stage of the presentation
+        //The first click triggers the 2 stage transition
 
         if (this.state.stage === 0) {
             this.setState({
@@ -152,11 +162,13 @@ export class MapContainer extends React.Component {
                     }),
 
                 }
-            }, () => setTimeout(this.zoomContinuation, 558));  //Time required between the stages
+            }, () => setTimeout(this.zoomContinuation, 558));  //Continue with the transition to Bozioru
 
         }
     }
 
+
+    //Mark that the transition got to an end and we can go to the map IMG
     setEndReached() {
 
         this.setState({endReached: true});
@@ -229,7 +241,6 @@ export class MapContainer extends React.Component {
 
     goToBozioru() {
 
-        //TODO: After a couple of seconds add the path (code sample above)
 
         this.setState({
             zoom: properties.bozioru_map_properties.zoom,   //Bozioru link
@@ -256,8 +267,11 @@ export class MapContainer extends React.Component {
 
     }
 
+    //GO to the map IMG
     goToRoute() {
 
+        //TODO: start the countdown to go pack to the map
+        //TODO: create the function that handles the point of interest along the way
 
         this.element = ( <React.Fragment><img src={image} style={{width: "100%", height: "100%"}}/></React.Fragment>);
         this.forceUpdate();
@@ -265,6 +279,8 @@ export class MapContainer extends React.Component {
 
     render() {
 
+
+        //Check if the end has been reached then start the countdown or else show the map
         if (this.state.endReached) {
 
             setInterval(this.goToRoute, 12000);
@@ -282,6 +298,7 @@ export class MapContainer extends React.Component {
 
 
         return (
+            /*TODO: Put both the map and the bordered teritorial img with fixed pos at (0,0) one over the other and switch their display programmatically*/
 
             <div className="mapContainer">
                 <div className="row w-100 m-0">
