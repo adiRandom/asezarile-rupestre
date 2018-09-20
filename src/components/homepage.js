@@ -38,9 +38,9 @@ class Homepage extends Component {
                     transitionAppearTimeout={5000}
                     transitionEnter={false}
                     transitionLeave={false}>
-                    <h1 className="title display-4" id="title-top">Asezarile rupestre</h1>
+                    <h1 className="title display-4" id="title-top">Așezările rupestre</h1>
                     <h1 className="title display-4" id="title-bot">de la Bozioru</h1>
-                    <h3 className="text">O calatorie in negura istoriei judetului Buzau</h3>
+                    <h3 className="text">O călatorie in negura istoriei judetului Buzau</h3>
                     <h3 className="text">Ecce, festus palus!Ubi est teres parma?Ecce, ventus!</h3>
                     <h3 className="text">Never taste a bilge rat.Scabbards hobble from passions like misty
                         tobaccos.</h3>

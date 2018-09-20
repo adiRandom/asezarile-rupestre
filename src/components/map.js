@@ -10,6 +10,7 @@ import * as classNames from "classnames";
 import "../assets/stylesheets/main.css";
 import "bootstrap/dist/css/bootstrap.css";
 
+
 import * as image from "../assets/img/traseu.png";
 
 
@@ -46,8 +47,9 @@ export class MapContainer extends React.Component {
                 }),
 
             },
-            endReached: false
             // Property to track whether you can advance to the next slide or not
+            endReached: false,
+            borderSrc: properties.Romania
         };
 
 
@@ -81,10 +83,29 @@ export class MapContainer extends React.Component {
         //Set the style of the map
         this.mapRef.current.map.mapTypeId = 'hybrid';
 
+        // console.log(typeof this.)
+
+
+        //Init the border
+
+        // Define the LatLng coordinates for the outer path.
+
+        this.border = new window.google.maps.Polygon({
+            paths: this.state.borderSrc,
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 5,
+            fillColor: '#FF0000',
+            fillOpacity: 0
+        });
+        this.border.setMap(this.mapRef.current.map);
+
+        /*his.mapRef.current.map.data.add({geometry: new window.google.maps.Data.Polygon(this.state.borderSrc)})*/
+
         //Sample code to create a route
 
         ///////////////////////////////////////////////////////////////////////////
-        /*var directionsService = new window.google.maps.DirectionsService;
+        /* var directionsService = new window.google.maps.DirectionsService;
          var directionsDisplay = new window.google.maps.DirectionsRenderer;
          directionsDisplay.setMap(this.mapRef.current.map);
          directionsService.route({
@@ -101,7 +122,6 @@ export class MapContainer extends React.Component {
         //////////////////////////////////////////////////////////////////////////////
 
     }
-
 
 
     toDemo() {
@@ -135,9 +155,19 @@ export class MapContainer extends React.Component {
                         'nav-link': true
                     }),
 
-                }
+                },
+                borderSrc: properties.Buzau
             });
 
+            this.border = new window.google.maps.Polygon({
+                paths: this.state.borderSrc,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 5,
+                fillColor: '#FF0000',
+                fillOpacity: 0
+            });
+            this.border.setMap(this.mapRef.current.map);
             setTimeout(this.clickHandler, 3000); //Move along
         }
         else if (this.state.stage === 1) {
@@ -270,7 +300,7 @@ export class MapContainer extends React.Component {
     //GO to the map IMG
     goToRoute() {
 
-        //TODO: start the countdown to go pack to the map
+        //TODO: start the countdown to go back to the map
         //TODO: create the function that handles the point of interest along the way
 
         this.element = ( <React.Fragment><img src={image} style={{width: "100%", height: "100%"}}/></React.Fragment>);
@@ -283,16 +313,18 @@ export class MapContainer extends React.Component {
         //Check if the end has been reached then start the countdown or else show the map
         if (this.state.endReached) {
 
-            setInterval(this.goToRoute, 12000);
+            setInterval(this.goToRoute, 2700);
 
 
         }
         else {
 
-            this.element = (<React.Fragment><Map google={this.props.google} style={{height: "100%"}}
-                                                 initialCenter={this.state.initCenter} center={this.state.center}
-                                                 zoom={this.state.zoom} onClick={this.clickHandler}
-                                                 ref={this.mapRef}/></React.Fragment>)
+            this.element = (<React.Fragment>
+                <Map google={this.props.google} style={{height: "100%"}}
+                     initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler }
+                     zoom={this.state.zoom}
+                     ref={this.mapRef}/>
+            </React.Fragment>)
 
         }
 

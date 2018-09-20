@@ -94,7 +94,7 @@ export default class Homepage extends React.Component {
                 <div className="ml-auto">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className={this.classes.harta} to="/harta">Harta</Link>
+                            <Link className={this.classes.harta} to="/harta">Hartă</Link>
                         </li>
                         <li className="nav-item">
                             <Link className={this.classes.turVirtual} to="/tur" onClick={this.toVirtualTour}>Tur
@@ -103,7 +103,7 @@ export default class Homepage extends React.Component {
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Informatii
+                                Informații
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {/* TODO: Add the links after creating the pages*/}
@@ -112,7 +112,7 @@ export default class Homepage extends React.Component {
                                 <Link className={this.classes.religie} to="#">Religie</Link>
                                 <Link className={this.classes.arheologie} to="#">Arheologie</Link>
                                 <Link className={this.classes.turism} to="#">Turism</Link>
-                                <Link className={this.classes.legendeSiSuperstitii} to="#">Legende&superstitii</Link>
+                                <Link className={this.classes.legendeSiSuperstitii} to="#">Legende&superstiții</Link>
                                 <Link className={this.classes.bibliografie} to="#">Bibliografie</Link>
                             </div>
                         </li>
