@@ -3,8 +3,8 @@
  */
 
 import React from "react";
-import {properties} from "../properties/properties";
-import {GoogleApiWrapper, Map} from "google-maps-react";
+import { properties } from "../properties/properties";
+import { GoogleApiWrapper, Map } from "google-maps-react";
 import "bootstrap/dist/js/bootstrap.min";
 import * as classNames from "classnames";
 import "../assets/stylesheets/main.css";
@@ -49,7 +49,9 @@ export class MapContainer extends React.Component {
             },
             // Property to track whether you can advance to the next slide or not
             endReached: false,
-            borderSrc: properties.Romania
+            borderSrc: properties.Romania,
+            //True if we display the route img
+            routeDisplay: "none"
         };
 
 
@@ -83,12 +85,7 @@ export class MapContainer extends React.Component {
         //Set the style of the map
         this.mapRef.current.map.mapTypeId = 'hybrid';
 
-        // console.log(typeof this.)
-
-
         //Init the border
-
-        // Define the LatLng coordinates for the outer path.
 
         this.border = new window.google.maps.Polygon({
             paths: this.state.borderSrc,
@@ -100,7 +97,17 @@ export class MapContainer extends React.Component {
         });
         this.border.setMap(this.mapRef.current.map);
 
-        /*his.mapRef.current.map.data.add({geometry: new window.google.maps.Data.Polygon(this.state.borderSrc)})*/
+        //Add the function to a variable to call it in the event block below
+
+        var clickHandler = this.clickHandler;
+
+        //Add the click listener for the polygon
+        window.google.maps.event.addListener(this.border, 'click', function (event) {
+
+            clickHandler();
+
+        });
+
 
         //Sample code to create a route
 
@@ -126,7 +133,7 @@ export class MapContainer extends React.Component {
 
     toDemo() {
 
-        let window = window.open('/demo', 'Tour');
+        let window = window.open('/tur', 'Tour');
         window.focus();
 
     }
@@ -154,6 +161,12 @@ export class MapContainer extends React.Component {
                         'active': false,
                         'nav-link': true
                     }),
+                    rupestre: classNames({
+
+                        'active': false,
+                        'nav-link': true
+
+                    })
 
                 },
                 borderSrc: properties.Buzau
@@ -173,7 +186,8 @@ export class MapContainer extends React.Component {
         else if (this.state.stage === 1) {
 
             this.setState({
-                zoom: properties.bozioru_map_properties.zoom - 3.5,   //Bozioru intermediate stage - zoom efect not working when zooming to much to fast
+
+                zoom: properties.bozioru_map_properties.zoom-3.5,   //Bozioru stage - intermediate stat
                 center: properties.bozioru_map_properties.center,
                 stage: 2,
                 classes: {
@@ -190,9 +204,49 @@ export class MapContainer extends React.Component {
                         'active': true,
                         'nav-link': true
                     }),
+                    rupestre: classNames({
+
+                        'active': false,
+                        'nav-link': true
+
+                    })
 
                 }
-            }, () => setTimeout(this.zoomContinuation, 558));  //Continue with the transition to Bozioru
+
+            },()=> setTimeout(this.zoomContinuation,650) )
+            
+
+        }
+        else if (this.state.stage === 2) {
+
+            this.setState({
+                zoom: properties.rupestre_map_properties.zoom-1,   //Asezarile rupestre stage
+                center: properties.rupestre_map_properties.center,
+                stage: 3,
+                classes: {
+
+                    romania: classNames({
+                        'active': false,
+                        'nav-link': true
+                    }),
+                    buzau: classNames({
+                        'active': false,
+                        'nav-link': true
+                    }),
+                    bozioru: classNames({
+                        'active': false,
+                        'nav-link': true
+                    }),
+                    rupestre: classNames({
+
+                        'active': true,
+                        'nav-link': true
+
+                    })
+
+                }
+            }); 
+            this.setEndReached();
 
         }
     }
@@ -201,15 +255,17 @@ export class MapContainer extends React.Component {
     //Mark that the transition got to an end and we can go to the map IMG
     setEndReached() {
 
-        this.setState({endReached: true});
+        //Mark that the route image should be displayed
+        this.setState({ endReached: true });
 
     }
 
     zoomContinuation() {
-
+    
         this.setState({
             zoom: properties.bozioru_map_properties.zoom
-        }, () => setTimeout(this.setEndReached, 3000));  //Finish the zoom to Bozioru
+        });
+        setTimeout(this.clickHandler, 4000); //Move along
     }
 
 
@@ -300,15 +356,12 @@ export class MapContainer extends React.Component {
     //GO to the map IMG
     goToRoute() {
 
-        //TODO: start the countdown to go back to the map
-        //TODO: create the function that handles the point of interest along the way
+        //TODO: Create a polyline
+        this.setState({ routeDisplay: "block" });
 
-        this.element = ( <React.Fragment><img src={image} style={{width: "100%", height: "100%"}}/></React.Fragment>);
-        this.forceUpdate();
     }
 
     render() {
-
 
         //Check if the end has been reached then start the countdown or else show the map
         if (this.state.endReached) {
@@ -317,25 +370,22 @@ export class MapContainer extends React.Component {
 
 
         }
-        else {
-
-            this.element = (<React.Fragment>
-                <Map google={this.props.google} style={{height: "100%"}}
-                     initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler }
-                     zoom={this.state.zoom}
-                     ref={this.mapRef}/>
-            </React.Fragment>)
-
-        }
 
 
         return (
-            /*TODO: Put both the map and the bordered teritorial img with fixed pos at (0,0) one over the other and switch their display programmatically*/
+
 
             <div className="mapContainer">
                 <div className="row w-100 m-0">
-                    <div className="col-12" style={{height: "100vh", padding: 0}}>
-                        {this.element}
+                    <div className="col-12" style={{ height: "100vh", padding: 0 }}>
+                        <React.Fragment>
+                            <img src={image} style={{ width: "100%", height: "100%", display: this.state.routeDisplay, zIndex: 5 }} />
+                            <Map google={this.props.google} style={{ height: "100%" }}
+                                initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
+                                zoom={this.state.zoom}
+                                ref={this.mapRef} />
+
+                        </React.Fragment>
                     </div>
                 </div>
             </div>
