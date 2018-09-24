@@ -1,6 +1,6 @@
 {
   "name": "asezarile-rupestre",
-  "version": "0.3.5pre3",
+  "version": "0.3.5pre4",
   "private": false,
   "dependencies": {
     "react": "^16.5.0",

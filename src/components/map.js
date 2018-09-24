@@ -220,7 +220,7 @@ export class MapContainer extends React.Component {
         else if (this.state.stage === 2) {
 
             this.setState({
-                zoom: properties.rupestre_map_properties.zoom-1,   //Asezarile rupestre stage
+               //Asezarile rupestre stage - intermediary
                 center: properties.rupestre_map_properties.center,
                 stage: 3,
                 classes: {
@@ -245,7 +245,7 @@ export class MapContainer extends React.Component {
                     })
 
                 }
-            }); 
+            },()=> setTimeout(this.zoomContinuation,650)); 
             this.setEndReached();
 
         }
@@ -261,15 +261,21 @@ export class MapContainer extends React.Component {
     }
 
     zoomContinuation() {
+
+        if(this.state.stage === 3){
+            this.setState({zoom: properties.rupestre_map_properties.zoom}) //Continue the animation to Asezarile Rupestre
+        }
+        else{
     
         this.setState({
-            zoom: properties.bozioru_map_properties.zoom
+            zoom: properties.bozioru_map_properties.zoom //Continue the animation to Bozioru
         });
         setTimeout(this.clickHandler, 4000); //Move along
     }
+    }
 
 
-    //Function to handle the Romania nav
+    //Function to handle button base navigation
 
     goToRomania() {
 
@@ -357,7 +363,7 @@ export class MapContainer extends React.Component {
     goToRoute() {
 
         //TODO: Create a polyline
-        this.setState({ routeDisplay: "block" });
+        /* this.setState({ routeDisplay: "block" }); */
 
     }
 

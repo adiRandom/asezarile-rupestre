@@ -41,8 +41,9 @@ export const properties = {
 
         center: {
 
-            lat: 45.4252994,
-            lng: 26.4317199
+            lat: 45.4226314,
+            lng:26.4357595
+
 
         },
         zoom: 17.0
