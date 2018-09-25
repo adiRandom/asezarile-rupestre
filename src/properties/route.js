@@ -1,26 +1,43 @@
 export const routeCoordinates = {
 
+    center:{
+
+        center:{
+
+            lat:45.428237,
+            lng: 26.4438983
+
+        },
+        zoom:15.6
+
+    }, //TODO: Find the best parameters
+
     coordinates: [{
 
-        lat: 45.426900360443966,
-        lng: 26.444328197755667
+        lat: 45.425771,
+        lng: 26.447886
     },
     //TODO: Insert Lacu Fundatura
     //TODO: Insert Agatonul Vechi
     {
 
-        lat: 45.431615850975646,
-        lng: 26.440966351099483
+        lat: 45.431791,
+        lng: 26.445494
     },
     {
         lat: 45.426794,
         lng: 26.439855
     },
     {
-        lat: 45.423469935827875,
-        lng: 26.438587418746202
+        lat: 45.427046,
+        lng: 26.439980
+    },
+    {
+
+        lat:45.423651,
+        lng:26.437304
+
     }
-    //TODO: Insert Fundul pesteri
 ]
 
 }

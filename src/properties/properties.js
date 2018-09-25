@@ -41,7 +41,7 @@ export const properties = {
 
         center: {
 
-            lat: 45.4226314,
+            lat: 45.4026314,
             lng:26.4357595
 
 

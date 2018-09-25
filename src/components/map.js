@@ -9,7 +9,7 @@ import "bootstrap/dist/js/bootstrap.min";
 import * as classNames from "classnames";
 import "../assets/stylesheets/main.css";
 import "bootstrap/dist/css/bootstrap.css";
-import {routeCoordinates} from "../properties/route.js"
+import { routeCoordinates } from "../properties/route.js"
 
 
 import * as image from "../assets/img/traseu.png";
@@ -264,7 +264,14 @@ export class MapContainer extends React.Component {
     zoomContinuation() {
 
         if (this.state.stage === 3) {
-            this.setState({ zoom: properties.rupestre_map_properties.zoom }) //Continue the animation to Asezarile Rupestre
+            this.setState({
+                center: { 
+                    lat: properties.rupestre_map_properties.center.lat + 0.02, 
+                    lng: properties.rupestre_map_properties.center.lng 
+                }
+            }, () => setTimeout(()=>this.setState({ zoom: properties.rupestre_map_properties.zoom})),480) //Continue the animation to Asezarile Rupestre
+
+            console.log(this.state.center);
         }
         else {
 
@@ -274,6 +281,8 @@ export class MapContainer extends React.Component {
             setTimeout(this.clickHandler, 4000); //Move along
         }
     }
+
+
 
 
     //Function to handle button base navigation
@@ -364,15 +373,22 @@ export class MapContainer extends React.Component {
     goToRoute() {
 
         //TODO: Create a polyline
-        const route = new window.google.maps.Polygon({
-            paths: routeCoordinates.coordinates,
+        const route = new window.google.maps.Polyline({
+            path: routeCoordinates.coordinates,
+            geodesic: true,
             strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 5,
-            fillColor: '#FF0000',
-            fillOpacity: 0
+            strokeOpacity: 1.0,
+            strokeWeight: 2
         });
-        route.setMap(this.mapRef.current.map);
+
+        this.setState({
+
+            zoom:15 //Zoom out in order to see the route
+
+
+        },()=> route.setMap(this.mapRef.current.map));
+
+       
 
     }
 
