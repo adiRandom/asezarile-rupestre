@@ -9,6 +9,7 @@ import "bootstrap/dist/js/bootstrap.min";
 import * as classNames from "classnames";
 import "../assets/stylesheets/main.css";
 import "bootstrap/dist/css/bootstrap.css";
+import {routeCoordinates} from "../properties/route.js"
 
 
 import * as image from "../assets/img/traseu.png";
@@ -187,7 +188,7 @@ export class MapContainer extends React.Component {
 
             this.setState({
 
-                zoom: properties.bozioru_map_properties.zoom-3.5,   //Bozioru stage - intermediate stat
+                zoom: properties.bozioru_map_properties.zoom - 3.5,   //Bozioru stage - intermediate stat
                 center: properties.bozioru_map_properties.center,
                 stage: 2,
                 classes: {
@@ -213,14 +214,14 @@ export class MapContainer extends React.Component {
 
                 }
 
-            },()=> setTimeout(this.zoomContinuation,650) )
-            
+            }, () => setTimeout(this.zoomContinuation, 650))
+
 
         }
         else if (this.state.stage === 2) {
 
             this.setState({
-               //Asezarile rupestre stage - intermediary
+                //Asezarile rupestre stage - intermediary
                 center: properties.rupestre_map_properties.center,
                 stage: 3,
                 classes: {
@@ -245,7 +246,7 @@ export class MapContainer extends React.Component {
                     })
 
                 }
-            },()=> setTimeout(this.zoomContinuation,650)); 
+            }, () => setTimeout(this.zoomContinuation, 650));
             this.setEndReached();
 
         }
@@ -262,16 +263,16 @@ export class MapContainer extends React.Component {
 
     zoomContinuation() {
 
-        if(this.state.stage === 3){
-            this.setState({zoom: properties.rupestre_map_properties.zoom}) //Continue the animation to Asezarile Rupestre
+        if (this.state.stage === 3) {
+            this.setState({ zoom: properties.rupestre_map_properties.zoom }) //Continue the animation to Asezarile Rupestre
         }
-        else{
-    
-        this.setState({
-            zoom: properties.bozioru_map_properties.zoom //Continue the animation to Bozioru
-        });
-        setTimeout(this.clickHandler, 4000); //Move along
-    }
+        else {
+
+            this.setState({
+                zoom: properties.bozioru_map_properties.zoom //Continue the animation to Bozioru
+            });
+            setTimeout(this.clickHandler, 4000); //Move along
+        }
     }
 
 
@@ -363,7 +364,15 @@ export class MapContainer extends React.Component {
     goToRoute() {
 
         //TODO: Create a polyline
-        /* this.setState({ routeDisplay: "block" }); */
+        const route = new window.google.maps.Polygon({
+            paths: routeCoordinates.coordinates,
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 5,
+            fillColor: '#FF0000',
+            fillOpacity: 0
+        });
+        route.setMap(this.mapRef.current.map);
 
     }
 
