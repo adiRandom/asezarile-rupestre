@@ -3,6 +3,7 @@
  */
 
 import React from "react";
+import Navbar from './Navbar'
 import { properties } from "../properties/properties";
 import { GoogleApiWrapper, Map } from "google-maps-react";
 import "bootstrap/dist/js/bootstrap.min";
@@ -407,6 +408,7 @@ export class MapContainer extends React.Component {
 
 
             <div className="mapContainer">
+            <Navbar/>
                 <div className="row w-100 m-0">
                     <div className="col-12" style={{ height: "100vh", padding: 0 }}>
                         <React.Fragment>
