@@ -1,23 +1,34 @@
 import React from 'react'
 
-export class Carousel extends React.Component{
+export default class Carousel extends React.Component{
 
+
+    //Pass in an array of objects constituded by a title,a text and an image
     constructor(props){
         super(props);
+
+        this.state={currentIndice : 0}; //The curent displaying object
+
+        this.scrollHandling = this.scrollHandling.bind(this);
+    }
+
+    scrollHandling(e){
+
+        console.log(e);
+
     }
 
     render(){
         return (
-            <div className="carrousel">
+            <div className="carrousel" onScroll={this.scrollHandling}>
                 <div className="carousel-container">
-                    <span className="carousel-image" stle={{"background" : "url("{this.props.currentImage}")"}}>
-                    </span>
+                    <span className="carousel-image"><img src={this.props.data[this.state.currentIndice].currentPhoto}/></span>
                     <div classname="carousel-text">
                         <div className="carousel-text-tite">
-                            {this.props.currentTitle}
+                            {this.props.data[this.state.currentIndice].currentTitle}
                         </div>
                         <div className="carousel-text-content">
-                            {this.props.currentText}
+                            {this.props.data[this.state.currentIndice].currentText}
                         </div>
                     </div>
                 </div>

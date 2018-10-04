@@ -409,7 +409,7 @@ export class MapContainer extends React.Component {
 
             <div className="mapContainer">
             <Navbar/>
-                <div className="row w-100 m-0">
+                <div className="row m-0">
                     <div className="col-12" style={{ height: "100vh", padding: 0 }}>
                         <React.Fragment>
                             <img src={image} style={{ width: "100%", height: "100%", display: this.state.routeDisplay, zIndex: 5 }} />
