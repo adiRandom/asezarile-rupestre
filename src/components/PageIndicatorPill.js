@@ -8,20 +8,24 @@ export default class PageIndicatorPill extends React.Component{
     constructor(props){
 
         super(props);
-        if(this.props.active)
-            this.image = onState;
-        else
-            this.image = offState;
-
         this.style = {
-            backgroundImage:`url(${this.image})`,
-            marginRight:'10px', 
-            height:"32px", 
-            width:"32px" ,
-            display:"inline-block"};
-
+            backgroundImage: `url(${props.active ? onState : offState})`,
+            marginRight: '10px',
+            height: "32px",
+            width: "32px",
+            display: "inline-block"
+        };
     }
 
+    componentWillReceiveProps(nextProps){
+        this.style = {
+            backgroundImage: `url(${nextProps.active?onState:offState})`,
+            marginRight: '10px',
+            height: "32px",
+            width: "32px",
+            display: "inline-block"
+        };
+    }
 
     render(){
 

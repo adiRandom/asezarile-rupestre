@@ -6,15 +6,17 @@ export default class PageIndicator extends React.Component{
     constructor(props){
         super(props);
         let pills = [];
-        for(var i = 0;i<props.size;i++) //Create an array of all the pills required to create the page indicator
-            if(i == this.props.activeIndice) //Check which of the pills is the active one - active is true
-               pills.push(<PageIndicatorPill key={i} active={true}/>);
-            else
-               pills.push(<PageIndicatorPill key={i} active={false}/>);
-        
+        for (var i = 0; i < props.size; i++)  //Create an array of all the pills required to create the page indicator
+            pills.push(<PageIndicatorPill key={i} active={props.activeIndice === i} />);
         this.state = {pills:pills};
     }
 
+    componentWillReceiveProps(nextProps){
+        let pills = [];
+        for (var i = 0; i < nextProps.size; i++) //Update the indicator
+                pills.push(<PageIndicatorPill key={i} active={nextProps.activeIndice === i} />);
+        this.setState({ pills: pills });
+    }
 
     render(){
         return(

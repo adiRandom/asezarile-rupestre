@@ -1,0 +1,27 @@
+.leaving-left{
+    transform: translateX(-100vw);
+    transition: transform 1s ease-in;
+}
+
+.leaving-right{
+    transform: translateX(100vw);
+    transition: transform 1s ease-in;
+}
+
+.left-left{
+    transform: translateX(100vw);
+}
+
+.left-right{
+    transform: translateX(-100vw);
+}
+
+.entering-left{
+    transform: translateX(0);
+    transition: transform 1s ease-out;
+}
+
+.entering-right{
+    transform: translateX(0);
+    transition: transform 1s ease-out;
+}
