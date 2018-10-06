@@ -13,7 +13,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import { routeCoordinates } from "../properties/route.js"
 
 
-import * as image from "../assets/img/traseu.png";
 
 
 export class MapContainer extends React.Component {
@@ -412,7 +411,6 @@ export class MapContainer extends React.Component {
                 <div className="row m-0">
                     <div className="col-12" style={{ height: "100vh", padding: 0 }}>
                         <React.Fragment>
-                            <img src={image} style={{ width: "100%", height: "100%", display: this.state.routeDisplay, zIndex: 5 }} />
                             <Map google={this.props.google} style={{ height: "100%" }}
                                 initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
                                 zoom={this.state.zoom}

@@ -20,7 +20,7 @@ export default class PageIndicator extends React.Component{
 
     render(){
         return(
-            <div id="PageIndicatorContainer">{this.state.pills}</div>);
+            <div id="PageIndicatorContainer" style={this.props.style}>{this.state.pills}</div>);
     }
 
 }

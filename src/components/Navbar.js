@@ -81,7 +81,7 @@ export default class Homepage extends React.Component {
 
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-light" style={{"background-color": "white"}}>
+            <nav className="navbar navbar-expand-sm navbar-light" style={{"background-color": "white"}}>
                 <Link className="navbar-brand" to="/"><img src={Logo} alt={"Logoul acestui site"}
                                                            style={{width: "70px", height: "47px"}} className="mb-3"/>
                     <span className="ml-2" style={{

@@ -12,7 +12,7 @@ export const properties = {
             lat: 45.8580984,
             lng: 24.9428941
         },
-        zoom: 6.85
+        zoom: 6.6
 
 
     },
@@ -23,7 +23,7 @@ export const properties = {
             lng: 26.7837695
 
         },
-        zoom: 9
+        zoom: 8.8
 
     },
     bozioru_map_properties:{

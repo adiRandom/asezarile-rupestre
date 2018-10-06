@@ -25,3 +25,41 @@
     transform: translateX(0);
     transition: transform 1s ease-out;
 }
+
+#carousel-data:hover{
+    box-shadow:inset 0 0 0 2000px rgba(255,0,150,0.3);	
+}
+
+#carousel-data{
+    display: grid;
+    grid-template-columns: 3% 40% 54% 3%;
+    grid-template-rows: 10% 10% 60% 20%;
+    align-content: center;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: [first]10% [second]80% [third]10%;
+    grid-template-rows: auto;
+    
+}
+
+.carousel-text-title{ 
+    grid-column-start:3;
+    grid-row:2/3; 
+    justify-self:start;
+    font-size:2.5em;
+    margin-left:30px;
+    font-weight:bold;
+    color:white;
+}
+
+.carousel-text-content{ 
+    grid-column-start: 3;
+    grid-row: 3/4; 
+    justify-self: start;
+    margin-top:50px;
+    margin-left:30px;
+    font-size:2rem;
+    color: white;
+}

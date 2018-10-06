@@ -1,6 +1,6 @@
 import React from 'react';
-import * as onState from '../assets/graphics/Page-indicator-on.png'
-import * as offState from '../assets/graphics/Page-indicator-off.png'
+import * as onState from '../assets/graphics/marker_active.png'
+import * as offState from '../assets/graphics/marker_inactive.png'
 
 export default class PageIndicatorPill extends React.Component{
 
@@ -11,8 +11,8 @@ export default class PageIndicatorPill extends React.Component{
         this.style = {
             backgroundImage: `url(${props.active ? onState : offState})`,
             marginRight: '10px',
-            height: "32px",
-            width: "32px",
+            height: "18px",
+            width: "51px",
             display: "inline-block"
         };
     }
@@ -21,8 +21,8 @@ export default class PageIndicatorPill extends React.Component{
         this.style = {
             backgroundImage: `url(${nextProps.active?onState:offState})`,
             marginRight: '10px',
-            height: "32px",
-            width: "32px",
+            height: "18px",
+            width: "51px",
             display: "inline-block"
         };
     }
