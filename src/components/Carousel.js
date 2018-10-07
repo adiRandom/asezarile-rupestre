@@ -30,8 +30,8 @@ export default class Carousel extends React.Component {
             slideBackgroundStyle: {
                 backgroundImage: `url(${slideBackground})`,
                 backgroundSize:'cover',
-                height: '70vh',
-                marginTop: '10vh'
+                height: '72vh',
+                marginTop: '8.5vh'
             }
         }; //Set the initial state of the component
 
@@ -66,7 +66,7 @@ export default class Carousel extends React.Component {
                         'entering-right': false,
                         entered: false
                     })
-                }, () => setTimeout(this.leftThroughTheLeftSide, 1000));
+                }, () => setTimeout(this.leftThroughTheLeftSide, 500));
             }
             else {
                 this.setState({
@@ -79,7 +79,7 @@ export default class Carousel extends React.Component {
                         'entering-right': false,
                         entered: false
                     })
-                }, () => setTimeout(this.leftThroughTheLeftSideWithWrap, 1000));
+                }, () => setTimeout(this.leftThroughTheLeftSideWithWrap, 500));
             }
 
         }
@@ -95,7 +95,7 @@ export default class Carousel extends React.Component {
                         'entering-right': false,
                         entered: false
                     })
-                }, () => setTimeout(this.leftThroughTheRightSide, 1000));
+                }, () => setTimeout(this.leftThroughTheRightSide, 500));
             }
             else {
                 this.setState({
@@ -108,7 +108,7 @@ export default class Carousel extends React.Component {
                         'entering-right': false,
                         entered: false
                     })
-                }, () => setTimeout(this.leftThroughTheRightSideWithWrap, 1000));
+                }, () => setTimeout(this.leftThroughTheRightSideWithWrap, 500));
             }
         }
 

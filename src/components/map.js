@@ -409,14 +409,11 @@ export class MapContainer extends React.Component {
             <div className="mapContainer">
             <Navbar/>
                 <div className="row m-0">
-                    <div className="col-12" style={{ height: "100vh", padding: 0 }}>
-                        <React.Fragment>
+                    <div className="col-12" style={{ height: "86.5vh", padding: 0 }}>
                             <Map google={this.props.google} style={{ height: "100%" }}
                                 initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
                                 zoom={this.state.zoom}
                                 ref={this.mapRef} />
-
-                        </React.Fragment>
                     </div>
                 </div>
             </div>
