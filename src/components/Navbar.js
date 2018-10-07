@@ -107,7 +107,7 @@ export default class Homepage extends React.Component {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {/* TODO: Add the links after creating the pages*/}
-                                <Link className={this.classes.istorie} to="#">Istorie</Link>
+                                <Link className={this.classes.istorie} to="/info">Istorie</Link>
                                 <Link className={this.classes.geografie} to="#">Geografie</Link>
                                 <Link className={this.classes.religie} to="#">Religie</Link>
                                 <Link className={this.classes.arheologie} to="#">Arheologie</Link>

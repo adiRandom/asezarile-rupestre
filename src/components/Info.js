@@ -7,13 +7,6 @@ import Navbar from './Navbar'
 export default class Info extends React.Component{
 
 
-    scrollHandling(e) {
-
-        console.log("hey");
-        console.log(e);
-
-    }
-
 render(){
 
     return (
