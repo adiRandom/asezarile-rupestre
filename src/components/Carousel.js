@@ -30,8 +30,6 @@ export default class Carousel extends React.Component {
             slideBackgroundStyle: {
                 backgroundImage: `url(${slideBackground})`,
                 backgroundSize:'cover',
-                height: '72vh',
-                marginTop: '8.5vh'
             }
         }; //Set the initial state of the component
 
@@ -215,12 +213,17 @@ export default class Carousel extends React.Component {
 
 
         return (
-            <div className="carrousel">
+            <div className="carrousel" style={this.props.style}>
+                <div className="grid-container">
+                    <PageIndicator size={this.props.data.length} activeIndice={this.state.currentIndice} 
+                        style={{gridColumnStart:'second',justifySelf:'center',marginTop:'30px'}}
+                    />
+                </div>
                 <div id="carousel-data"  style={this.state.slideBackgroundStyle} className={this.state.style}>
                     <Arrow style={{ gridColumnStart: '1', gridRow: '3', justifySelf: 'center', alignSelf: 'center' }}
                         orientation='left' onClick={this.changeSlide} />
                     <div className="carousel-image"  style={{gridColumnStart:'2/3',gridRow:'2/4' ,justifySelf:'center'}}>
-                        <img src={this.props.data[this.state.currentIndice].photo}
+                        <img src={this.props.data[this.state.currentIndice].picture}
                             style={this.props.data[this.state.currentIndice].style ? 
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '100%' } : { display: "inline-block", maxWidth: '95%', maxHeight: '100%' }} />
                     </div>
@@ -233,11 +236,6 @@ export default class Carousel extends React.Component {
                     <Arrow style={{ gridColumnStart: '4', gridRow: '3', justifySelf: 'center', alignSelf: 'center' }}
                         orientation='right' onClick={this.changeSlide} />
                     </div>
-                <div className="grid-container">
-                    <PageIndicator size={this.props.data.length} activeIndice={this.state.currentIndice} 
-                        style={{gridColumnStart:'second',justifySelf:'center',marginTop:'10px'}}
-                    />
-                </div>
             </div>)
             ;
     }

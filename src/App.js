@@ -14,7 +14,7 @@ class App extends Component {
             <Switch>
                 <Route path={"/"} component={Homepage} exact={true}/>
                 <Route path={"/harta"} component={MapContainer} exact={true}/>
-                <Route path={'/info'} component={Info} exact = {true}/>
+                <Route path={'/info/:id'} component={Info} exact = {false}/>
             </Switch>
 
         );
