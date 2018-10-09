@@ -222,13 +222,15 @@ export default class Carousel extends React.Component {
                 <div id="carousel-data"  style={this.state.slideBackgroundStyle} className={this.state.style}>
                     <Arrow style={{ gridColumnStart: '1', gridRow: '3', justifySelf: 'center', alignSelf: 'center' }}
                         orientation='left' onClick={this.changeSlide} />
-                    <div className="carousel-image"  style={{gridColumnStart:'2/3',gridRow:'2/4' ,justifySelf:'center'}}>
+                    <div className="carousel-image"  style={{gridColumnStart:'2/3',gridRow:'2/4' ,justifySelf:'center', alignSelf:'center'}}>
                         <img src={this.props.data[this.state.currentIndice].picture}
                             style={this.props.data[this.state.currentIndice].style ? 
-                                { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '100%' } : { display: "inline-block", maxWidth: '95%', maxHeight: '100%' }} />
+                                { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%'} : { display: "inline-block", maxWidth: '95%'}} />
                     </div>
                     <div className="carousel-text-title">
+                        <h1>
                             {this.props.data[this.state.currentIndice].title}
+                        </h1>
                         </div>
                     <div className="carousel-text-content" >
                             {this.props.data[this.state.currentIndice].text}
