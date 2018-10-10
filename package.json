@@ -1,6 +1,6 @@
 {
   "name": "asezarile-rupestre",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "private": false,
   "dependencies": {
     "bootstrap": "^4.1.3",

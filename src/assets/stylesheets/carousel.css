@@ -43,7 +43,7 @@
     
 }
 
-.carousel-text-title{ 
+#empty-block-top{ 
     grid-column-start:3;
     grid-row:2/3; 
     justify-self:start;
@@ -53,11 +53,19 @@
     margin-top: 30px;
 }
 
+#empty-block-bottom{ 
+    grid-column-start:3;
+    grid-row:4/5; 
+    justify-self:start;
+    margin-left:30px;
+    font-weight:bold;
+    color:white;
+    margin-top: 30px;
+}
 .carousel-text-content{ 
     grid-column-start: 3;
     grid-row: 3/4; 
     justify-self: start;
-    margin-top:50px;
     margin-left:30px;
     font-size:1.5rem;
     color: white;
