@@ -48,7 +48,7 @@ export class MapContainer extends React.Component {
             borderSrc: properties.Romania,
             //True if we display the route img
             routeDisplay: "none",
-            count:0 //Variable responsable with indexing the current objective that is being displayed
+            count: 0 //Variable responsable with indexing the current objective that is being displayed
         };
 
 
@@ -224,8 +224,10 @@ export class MapContainer extends React.Component {
 
                 }
             }, () => setTimeout(this.zoomContinuation, 650));
-            this.setEndReached();
 
+        }
+        else if (this.state.stage == 3){
+            this.goToRoute();
         }
     }
 
@@ -246,9 +248,8 @@ export class MapContainer extends React.Component {
                     lat: properties.rupestre_map_properties.center.lat + 0.02,
                     lng: properties.rupestre_map_properties.center.lng
                 }
-            }, () => setTimeout(() => this.setState({ zoom: properties.rupestre_map_properties.zoom })), 480) //Continue the animation to Asezarile Rupestre
-
-            console.log(this.state.center);
+            }, () => setTimeout(() => this.setState({ zoom: properties.rupestre_map_properties.zoom },()=> //Go to the route
+            setTimeout(this.clickHandler,2700))), 480) //Continue the animation to Asezarile Rupestre
         }
         else {
 
@@ -361,7 +362,8 @@ export class MapContainer extends React.Component {
 
         this.setState({
 
-            zoom: 15 //Zoom out in order to see the route
+            zoom: 15, //Zoom out in order to see the route
+            endReached: false //Make the renderer not go back and forth between the objective and the route
 
 
         }, () => {
@@ -370,69 +372,76 @@ export class MapContainer extends React.Component {
         });
     }
 
-transitionToIndividual() {
-    setTimeout(this.goToObjective, 3000);
-}
+    transitionToIndividual() {
+        setTimeout(this.goToObjective, 3000);
+    }
 
-goToObjective(){ //Start going to the individual points after 3 seconds
+    goToObjective() { //Start going to the individual points after 3 seconds
+        if (this.state.count < objectives.objective.length)
+            this.setState({
+                center: objectives.objective[this.state.count].center,
+            }, () => setTimeout(this.zoomToObjective, 600))
+    }
+
+    zoomToObjective = () => {
         this.setState({
-            zoom: objectives.objective[this.state.count].zoom,
-            center: objectives.objective[this.state.count].center,
-            endReached : false //Make the renderer not go back and forth between the objective and the route
-        },()=>setTimeout(this.addObjectiveMarker,2000))}
+            zoom: objectives.objective[this.state.count].zoom
+        }, () => setTimeout(this.addObjectiveMarker, 2000))
+    }
 
-addObjectiveMarker = ()=>{ //After zooming in show the marker on the map
-    //Add a marker and a info window
-    var infoWindow = new window.google.maps.InfoWindow({
-        content: '<h1>Hello</h1>'
+    addObjectiveMarker = () => { //After zooming in show the marker on the map
+        //Add a marker and a info window
+        let infoWindow;
+        import ('../assets/img/back1.png').then((img)=>{
+            console.log('Hey');
+            infoWindow = new window.google.maps.InfoWindow({
+            content: `<h1>Hello</h1>` + `<img src =${img} height = 300px width=300px >`
+        });
+        var marker = new window.google.maps.Marker({
+            position: objectives.objective[this.state.count].center,
+            map: this.mapRef.current.map,
+            title: 'Titlu'
+        });
+
+        infoWindow.open(this.mapRef.current.map, marker); //Dispaly the infowindow
+        setTimeout(() => this.removeObjectiveMarker(marker, infoWindow), 5000);
     });
+    }
 
-    var marker = new window.google.maps.Marker({
-        position: objectives.objective[this.state.count].center,
-        map: this.mapRef.current.map,
-        title: 'Titlu'
-    });
-
-    infoWindow.open(this.mapRef.current.map,marker); //Dispaly the infowindow
-    setTimeout(()=>this.removeObjectiveMarker(marker,infoWindow), 5000);
-}
-
-removeObjectiveMarker = (marker,infoWindow) => { //After a second remove the marker, zoom back out and increase the counter
+    removeObjectiveMarker = (marker, infoWindow) => { //After a second remove the marker, zoom back out and increase the counter
         //Remove the marker and the info windows
         marker.setMap(null);
         infoWindow.close();
-
-        this.setState({
-            zoom: objectives.initial.zoom //First zoom out then with a callback re-center the route
-        }, () =>
-                this.setState((prev)=>({
-                    center: objectives.initial.center,
-                }))
-        )}
-
-render() {
-
-    //Check if the end has been reached then start the countdown or else show the map
-    if (this.state.endReached) {
-        setTimeout(this.goToRoute, 2700);
+        setTimeout(this.resetToCenter, 2000) //reset to the route
     }
 
-    return (
+    resetToCenter = () => {
+        this.setState((prev)=>({
+            zoom: objectives.initial.zoom, //First zoom out then with a callback re-center the route
+            count: prev.count + 1
+        }), () => setTimeout(() =>
+            this.setState({
+                center: objectives.initial.center
+            }, () => setTimeout(this.goToObjective, 1000)), 500)
+        )
+    }
+    render() {
+        return (
 
 
-        <div className="mapContainer">
-            <Navbar />
-            <div className="row m-0">
-                <div className="col-12" style={{ height: "86.5vh", padding: 0 }}>
-                    <Map google={this.props.google} style={{ height: "100%" }}
-                        initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
-                        zoom={this.state.zoom}
-                        ref={this.mapRef} />
+            <div className="mapContainer">
+                <Navbar />
+                <div className="row m-0">
+                    <div className="col-12" style={{ height: "86.5vh", padding: 0 }}>
+                        <Map google={this.props.google} style={{ height: "100%" }}
+                            initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
+                            zoom={this.state.zoom}
+                            ref={this.mapRef} />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-}
+        );
+    }
 }
 
 export default GoogleApiWrapper({

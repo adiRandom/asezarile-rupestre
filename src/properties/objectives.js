@@ -13,11 +13,11 @@ const objectives = {
         },
         zoom:19
     },{
-            center: {
-                lat: 45.425709,
-                lng: 26.447775
-            },
-            zoom: 19
+        center: {
+            lat: 45.425709,
+            lng: 26.447775
+        },
+        zoom: 19
     }]
 };
 
