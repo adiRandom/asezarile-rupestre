@@ -380,7 +380,7 @@ export class MapContainer extends React.Component {
         if (this.state.count < objectives.objective.length)
             this.setState({
                 center: objectives.objective[this.state.count].center,
-            }, () => setTimeout(this.zoomToObjective, 600))
+            }, () => setTimeout(this.zoomToObjective, 700))
     }
 
     zoomToObjective = () => {

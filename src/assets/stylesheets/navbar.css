@@ -4,6 +4,12 @@
 
 }
 
+.dropdown-item.active {
+
+    background-color: cornflowerblue !important;
+
+}
+
 .dropdown:hover .dropdown-menu {
 
     display: block;

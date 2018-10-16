@@ -1,6 +1,6 @@
 import React from "react";
 import * as Logo from "../assets/icons/logo.png";
-import {Link} from "react-router-dom";
+import {NavLink,Link} from "react-router-dom";
 import "bootstrap/dist/js/bootstrap.min";
 import * as classNames from "classnames";
 import "../assets/stylesheets/navbar.css";
@@ -15,7 +15,7 @@ export default class Homepage extends React.Component {
         this.toVirtualTour = this.toVirtualTour.bind(this);
 
         //Keep track of the current active link
-        //Can be changed with ActiveLink from react
+        //Can be changed with NavLink from react
 
         this.classes = {
 
@@ -83,7 +83,7 @@ export default class Homepage extends React.Component {
         return (
             <nav className="navbar navbar-expand-sm navbar-light" style={{"background-color": "white"}}>
                 <Link className="navbar-brand" to="/"><img src={Logo} alt={"Logoul acestui site"}
-                                                           style={{width: "70px", height: "47px"}} className="mb-3"/>
+                                                            style={{width: "70px", height: "47px"}} className="mb-3"/>
                     <span className="ml-2" style={{
                         "font-weight": "bold",
                         "font-family": "Bernard MT Condensed",
@@ -94,26 +94,26 @@ export default class Homepage extends React.Component {
                 <div className="ml-auto">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className={this.classes.harta} to="/harta">Hartă</Link>
+                            <NavLink activeClassName="active" className={'nav-link'} to="/harta">Hartă</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className={this.classes.turVirtual} to="/tur" onClick={this.toVirtualTour}>Tur
-                                virtual</Link>
+                            <NavLink activeClassName="active" className={'nav-link'} to="/tur" onClick={this.toVirtualTour}>Tur
+                                virtual</NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Informații
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {/* TODO: Add the links after creating the pages*/}
-                                <Link className={this.classes.istorie} to="/info/mituri">Istorie</Link>
-                                <Link className={this.classes.geografie} to="#">Geografie</Link>
-                                <Link className={this.classes.religie} to="#">Religie</Link>
-                                <Link className={this.classes.arheologie} to="#">Arheologie</Link>
-                                <Link className={this.classes.turism} to="#">Turism</Link>
-                                <Link className={this.classes.legendeSiSuperstitii} to="#">Legende&superstiții</Link>
-                                <Link className={this.classes.bibliografie} to="#">Bibliografie</Link>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/mituri">Istorie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Geografie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Religie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Arheologie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Turism</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Legende&superstiții</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Bibliografie</NavLink>
                             </div>
                         </li>
                         <li className="nav-item">
