@@ -45,6 +45,8 @@ export default class Carousel extends React.Component {
 
         this.markAsEntered = this.markAsEntered.bind(this);
 
+        console.log(this.props.changeFullText);
+
 
     }
 
@@ -208,6 +210,10 @@ export default class Carousel extends React.Component {
             })
         })
     }
+    
+    readMore = ()=>{
+        this.props.changeFullText(this.state.currentIndice);
+    }
 
     render() {
 
@@ -232,7 +238,8 @@ export default class Carousel extends React.Component {
                         <h1>
                             {this.props.data[this.state.currentIndice].title}
                         </h1>
-                            {this.props.data[this.state.currentIndice].text}
+                            {this.props.data[this.state.currentIndice].textChopped}
+                            <h3 onClick = {this.readMore} id="read-more">Citeste mai mult</h3>
                         </div>
                     <Arrow style={{ gridColumnStart: '4', gridRow: '3/4', justifySelf: 'center', alignSelf: 'center' }}
                         orientation='right' onClick={this.changeSlide} />

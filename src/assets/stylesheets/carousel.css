@@ -70,3 +70,9 @@
     font-size:1.5rem;
     color: white;
 }
+
+#read-more:hover{
+    text-decoration-line: underline;
+    text-decoration-color: white;
+    text-decoration-style: solid;
+}

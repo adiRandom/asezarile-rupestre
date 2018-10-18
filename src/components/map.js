@@ -355,7 +355,7 @@ export class MapContainer extends React.Component {
         const route = new window.google.maps.Polyline({
             path: routeCoordinates.coordinates,
             geodesic: true,
-            strokeColor: '#FF0000',
+            strokeColor: '#fffc0d',
             strokeOpacity: 1.0,
             strokeWeight: 2
         });
