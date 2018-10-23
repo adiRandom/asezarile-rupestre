@@ -45,9 +45,6 @@ export default class Carousel extends React.Component {
 
         this.markAsEntered = this.markAsEntered.bind(this);
 
-        console.log(this.props.changeFullText);
-
-
     }
 
 

@@ -13,73 +13,15 @@ export default class Homepage extends React.Component {
         super(props);
 
         this.toVirtualTour = this.toVirtualTour.bind(this);
-
-        //Keep track of the current active link
-        //Can be changed with NavLink from react
-
-        this.classes = {
-
-            harta: classNames({
-
-                "nav-link": true,
-                "active": this.props.active === "Harta"
-            }),
-            turVirtual: classNames({
-
-                "nav-link": true,
-                "active": this.props.active === "Tur Virtual"
-            }),
-            istorie: classNames({
-
-                "dropdown-item": true,
-                "active": this.props.active === "Istorie"
-            }),
-            geografie: classNames({
-
-                "dropdown-item": true,
-                "active": this.props.active === "Geografie"
-            }),
-            religie: classNames({
-
-                "dropdown-item": true,
-                "active": this.props.active === "Religie"
-            }),
-            arheologie: classNames({
-
-                "dropdown-item": true,
-                "active": this.props.active === "Arheologie"
-            }),
-            turism: classNames({
-
-                "dropdown-item": true,
-                "active": this.props.active === "Turism"
-            }),
-            legendeSiSuperstitii: classNames({
-
-                "dropdown-item": true,
-                "active": this.props.active === "Legende si superstitie"
-            }),
-            bibliografie: classNames({
-
-                "dropdown-item": true,
-                "active": this.props.active === "Bibliografie"
-            })
-
-        };
-
     }
 
     toVirtualTour() {
 
         let window = window.open('/tur', 'Tur virtual');
         window.focus();
-
-
     }
 
     render() {
-
-
         return (
             <nav className="navbar navbar-expand-sm navbar-light" style={{"background-color": "white"}}>
                 <Link className="navbar-brand" to="/"><img src={Logo} alt={"Logoul acestui site"}
@@ -107,7 +49,8 @@ export default class Homepage extends React.Component {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {/* TODO: Add the links after creating the pages*/}
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/mituri">Istorie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Istorie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to=" /info/mituri">Mituri</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Geografie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Religie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Arheologie</NavLink>
