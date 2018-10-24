@@ -2,6 +2,7 @@ import React from 'react'
 import PageIndicator from './PageIndicator'
 import "../assets/stylesheets/carousel.css";
 import * as classNames from "classnames";
+import { CSSTransitionGroup } from "react-transition-group";
 
 import * as slideBackground from '../assets/img/slidegreen.png'
 import Arrow from './Arrow.js';
@@ -13,7 +14,6 @@ export default class Carousel extends React.Component {
     //Pass in an array of objects containing a title, a text, an image and optionally another object to style the image
     constructor(props) {
         super(props);
-
 
 
         this.state = {
@@ -30,7 +30,8 @@ export default class Carousel extends React.Component {
             slideBackgroundStyle: {
                 backgroundImage: `url(${slideBackground})`,
                 backgroundSize:'cover',
-            }
+            },
+            imageElement:null
         }; //Set the initial state of the component
 
         this.changeSlide = this.changeSlide.bind(this); //Event to handle the scroll on the carousel
@@ -47,6 +48,27 @@ export default class Carousel extends React.Component {
 
     }
 
+    componentWillMount(){
+        //Declare the image node and add it to the state in order to unmount it 
+        //and remount it to reset the animation
+        this.imageElement = (
+            <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center'  }}>
+                <CSSTransitionGroup
+            transitionName="image-enter"
+            transitionAppear={true}
+            transitionAppearTimeout={5000}
+            transitionEnter={false}
+            transitionLeave={false}>
+                <img src={this.props.data[this.state.currentIndice].picture}
+                    style={this.props.data[this.state.currentIndice].style ?
+                        { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay:'1000ms' } : { display: "inline-block", maxWidth: '95%',transitionDelay:'1000ms' }} />
+                </CSSTransitionGroup>
+            </div>
+        );
+        this.setState({
+            imageElement:this.imageElement
+        },()=>console.log(this.state))
+    }
 
     changeSlide(e) {
 
@@ -121,7 +143,8 @@ export default class Carousel extends React.Component {
             'entering-left': false,
             'entering-right': false,
             entered: false
-        })
+        }),
+        imageElement: (<p>Hello</p>) //The node is invisible so 'unmount' it
     }), () => setTimeout(this.enteringFromTheLeft, 300))
 
     leftThroughTheLeftSide = () => this.setState((prev) => ({ //Adter a second we mark that the current data left through the left side
@@ -134,7 +157,8 @@ export default class Carousel extends React.Component {
             'entering-left': false,
             'entering-right': false,
             entered: false
-        })
+        }),
+        imageElement: (<p>Hello</p>) //The node is invisible so 'unmount' it
     }), () => setTimeout(this.enteringFromTheRight, 300))
 
     leftThroughTheRightSideWithWrap = () => this.setState((state, props) => ({  //Adter a second we mark that the current data left through the right side
@@ -147,7 +171,8 @@ export default class Carousel extends React.Component {
             'entering-left': false,
             'entering-right': false,
             entered: false
-        })
+        }),
+        imageElement: (<p>Hello</p>) //The node is invisible so 'unmount' it
     }), () => setTimeout(this.enteringFromTheLeft, 300))
 
     leftThroughTheLeftSideWithWrap = () => this.setState({ //Adter a second we mark that the current data left through the left side
@@ -160,7 +185,8 @@ export default class Carousel extends React.Component {
             'entering-left': false,
             'entering-right': false,
             entered: false
-        })
+        }),
+        imageElement: (<p>Hello</p>) //The node is invisible so 'unmount' it
     }, () => setTimeout(this.enteringFromTheRight, 300))
 
     enteringFromTheRight() { //Mark that the next piece of content should enter from the right side
@@ -174,7 +200,8 @@ export default class Carousel extends React.Component {
                 'entering-left': false,
                 'entering-right': true,
                 entered: false
-            })
+            }),
+            imageElement: this.imageElement  //The node is visible so 'mount' it
         })
 
     }
@@ -189,7 +216,8 @@ export default class Carousel extends React.Component {
                 'entering-left': true,
                 'entering-right': false,
                 entered: false
-            })
+            }),
+            imageElement: this.imageElement //The node is visible so 'mount' it
         })
 
     }
@@ -225,11 +253,7 @@ export default class Carousel extends React.Component {
                 <div id="carousel-data"  style={this.state.slideBackgroundStyle} className={this.state.style}>
                     <Arrow style={{ gridColumnStart: '1', gridRow: '3/4', justifySelf: 'center', alignSelf: 'center' }}
                         orientation='left' onClick={this.changeSlide} />
-                    <div className="carousel-image"  style={{gridColumnStart:'2/3',gridRow:'2/4' ,justifySelf:'center', alignSelf:'center'}}>
-                        <img src={this.props.data[this.state.currentIndice].picture}
-                            style={this.props.data[this.state.currentIndice].style ? 
-                                { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%'} : { display: "inline-block", maxWidth: '95%'}} />
-                    </div>
+                    {this.state.imageElement}
                     <div id='empty-block-top'></div>
                     <div className="carousel-text-content" >
                         <h1>

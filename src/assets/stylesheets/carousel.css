@@ -76,3 +76,12 @@
     text-decoration-color: white;
     text-decoration-style: solid;
 }
+
+.image-enter-appear {
+    clip-path: circle(60px at center);
+}
+
+.image-enter-appear.image-enter-appear-active {
+    clip-path: circle(1000px at center);
+    transition: all 2s ease-in;
+}
