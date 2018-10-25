@@ -1,5 +1,29 @@
-.grid-container{
+.full-text-display-grid-container{
     display: grid;
-    grid-template-columns: 5% 30% 60% 5%;
-    grid-template-rows: 5% 95%;
+    grid-template-columns: auto;
+    grid-template-rows: 5% 35% 60%;
+}
+
+.read-more-enter-appear {
+    transform: translateY(-200vh);
+}
+
+.read-more-enter-appear.read-more-enter-appear-active {
+    transform: translateY(0vh);
+    transition: all 1s ease-in;
+}
+
+.full-text-display-wrapper{
+    background-color:rgba(15,17,18,0.40);
+    position:fixed;
+    top:0;
+    left:0;
+    height:'100vh';
+    width:'100vw';
+}
+
+#close-icon{
+    grid-row:1/2;
+    justify-self: end;
+    margin: 10px;
 }

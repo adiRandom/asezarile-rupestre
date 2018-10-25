@@ -27,7 +27,7 @@ export default class Mituri extends React.Component{
         },()=>this.setState({
             element: (<React.Fragment>
                 <Carousel data={this.data} changeFullText={this.updateFullText} />
-                <FullTextDisplay style={{ marginTop: "10vh" }} text={this.state.fullText} picture={this.state.picture}
+                <FullTextDisplay text={this.state.fullText} picture={this.state.picture}
                         close={this.close} />
             </React.Fragment>)
         }));

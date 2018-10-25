@@ -286,7 +286,7 @@ export default class Carousel extends React.Component {
             <div className="carrousel" style={this.props.style}>
                 <div className="grid-container">
                     <PageIndicator size={this.props.data.length} activeIndice={this.state.currentIndice} 
-                        style={{gridColumn:'2/4',justifySelf:'center',marginTop:'30px'}}
+                        style={{gridColumn:'2/3',justifySelf:'center',marginTop:'30px'}}
                     />
                 </div>
                 <div id="carousel-data"  style={this.state.slideBackgroundStyle} className={this.state.style}>
