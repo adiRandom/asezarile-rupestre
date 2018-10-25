@@ -1,9 +1,7 @@
 import React from 'react';
 import * as Legends from '../../data/legends/legend-0'
-import Carousel from '../Carousel'
-import * as img from '../../assets/img/22136998_1491150584311900_691524416981770128_o.jpg';
+import Carousel from '../Carousel';
 import FullTextDisplay from '../FullTextDisplay';
-import ReactDOM from 'react-dom';
 
 
 
@@ -12,29 +10,39 @@ export default class Mituri extends React.Component{
     constructor(props){
         super(props);
         this.data = Legends.Legends.content;
-        for(var i = 0;i<this.data.length;i++)
-            this.data[i].picture = img;
         this.state = {
-            fullText:this.data[0].textFull
+            fullText:this.data[0].textFull,
+            picture: this.data[0].picture,
+            element: (<React.Fragment>
+                <Carousel data={this.data} changeFullText={this.updateFullText} />
+            </React.Fragment>)
         }
-
-        this.myRef = React.createRef();
     }
+
 
     updateFullText = (indice)=>{
         this.setState({
-            fullText:this.data[indice].textFull
-        });
-        const myDomNode = ReactDOM.findDOMNode(this.myRef.current);
-        myDomNode.scrollIntoView();
+            fullText:this.data[indice].textFull,
+            picture:this.data[indice].picture
+        },()=>this.setState({
+            element: (<React.Fragment>
+                <Carousel data={this.data} changeFullText={this.updateFullText} />
+                <FullTextDisplay style={{ marginTop: "10vh" }} text={this.state.fullText} picture={this.state.picture}
+                        close={this.close} />
+            </React.Fragment>)
+        }));
+        
+    }
+
+    close = ()=>{
+        this.setState({
+            element: (<React.Fragment>
+                <Carousel data={this.data} changeFullText={this.updateFullText} />
+            </React.Fragment>)
+        })
     }
 
     render(){
-        return(
-        <React.Fragment>
-            <Carousel data = {this.data} changeFullText={this.updateFullText} />
-            <FullTextDisplay style={{ marginTop: "10vh" }} text={this.state.fullText} ref={this.myRef}/>
-        </React.Fragment>
-        );
+        return this.state.element;
     }
 }

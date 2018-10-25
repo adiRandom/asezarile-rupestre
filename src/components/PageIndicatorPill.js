@@ -2,10 +2,10 @@ import React from 'react';
 import * as onState from '../assets/graphics/marker_active.png'
 import * as offState from '../assets/graphics/marker_inactive.png'
 
-export default class PageIndicatorPill extends React.Component{
+export default class PageIndicatorPill extends React.Component {
 
 
-    constructor(props){
+    constructor(props) {
 
         super(props);
         this.style = {
@@ -17,9 +17,9 @@ export default class PageIndicatorPill extends React.Component{
         };
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.style = {
-            backgroundImage: `url(${nextProps.active?onState:offState})`,
+            backgroundImage: `url(${nextProps.active ? onState : offState})`,
             marginRight: '10px',
             height: "18px",
             width: "51px",
@@ -27,9 +27,9 @@ export default class PageIndicatorPill extends React.Component{
         };
     }
 
-    render(){
+    render() {
 
-        return(
+        return (
             <div style={this.style}></div>
         );
 
