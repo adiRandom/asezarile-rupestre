@@ -7,7 +7,7 @@ export default class InfoDisplay extends React.Component{
 
     constructor(props){
         super(props);
-        this.data = this.state.data;
+        this.data = this.props.data;
         //Map \n to html break
         for (let i = 0; i < this.data.length; i++) {
             this.data[i].textChopped = this.data[i].textChopped.split('\r\n').map((item, key) => {
