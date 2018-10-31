@@ -47,7 +47,10 @@ export default class FullTextDisplay extends React.Component {
                 transitionAppearTimeout={5000}
                 transitionEnter={false}
                 transitionLeave={false}>
-                <div className='full-text-display-wrapper' style={{ ...this.state.style }}>
+                <div className='full-text-display-wrapper' style={{ ...this.state.style,width:'100vw' }}>
+                    <div id='close-icon'>
+                        <img src={closeIcon} onClick={this.close} />
+                    </div>
                     <div className='full-text-display-grid-container' style={{
                         ...this.props.style, backgroundColor: 'rgba(255, 255, 255,0.80)', color: 'black',
                         WebkitBoxShadow: '-7px -7px 22px 0 rgba(97,97,97,0.35) inset',
@@ -56,13 +59,9 @@ export default class FullTextDisplay extends React.Component {
                         height: '100vh',
                         width: '60vw',
                         position: 'relative',
-                        left: '20vw',
                         top: 0
                     }} ref={this.containerRef}>
-                        <div id='close-icon'>
-                            <img src={closeIcon} onClick={this.close} style={{ maxWidth: '32px', maxHeight: '32px', }} />
-                        </div>
-                        {this.state.element}
+                        {this.state.element} {/* The image node */}
                         <p style={{ fontSize: '2rem', gridRow: '3/4' }}>{this.props.text}</p>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import PageIndicator from './PageIndicator'
 import "../assets/stylesheets/carousel.css";
 import * as classNames from "classnames";
 import { CSSTransitionGroup } from "react-transition-group";
+import * as bookIcon from '../assets/icons/book-icon.png';
 
 import * as slideBackground from '../assets/img/slidegreen.png'
 import Arrow from './Arrow.js';
@@ -15,7 +16,7 @@ export default class Carousel extends React.Component {
     constructor(props) {
         super(props);
 
-       
+
         this.state = {
             currentIndice: 0,
             style: classNames({
@@ -70,7 +71,8 @@ export default class Carousel extends React.Component {
             );
             this.setState((prev) => ({
                 imageElement: this.imageElement,
-                readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
+                readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">
+                        <img src={bookIcon} style={{maxHeight:'32px',maxWidth:'32px',margin:'10px'}}/>Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
             }))
         });
     }
@@ -151,7 +153,8 @@ export default class Carousel extends React.Component {
             entered: false
         }),
         imageElement: (<p>Hello</p>),//The node is invisible so 'unmount' it
-        readMore: this.props.data[prev.currentIndice - 1].textFull ? (<h3 onClick={this.readMore} id="read-more">Citeste mai mult</h3>) : null //The data changed so we check whether or not we should have the read more button
+        readMore: this.props.data[prev.currentIndice - 1].textFull ? (<h3 onClick={this.readMore} id="read-more">
+            <img src={bookIcon} style={{ maxHeight: '32px', maxWidth: '32px', margin: '10px' }} />Citeste mai mult</h3>) : null //The data changed so we check whether or not we should have the read more button
     }), () => setTimeout(this.enteringFromTheLeft, 300))
 
     leftThroughTheLeftSide = () => this.setState((prev) => ({ //Adter a second we mark that the current data left through the left side
@@ -166,7 +169,8 @@ export default class Carousel extends React.Component {
             entered: false
         }),
         imageElement: (<p>Hello</p>), //The node is invisible so 'unmount' it
-        readMore: this.props.data[prev.currentIndice + 1].textFull ? (<h3 onClick={this.readMore} id="read-more">Citeste mai mult</h3>) : null //The data changed so we check whether or not we should have the read more button
+        readMore: this.props.data[prev.currentIndice + 1].textFull ? (<h3 onClick={this.readMore} id="read-more">
+            <img src={bookIcon} style={{ maxHeight: '32px', maxWidth: '32px', margin: '10px' }} />Citeste mai mult</h3>) : null //The data changed so we check whether or not we should have the read more button
     }), () => setTimeout(this.enteringFromTheRight, 300))
 
     leftThroughTheRightSideWithWrap = () => this.setState((state, props) => ({  //Adter a second we mark that the current data left through the right side

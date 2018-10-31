@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 5% 35% 60%;
+
+    grid-column: 2/3;
 }
 
 .read-more-enter-appear {
@@ -20,10 +22,28 @@
     left:0;
     height:'100vh';
     width:'100vw';
+
+    display: grid;
+    grid-template-columns: 20% 60% 14% 6%;
+    grid-template-rows: auto;
 }
 
 #close-icon{
-    grid-row:1/2;
-    justify-self: end;
+    grid-column:4/5;
+    justify-self: center;
     margin: 10px;
 }
+
+#close-icon img{
+    max-width:16px; 
+    max-height:16px;
+}
+
+@media only screen and (min-width: 768px){
+    #close-icon img{
+        max-width:32px; 
+        max-height:32px;
+    }
+}
+
+

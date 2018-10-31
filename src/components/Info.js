@@ -16,30 +16,35 @@ export default class Info extends React.Component {
         switch (this.props.match.params.id) {
             case 'legende': import('../data/legends.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplay data={data.content} />)
+                    element: (<InfoDisplay data={data.content} location={this.props.location} />)
                 })
             }); break;
             case 'istorie': import('../data/history.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplay data={data.content} />)
+                    element: (<InfoDisplay data={data.content} location={this.props.location} />)
                 })
             }); break;
         }
     }
 
     shouldComponentUpdate(nextProps,nextState) {
+
         if (this.props.match.params.id !== nextProps.match.params.id && nextProps) {
             switch (nextProps.match.params.id) {
                 case 'legende': import('../data/legends.json').then((data) => {
                     this.setState({
-                        element: (<InfoDisplay data={data.content} />)
-                    })
+                        element:null
+                    }, () => this.setState({
+                        element: (<InfoDisplay data={data.content} location={this.props.location} />)
+                    }))
                 }); return true;
                 case 'istorie': import('../data/history.json').then((data) => {
                     this.setState({
-                        element: (<InfoDisplay data={data.content} />)
-                    })
-                });return true;
+                        element: null
+                    }, () => this.setState({
+                        element: (<InfoDisplay data={data.content} location={this.props.location} />)
+                    }))
+                }); return true;
                 default: return true;
             }
         }
