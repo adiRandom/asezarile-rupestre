@@ -8,6 +8,7 @@ export default class InfoDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.data = this.props.data;
+        
         //Map \n to html break
         if (!Array.isArray(this.data[0].textChopped)) { //Check if the data hasn't been previously mapped already
             for (let i = 0; i < this.data.length; i++) {

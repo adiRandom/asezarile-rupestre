@@ -50,7 +50,7 @@ export default class Homepage extends React.Component {
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {/* TODO: Add the links after creating the pages*/}
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/istorie">Istorie</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Geografie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/geografie">Geografie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Religie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Arheologie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Turism</NavLink>
