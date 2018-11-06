@@ -15,7 +15,6 @@ import objectives from "../properties/objectives.js"
 
 
 
-
 export class MapContainer extends React.Component {
     constructor(props) {
 
@@ -73,14 +72,20 @@ export class MapContainer extends React.Component {
         this.transitionToIndividual = this.transitionToIndividual.bind(this);
         this.goToObjective = this.goToObjective.bind(this);
 
-        //Ref to the underlying map
+        //Ref to the underlying map container
         this.mapRef = React.createRef();
+
+        //The reference to the map
+        this.map = null;
     }
 
     componentDidMount() {
 
+        //Create the map
+           
+
         //Set the style of the map
-        this.mapRef.current.map.mapTypeId = 'hybrid';
+        this.map.mapTypeId = 'hybrid';
 
         //Init the border
 
@@ -92,7 +97,7 @@ export class MapContainer extends React.Component {
             fillColor: '#FF0000',
             fillOpacity: 0
         });
-        this.border.setMap(this.mapRef.current.map);
+        this.border.setMap(this.map);
 
         //Add the function to a variable to call it in the event block below
 
@@ -108,14 +113,17 @@ export class MapContainer extends React.Component {
 
     }
 
-
-    toDemo() {
-
-        let window = window.open('/tur', 'Tour');
-        window.focus();
-
+    createMap = ()=>{
+        fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0&callback=initMap').then((script)=>{
+            this.setState((prev)=>({
+                map:new window.google.maps.Map(this.mapRef.current, {
+                center: this.state.initCenter,
+                zoom: this.state.zoom
+                })
+            })
+        )
     }
-
+    }
     clickHandler() {
 
         //The first click triggers the 3 stage transition
@@ -158,7 +166,7 @@ export class MapContainer extends React.Component {
                 fillColor: '#FF0000',
                 fillOpacity: 0
             });
-            this.border.setMap(this.mapRef.current.map);
+            this.border.setMap(this.map);
             setTimeout(this.clickHandler, 3000); //Move along
         }
         else if (this.state.stage === 1) {
@@ -367,7 +375,7 @@ export class MapContainer extends React.Component {
 
 
         }, () => {
-            route.setMap(this.mapRef.current.map);
+            route.setMap(this.map);
             this.transitionToIndividual();  //Call the function responsable with shwoing each objective throughout the route
         });
     }
@@ -399,11 +407,11 @@ export class MapContainer extends React.Component {
         });
         var marker = new window.google.maps.Marker({
             position: objectives.objective[this.state.count].center,
-            map: this.mapRef.current.map,
+            map: this.map,
             title: 'Titlu'
         });
 
-        infoWindow.open(this.mapRef.current.map, marker); //Dispaly the infowindow
+        infoWindow.open(this.map, marker); //Dispaly the infowindow
         setTimeout(() => this.removeObjectiveMarker(marker, infoWindow), 5000);
     });
     }
@@ -433,10 +441,11 @@ export class MapContainer extends React.Component {
                 <Navbar />
                 <div className="row m-0">
                     <div className="col-12" style={{ height: "86.5vh", padding: 0 }}>
-                        <Map google={this.props.google} style={{ height: "100%" }}
+                        {/* <Map google={this.props.google} style={{ height: "100%" }}
                             initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
                             zoom={this.state.zoom}
-                            ref={this.mapRef} />
+                            ref={this.mapRef} /> */}
+                        <div id='mapContainer' ref = {this.mapRef}></div>
                     </div>
                 </div>
             </div>
