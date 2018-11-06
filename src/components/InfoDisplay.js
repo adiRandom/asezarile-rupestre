@@ -8,6 +8,7 @@ export default class InfoDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.data = this.props.data;
+        console.log(this.data);
         
         //Map \n to html break
         if (!Array.isArray(this.data[0].textChopped)) { //Check if the data hasn't been previously mapped already
@@ -24,6 +25,7 @@ export default class InfoDisplay extends React.Component {
         this.state = {
             fullText: this.data[0].textFull,
             picture: this.data[0].picture,
+            pictures:this.data[0].pictures,
             element: (<React.Fragment>
                 <Carousel data={this.data} showFullText={this.showFullText} />
             </React.Fragment>)
@@ -34,12 +36,13 @@ export default class InfoDisplay extends React.Component {
     showFullText = (indice) => {
         this.setState({
             fullText: this.data[indice].textFull,
-            picture: this.data[indice].picture
+            picture: this.data[indice].picture,
+            pictures: this.data[indice].pictures
         }, () => this.setState({
             element: (<React.Fragment>
                 <Carousel data={this.data} showFullText={this.showFullText} />
                 <FullTextDisplay text={this.state.fullText} picture={this.state.picture}
-                    close={this.closeFullText} />
+                    close={this.closeFullText} pictures={this.state.pictures} />
             </React.Fragment>)
         }));
 

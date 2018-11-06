@@ -2,6 +2,7 @@ import React from 'react';
 import '../assets/stylesheets/full-text-display.css'
 import * as closeIcon from '../assets/graphics/close-circle-512.png'
 import { CSSTransitionGroup } from "react-transition-group";
+import Slideshow from './Slideshow'
 
 
 export default class FullTextDisplay extends React.Component {

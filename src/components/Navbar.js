@@ -53,7 +53,7 @@ export default class Homepage extends React.Component {
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/geografie">Geografie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Religie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Arheologie</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Turism</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/turism">Turism</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/legende">Legende&superstiții</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Bibliografie</NavLink>
                             </div>

@@ -30,6 +30,11 @@ export default class Info extends React.Component {
                     element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
                 })
             }); break;
+            case 'turism': import('../data/turism.json').then((data) => {
+                this.setState({
+                    element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                })
+            }); break;
         }
     }
 
@@ -54,6 +59,13 @@ export default class Info extends React.Component {
                     }))
                 }); return true;
                 case 'geografie': import('../data/geography.json').then((data) => {
+                    this.setState({
+                        element: null
+                    }, () => this.setState({
+                        element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                    }))
+                }); return true;
+                case 'turism': import('../data/turism.json').then((data) => {
                     this.setState({
                         element: null
                     }, () => this.setState({
