@@ -51,7 +51,7 @@ export class MapContainer extends React.Component {
         };
 
 
-        //Function binfing
+        //Function binding
         this.clickHandler = this.clickHandler.bind(this);
 
         //Can be removed
@@ -63,9 +63,6 @@ export class MapContainer extends React.Component {
 
 
         this.zoomContinuation = this.zoomContinuation.bind(this);
-
-        //Not used right now
-        this.toDemo = this.toDemo.bind(this);
 
         this.goToRoute = this.goToRoute.bind(this);
         this.setEndReached = this.setEndReached.bind(this);
@@ -79,10 +76,11 @@ export class MapContainer extends React.Component {
         this.map = null;
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
         //Create the map
-           
+
+        var temp = await this.createMap();
 
         //Set the style of the map
         this.map.mapTypeId = 'hybrid';
@@ -113,16 +111,16 @@ export class MapContainer extends React.Component {
 
     }
 
-    createMap = ()=>{
-        fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0&callback=initMap').then((script)=>{
-            this.setState((prev)=>({
-                map:new window.google.maps.Map(this.mapRef.current, {
+    createMap() {
+        //return fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0&callback=initMap').then((script)=>{
+            //console.log(script);
+            this.map = new window.google.maps.Map(this.mapRef.current, {
                 center: this.state.initCenter,
                 zoom: this.state.zoom
                 })
-            })
-        )
-    }
+            // })
+        // )
+    //});
     }
     clickHandler() {
 
