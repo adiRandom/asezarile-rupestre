@@ -14,6 +14,8 @@ export default class Info extends React.Component {
     }
 
     componentDidMount() {
+        //Decide upon the information that has to be displayed
+        //based on the url
         switch (this.props.match.params.id) {
             case 'legende': import('../data/legends.json').then((data) => {
                 this.setState({

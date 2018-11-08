@@ -9,6 +9,8 @@ export default class Slideshow extends React.Component {
         }
     }
 
+    //Load the images from the props
+    //And add them to an array in the state
     async componentDidMount() {
         console.log(this.props);
         for (let i = 0; i < this.props.images.length; i++)

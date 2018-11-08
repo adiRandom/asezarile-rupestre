@@ -32,8 +32,10 @@ export default class InfoDisplay extends React.Component {
         }
     }
 
-
+    //A function that is passed donw to the Carousel to call when the FullTextDisplay node should get displayed
     showFullText = (indice) => {
+        //Fetch the curent displaying information
+        //And add it to the state for the FullTextDisplay node to take
         this.setState({
             fullText: this.data[indice].textFull,
             picture: this.data[indice].picture,

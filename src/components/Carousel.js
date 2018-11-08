@@ -282,6 +282,7 @@ export default class Carousel extends React.Component {
         })
     }
 
+    //Call the function to display the  FullTextDisplay node
     readMore = () => {
         this.props.showFullText(this.state.currentIndice);
     }

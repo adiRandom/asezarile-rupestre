@@ -362,7 +362,8 @@ export class MapContainer extends React.Component {
 
         this.setState({
 
-            zoom: 15, //Zoom out in order to see the route
+            zoom: objectives.initial.zoom, //Zoom out in order to see the route
+            center:objectives.initial.center, //Ceter the image
             endReached: false //Make the renderer not go back and forth between the objective and the route
 
 
