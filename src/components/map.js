@@ -5,7 +5,6 @@
 import React from "react";
 import Navbar from './Navbar'
 import { properties } from "../properties/properties";
-import { GoogleApiWrapper, Map } from "google-maps-react";
 import "bootstrap/dist/js/bootstrap.min";
 import * as classNames from "classnames";
 import "../assets/stylesheets/main.css";
@@ -15,10 +14,10 @@ import objectives from "../properties/objectives.js"
 
 
 
-export class MapContainer extends React.Component {
+export default class MapContainer extends React.Component {
     constructor(props) {
 
-        super(props);
+        super(props)
 
         //Init the state
         this.state = {
@@ -47,23 +46,14 @@ export class MapContainer extends React.Component {
             borderSrc: properties.Romania,
             //True if we display the route img
             routeDisplay: "none",
+            map:null,
             count: 0 //Variable responsable with indexing the current objective that is being displayed
         };
 
 
         //Function binding
         this.clickHandler = this.clickHandler.bind(this);
-
-        //Can be removed
-        ///////////////////////////////////////////////
-        this.goToRomania = this.goToRomania.bind(this);
-        this.goToBuzau = this.goToBuzau.bind(this);
-        this.goToBozioru = this.goToBozioru.bind(this);
-        ///////////////////////////////////////////////
-
-
         this.zoomContinuation = this.zoomContinuation.bind(this);
-
         this.goToRoute = this.goToRoute.bind(this);
         this.setEndReached = this.setEndReached.bind(this);
         this.transitionToIndividual = this.transitionToIndividual.bind(this);
@@ -71,19 +61,31 @@ export class MapContainer extends React.Component {
 
         //Ref to the underlying map container
         this.mapRef = React.createRef();
+    }
 
-        //The reference to the map
-        this.map = null;
+    componentWillMount() {
+        // Start Google Maps API loading since we know we'll soon need it
     }
 
     async componentDidMount() {
-
         //Create the map
+        await this.getGoogleMaps().then((google)=>{
+                console.log(this.mapRef);
+            const map = new google.maps.Map(this.mapRef.current, {
+                    zoom: 4,
+                    center: {
+                        lat:45.3833472,
+                        lng:26.4745782 
+                    }
+                });
 
-        var temp = await this.createMap();
+                this.setState({
+                    map:map
+                },()=>console.log(this.state))
+        })
 
-        //Set the style of the map
-        this.map.mapTypeId = 'hybrid';
+        /* //Set the style of the map
+        this.state.map.mapTypeId = 'hybrid';
 
         //Init the border
 
@@ -95,7 +97,7 @@ export class MapContainer extends React.Component {
             fillColor: '#FF0000',
             fillOpacity: 0
         });
-        this.border.setMap(this.map);
+        this.border.setMap(this.state.map);
 
         //Add the function to a variable to call it in the event block below
 
@@ -107,21 +109,32 @@ export class MapContainer extends React.Component {
             clickHandler();
 
         });
-
+ */
 
     }
 
-    createMap() {
-        //return fetch('https://maps.googleapis.com/maps/api/js?key=AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0&callback=initMap').then((script)=>{
-            //console.log(script);
-            this.map = new window.google.maps.Map(this.mapRef.current, {
-                center: this.state.initCenter,
-                zoom: this.state.zoom
-                })
-            // })
-        // )
-    //});
+    getGoogleMaps = ()=> {
+            const googleMapsPromise = new Promise((resolve) => {
+                // Add a global handler for when the API finishes loading
+                window.resolveGoogleMapsPromise = () => {
+                    // Resolve the promise
+                    resolve(window.google);
+                };
+
+                // Load the Google Maps API
+                if(!document.getElementById("script")){
+                    const script = document.createElement("script");
+                    const API = 'AIzaSyDbAz1XXxDoKSU2nZXec89rcHPxgkvVoiw';
+                    script.src = `https://maps.googleapis.com/maps/api/js?key=${API}&callback=resolveGoogleMapsPromise`;
+                    script.async = true;
+                    document.body.appendChild(script);
+                }
+            });
+
+        // Return a promise for the Google Maps API
+        return googleMapsPromise;
     }
+
     clickHandler() {
 
         //The first click triggers the 3 stage transition
@@ -164,7 +177,7 @@ export class MapContainer extends React.Component {
                 fillColor: '#FF0000',
                 fillOpacity: 0
             });
-            this.border.setMap(this.map);
+            this.border.setMap(this.state.map);
             setTimeout(this.clickHandler, 3000); //Move along
         }
         else if (this.state.stage === 1) {
@@ -266,94 +279,6 @@ export class MapContainer extends React.Component {
         }
     }
 
-
-
-
-    //Function to handle button base navigation
-    //NOT USED
-
-    goToRomania() {
-
-        this.setState({
-            zoom: properties.romania_map_properties.zoom,   //Romania link
-            center: properties.romania_map_properties.center,
-            stage: 0,
-            classes: {
-
-                romania: classNames({
-                    'active': true,
-                    'nav-link': true
-                }),
-                buzau: classNames({
-                    'active': false,
-                    'nav-link': true
-                }),
-                bozioru: classNames({
-                    'active': false,
-                    'nav-link': true
-                }),
-
-            }
-        });
-
-    }
-
-
-    goToBuzau() {
-
-        this.setState({
-            zoom: properties.buzau_map_properties.zoom,   //Buzau link
-            center: properties.buzau_map_properties.center,
-            stage: 1,
-            classes: {
-
-                romania: classNames({
-                    'active': false,
-                    'nav-link': true
-                }),
-                buzau: classNames({
-                    'active': true,
-                    'nav-link': true
-                }),
-                bozioru: classNames({
-                    'active': false,
-                    'nav-link': true
-                }),
-
-            }
-        });
-
-    }
-
-
-    goToBozioru() {
-
-
-        this.setState({
-            zoom: properties.bozioru_map_properties.zoom,   //Bozioru link
-            center: properties.bozioru_map_properties.center,
-            stage: 2,
-            classes: {
-
-                romania: classNames({
-                    'active': false,
-                    'nav-link': true
-                }),
-                buzau: classNames({
-                    'active': false,
-                    'nav-link': true
-                }),
-                bozioru: classNames({
-                    'active': true,
-                    'nav-link': true
-                }),
-
-            },
-            endReached: true
-        });
-
-    }
-
     //Display the route
     goToRoute() {
 
@@ -373,7 +298,7 @@ export class MapContainer extends React.Component {
 
 
         }, () => {
-            route.setMap(this.map);
+            route.setMap(this.state.map);
             this.transitionToIndividual();  //Call the function responsable with shwoing each objective throughout the route
         });
     }
@@ -405,11 +330,11 @@ export class MapContainer extends React.Component {
         });
         var marker = new window.google.maps.Marker({
             position: objectives.objective[this.state.count].center,
-            map: this.map,
+            map: this.state.map,
             title: 'Titlu'
         });
 
-        infoWindow.open(this.map, marker); //Dispaly the infowindow
+        infoWindow.open(this.state.map, marker); //Dispaly the infowindow
         setTimeout(() => this.removeObjectiveMarker(marker, infoWindow), 5000);
     });
     }
@@ -443,7 +368,7 @@ export class MapContainer extends React.Component {
                             initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
                             zoom={this.state.zoom}
                             ref={this.mapRef} /> */}
-                        <div id='mapContainer' ref = {this.mapRef}></div>
+                        <div id='map' ref = {this.mapRef}></div>
                     </div>
                 </div>
             </div>
@@ -451,8 +376,5 @@ export class MapContainer extends React.Component {
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: properties.maps_api_key
-})(MapContainer)
 
 
