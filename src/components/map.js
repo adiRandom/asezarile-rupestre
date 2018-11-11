@@ -368,7 +368,7 @@ export default class MapContainer extends React.Component {
                             initialCenter={this.state.initCenter} center={this.state.center} onClick={this.clickHandler}
                             zoom={this.state.zoom}
                             ref={this.mapRef} /> */}
-                        <div id='map' ref = {this.mapRef}></div>
+                        <div id='map' style={{ height: "100%", padding: 0 }} ref = {this.mapRef}></div>
                     </div>
                 </div>
             </div>
