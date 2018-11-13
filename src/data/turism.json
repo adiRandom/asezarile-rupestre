@@ -1,9 +1,20 @@
 {
-    "content":[
+    "content": [
         {
-            "title":"Turism",
-            "textFull":"Martore ale Buzaului legendar și istoric, dăltuite în duritatea pietrei Munților Beg, locuințele, refugiile și bisericile ce alcătuiesc complexul de așezări rupestre sunt concentrate în zona triunghiului montan de gresie Aluniș-Nucu-Brăiești, pe versanții și ramificațiile masivului Crucea Spătarului. Ele sunt:  Fundătura, Chilia lui Dionisie, Peștera lui Iosif, Agatonul Vechi, Piatra Îngăurită, Fundul Peșterii, Agatonul Nou, Ghereta și Bucătăria.\r\nAccesul la acest complex se realizează pe ruta Buzău-Pârscov de-a lungul văii pârâului Bălăneasa prin satele Trestia, Cozieni, Ulmet, Bozioru, Nucu. De la Nucu, ultima așezare sub culmile munților, urmând poteci de picior se ajunge în zona schiturilor. Traseul necesită mai mult de 3 ore și pleacă de la ruina schitului Fundătura, apoi, pe o potecă pietroasă se trece culmea, de partea cealaltă a muntelui, la Piatra Agatonului. Într-un pinten perifreric aflăm ușa și fereastra Chiliei lui Dionisie, la care se urcă pe o scară. Ceva mai sus se află o altă peșteră, Chilia lui Iosif, iar aproape de culme, sub vârful Crucea Spătarului, se ascunde Chilia lui Agaton.\r\n",
-            "picture":"back1.png"
+            "title": "Turism",
+            "textFull": "Martore ale Buzaului legendar și istoric, dăltuite în duritatea pietrei Munților Beg, locuințele, refugiile și bisericile ce alcătuiesc complexul de așezări rupestre sunt concentrate în zona triunghiului montan de gresie Aluniș-Nucu-Brăiești, pe versanții și ramificațiile masivului Crucea Spătarului. Ele sunt:  Fundătura, Chilia lui Dionisie, Peștera lui Iosif, Agatonul Vechi, Piatra Îngăurită, Fundul Peșterii, Agatonul Nou, Ghereta și Bucătăria.\r\nAccesul la acest complex se realizează pe ruta Buzău-Pârscov de-a lungul văii pârâului Bălăneasa prin satele Trestia, Cozieni, Ulmet, Bozioru, Nucu. De la Nucu, ultima așezare sub culmile munților, urmând poteci de picior se ajunge în zona schiturilor. Traseul necesită mai mult de 3 ore și pleacă de la ruina schitului Fundătura, apoi, pe o potecă pietroasă se trece culmea, de partea cealaltă a muntelui, la Piatra Agatonului. Într-un pinten perifreric aflăm ușa și fereastra Chiliei lui Dionisie, la care se urcă pe o scară. Ceva mai sus se află o altă peșteră, Chilia lui Iosif, iar aproape de culme, sub vârful Crucea Spătarului, se ascunde Chilia lui Agaton.\r\n",
+            "picture": "Turism.6.JPG",
+            "pictures": [
+                "Turism.6.JPG",
+                "Turism.1.JPG",
+                "Turism.2.JPG",
+                "Turism.3.JPG",
+                "Turism.4.JPG",
+                "Turism.5.JPG",
+                "Turism.7.JPG",
+                "Turism.8.JPG",
+                "Turism.9.JPG"
+            ]
         }
     ]
 }

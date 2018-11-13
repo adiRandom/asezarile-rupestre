@@ -7,7 +7,6 @@ export default class InfoDisplayNoCarousel extends React.Component {
     constructor(props) {
         super(props);
         this.data = this.props.data;
-        console.log(this.data);
 
         //Map \n to html break
         if (!Array.isArray(this.data[0].textFull)) { //Check if the data hasn't been previously mapped already
@@ -23,14 +22,14 @@ export default class InfoDisplayNoCarousel extends React.Component {
         this.state = {
             fullText: this.data[0].textFull,
             picture: this.data[0].picture,
-            map:this.data[0].map
+            pictures: this.data[0].pictures
         }
     }
 
     render() {
         return (
             <React.Fragment>
-                <FullTextDisplayNoFullscreen text={this.state.fullText} picture={this.state.picture} map={this.state.map} />
+                <FullTextDisplayNoFullscreen text={this.state.fullText} picture={this.state.picture} pictures={this.state.pictures} />
             </React.Fragment>
         )
     }
