@@ -37,6 +37,11 @@ export default class Info extends React.Component {
                     element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
                 })
             }); break;
+            case 'religie': import('../data/religie.json').then((data) => {
+                this.setState({
+                    element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                })
+            }); break;
         }
     }
 

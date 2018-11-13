@@ -51,7 +51,7 @@ export default class Homepage extends React.Component {
                                 {/* TODO: Add the links after creating the pages*/}
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/istorie">Istorie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/geografie">Geografie</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="#">Religie</NavLink>
+                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/religie">Religie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="#">Arheologie</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/turism">Turism</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/legende">Legende&superstiții</NavLink>
