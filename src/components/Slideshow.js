@@ -19,11 +19,11 @@ export default class Slideshow extends React.Component {
                     let temp = prev.elements;
                     if (i != 0)
                         temp.push((<div className="carousel-item">
-                            <img src={photo} style={{ maxWidth: '35%' }} key={i} />
+                            <img src={photo} style={{ maxWidth: '60%' }} key={i} />
                         </div>));
                     else //Special case for the first element to add the active class
                         temp.push((<div className="carousel-item active">
-                            <img src={photo} style={{ maxWidth: '35%' }} key={i} />
+                            <img src={photo} style={{ maxWidth: '60%' }} key={i} />
                         </div>));
                     return {
                         elements: temp
@@ -35,19 +35,19 @@ export default class Slideshow extends React.Component {
 
     render() {
         return (
-            <div id="carouselExampleFade" className="carousel slide carousel-fade" data-ride="carousel">
-                <div className="carousel-inner">
-                    {this.state.elements}
+                <div id="carouselExampleFade" className="carousel slide carousel-fade" data-ride="carousel" >
+                    <div className="carousel-inner">
+                        {this.state.elements}
+                    </div>
+                    <a className="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="sr-only">Previous</span>
+                    </a>
+                    <a className="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span className="sr-only">Next</span>
+                    </a>
                 </div>
-                <a className="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
-            </div>
         )
     }
 }

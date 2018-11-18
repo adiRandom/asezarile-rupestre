@@ -7,6 +7,7 @@ import * as bookIcon from '../assets/icons/book-icon.png';
 
 import * as slideBackground from '../assets/img/slidegreen.png'
 import Arrow from './Arrow.js';
+import Slideshow from './Slideshow'
 
 
 export default class Carousel extends React.Component {
@@ -15,7 +16,6 @@ export default class Carousel extends React.Component {
     //Pass in an array of objects containing a title, a text, an image and optionally another object to style the image
     constructor(props) {
         super(props);
-
 
         this.state = {
             currentIndice: 0,
@@ -32,7 +32,8 @@ export default class Carousel extends React.Component {
                 backgroundImage: `url(${slideBackground})`,
                 backgroundSize: 'cover',
             },
-            imageElement: null
+            imageElement: null,
+            logo:null
         }; //Set the initial state of the component
 
         this.changeSlide = this.changeSlide.bind(this); //Event to handle the scroll on the carousel
@@ -54,16 +55,15 @@ export default class Carousel extends React.Component {
         //and remount it to reset the animation
 
         //Import the apropiae image
-        import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center' }}>
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
                     <CSSTransitionGroup
                         transitionName="image-enter"
                         transitionAppear={true}
                         transitionAppearTimeout={5000}
                         transitionEnter={false}
                         transitionLeave={false}>
-                        <img src={image}
+                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
                     </CSSTransitionGroup>
@@ -74,7 +74,6 @@ export default class Carousel extends React.Component {
                 readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">
                         <img src={bookIcon} style={{maxHeight:'32px',maxWidth:'32px',margin:'10px'}}/>Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
             }))
-        });
     }
 
 
@@ -204,16 +203,15 @@ export default class Carousel extends React.Component {
     enteringFromTheRight() { //Mark that the next piece of content should enter from the right side
 
         //Update the image that is being displayed
-        import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center' }}>
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
                     <CSSTransitionGroup
                         transitionName="image-enter"
                         transitionAppear={true}
                         transitionAppearTimeout={5000}
                         transitionEnter={false}
                         transitionLeave={false}>
-                        <img src={image}
+                        <Slideshow images={this.props.data[this.state.currentIndice].picture}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
                     </CSSTransitionGroup>
@@ -232,26 +230,23 @@ export default class Carousel extends React.Component {
                 }),
                 imageElement: this.imageElement //The node is visible so 'mount' it
             })
-        });
     }
     enteringFromTheLeft() { //Mark that the next piece of content should enter from the left side
 
-        import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center' }}>
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
                     <CSSTransitionGroup
                         transitionName="image-enter"
                         transitionAppear={true}
                         transitionAppearTimeout={5000}
                         transitionEnter={false}
                         transitionLeave={false}>
-                        <img src={image}
+                        <Slideshow images={this.props.data[this.state.currentIndice].picture}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
                     </CSSTransitionGroup>
                 </div>
             );
-        });
         //Update the state
         this.setState({
             style: classNames({
@@ -289,13 +284,17 @@ export default class Carousel extends React.Component {
 
     render() {
 
-
+        console.log(this.props)
         return (
             <div className="carrousel" style={this.props.style}>
                 <div className="grid-container">
                     <PageIndicator size={this.props.data.length} activeIndice={this.state.currentIndice}
                         style={{ gridColumn: '2/3', justifySelf: 'center', marginTop: '30px' }}
                     />
+                    <img src={this.props.logo} style={{
+                        height: '64px', width: '64px',
+                        display: 'inline-block', margin: '20px'
+                    }} />
                 </div>
                 <div id="carousel-data" style={this.state.slideBackgroundStyle} className={this.state.style}>
                     <Arrow style={{ gridColumnStart: '1', gridRow: '3/4', justifySelf: 'center', alignSelf: 'center' }}

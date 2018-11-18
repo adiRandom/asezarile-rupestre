@@ -19,27 +19,32 @@ export default class Info extends React.Component {
         switch (this.props.match.params.id) {
             case 'legende': import('../data/legends.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplay data={data.content} location={this.props.location} />)
+                    element: (<InfoDisplay logo="vase.png" data={data.content} location={this.props.location} />)
                 })
             }); break;
             case 'istorie': import('../data/history.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplay data={data.content} location={this.props.location} />)
+                    element: (<InfoDisplay logo='shield.png' data={data.content} location={this.props.location} />)
                 })
             }); break;
             case 'geografie': import('../data/geography.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                    element: (<InfoDisplayNoCarousel logo='mt.png' data={data.content} location={this.props.location} />)
                 })
             }); break;
             case 'turism': import('../data/turism.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                    element: (<InfoDisplayNoCarousel logo='path.png' data={data.content} location={this.props.location} />)
                 })
             }); break;
             case 'religie': import('../data/religie.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                    element: (<InfoDisplayNoCarousel logo='crux.png' data={data.content} location={this.props.location} />)
+                })
+            }); break;
+            case 'arheologie': import('../data/arheologie.json').then((data) => {
+                this.setState({
+                    element: (<InfoDisplayNoCarousel logo='arh.png' data={data.content} location={this.props.location} />)
                 })
             }); break;
         }
@@ -55,28 +60,42 @@ export default class Info extends React.Component {
                     this.setState({
                         element:null //Mark the element as null to unmount it and remount the new node
                     }, () => this.setState({
-                        element: (<InfoDisplay data={data.content} location={this.props.location} />)
+                        element: (<InfoDisplay logo="vase.png" data={data.content} location={this.props.location} />)
                     }))
                 }); return true;
                 case 'istorie': import('../data/history.json').then((data) => {
                     this.setState({
                         element: null
                     }, () => this.setState({
-                        element: (<InfoDisplay data={data.content} location={this.props.location} />)
+                        element: (<InfoDisplay data={data.content} logo='shield.png' location={this.props.location} />)
                     }))
                 }); return true;
                 case 'geografie': import('../data/geography.json').then((data) => {
                     this.setState({
                         element: null
                     }, () => this.setState({
-                        element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                        element: (<InfoDisplayNoCarousel logo='mt.png' data={data.content} location={this.props.location} />)
                     }))
                 }); return true;
                 case 'turism': import('../data/turism.json').then((data) => {
                     this.setState({
                         element: null
                     }, () => this.setState({
-                        element: (<InfoDisplayNoCarousel data={data.content} location={this.props.location} />)
+                        element: (<InfoDisplayNoCarousel logo='path.png' data={data.content} location={this.props.location} />)
+                    }))
+                }); return true;
+                case 'arheologie': import('../data/arheologie.json').then((data) => {
+                    this.setState({
+                        element: null
+                    }, () => this.setState({
+                        element: (<InfoDisplayNoCarousel logo='arh.png' data={data.content} location={this.props.location} />)
+                    }))
+                }); return true;
+                case 'religie': import('../data/religie.json').then((data) => {
+                    this.setState({
+                        element: null
+                    }, () => this.setState({
+                        element: (<InfoDisplayNoCarousel logo='crux.png' data={data.content} location={this.props.location} />)
                     }))
                 }); return true;
                 default: return true;

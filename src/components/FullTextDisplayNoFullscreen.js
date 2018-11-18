@@ -1,6 +1,5 @@
 import React from 'react';
 import '../assets/stylesheets/full-text-display.css'
-import Slideshow from './Slideshow'
 
 
 export default class FullTextDisplayNoFullscreen extends React.Component {
@@ -8,33 +7,41 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            element: null,
+            images: [],
+            fullTextToggle:false,
+            textFullStyle:{
+                display:'none'
+            }
         }
-        this.containerRef = React.createRef();
     }
 
-    componentWillMount() {
+    toggleFullText = ()=>{
+        //Toggle the display state of the full text
+        this.setState({
+            fullTextToggle:!this.state.fullTextToggle,
+            textFullStyle: {
+                display: this.state.fullTextToggle ? 'none' : 'block'
+            }
+        })
+    }
+
+    async componentWillMount() {
         //Set the image node of the component
         if (this.props.pictures) {
-            //Add a slideshow
-            this.element = (<div id='image-container' style={{ gridRow: '2/3', textAlign: 'center' }}>
-                <Slideshow images={this.props.pictures} />
-            </div>)
-            this.setState({
-                element: this.element
-            });
-        }
-        else if (this.props.picture)
-            //Create the image
-            import(`../assets/img/${this.props.picture}`).then((picture) => {
-                this.element = (<div id='image-container' style={{ gridRow: '2/3', textAlign: 'center' }}>
-                    <img src={picture} style={{ maxHeight: '95%' }} />
-                </div>)
-                this.setState({
-                    element: this.element
+            for (let item of this.props.pictures) {
+                await import(`../assets/img/${item}`).then((image) => {
+                    let temp = this.state.images;
+                    temp.push((<img src={image} />));
+                    console.log(temp)
+                    this.setState({
+                        images: temp
+                    })
                 });
-            })
+            }
+
+        }
     }
+
     render() {
         return (
             <div className='full-text-display-no-fullscreen-grid-container' style={{
@@ -42,10 +49,26 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                 height: '85vh',
                 position: 'relative',
                 top: 0,
-                margin: '0px 20px'
-            }} ref={this.containerRef}>
-                {this.state.element} {/* The image node */}
-                <p style={{ fontSize: '2rem', gridRow: '3/4' }}>{this.props.text}</p>
+            }}>
+                <div style={{backgroundColor: 'rgb(246,246,246)', margin: 0,display:'flex',
+                flexDirection:'column'}}>
+                    <h2 style={{ marginTop: '30px' }}> <img src={this.props.logo} style={{ height: '64px', width: '64px',
+                        display: 'inline-block',margin:'20px' }} />{this.props.title}</h2>
+                    <p style={{ fontSize: '1.5rem',margin:'0px 20px'}}>{this.props.textChopped}</p>
+                    <div style={{ ...this.state.textFullStyle, transition: 'all 2s ease-out'}}>
+                        <p style={{
+                        fontSize: '1.5rem', margin: '0px 20px',
+                        transition: 'all 2s ease-out'
+                    }}>{this.props.textFull}</p>
+                    </div>
+                    <button style={{ backgroundColor: 'transparent', 'color': 'rgb(37,37,37)',
+                        borderWidth: '2px',borderRadius:'8px', borderColor: 'rgb(37,37,37)',
+                        alignSelf:'center',margin:'50px',width:'30%',
+                        fontSize:'2rem'}} onClick={this.toggleFullText}>Vezi mai multe</button>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(45,132,67,0.45)'}}>
+                    {this.state.images} {/* The image node */}
+                </div>
             </div>
         );
     }

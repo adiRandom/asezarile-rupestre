@@ -9,8 +9,8 @@
 
 .full-text-display-no-fullscreen-grid-container{
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 5% 60% 50%;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: auto;
 
     grid-column: 2/3;
     grid-row:1/3;

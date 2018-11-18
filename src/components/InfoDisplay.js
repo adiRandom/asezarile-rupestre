@@ -8,7 +8,7 @@ export default class InfoDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.data = this.props.data;
-        
+
         //Map \n to html break
         if (!Array.isArray(this.data[0].textChopped)) { //Check if the data hasn't been previously mapped already
             for (let i = 0; i < this.data.length; i++) {
@@ -24,10 +24,9 @@ export default class InfoDisplay extends React.Component {
         this.state = {
             fullText: this.data[0].textFull,
             picture: this.data[0].picture,
-            pictures:this.data[0].pictures,
-            element: (<React.Fragment>
-                <Carousel data={this.data} showFullText={this.showFullText} />
-            </React.Fragment>)
+            pictures: this.data[0].pictures,
+            element: null,
+            logo:null
         }
     }
 
@@ -41,7 +40,7 @@ export default class InfoDisplay extends React.Component {
             pictures: this.data[indice].pictures
         }, () => this.setState({
             element: (<React.Fragment>
-                <Carousel data={this.data} showFullText={this.showFullText} />
+                <Carousel logo={this.state.logo} data={this.data} showFullText={this.showFullText} />
                 <FullTextDisplay text={this.state.fullText} picture={this.state.picture}
                     close={this.closeFullText} pictures={this.state.pictures} />
             </React.Fragment>)
@@ -52,8 +51,20 @@ export default class InfoDisplay extends React.Component {
     closeFullText = () => {
         this.setState({
             element: (<React.Fragment>
-                <Carousel data={this.data} showFullText={this.showFullText} />
+                <Carousel logo={this.state.logo} data={this.data} showFullText={this.showFullText} />
             </React.Fragment>)
+        })
+    }
+
+    componentWillMount(){
+        import(`../assets/icons/${this.props.logo}`).then((logo)=>{
+            this.setState({
+                logo:logo
+            },()=>this.setState({
+                element: (<React.Fragment>
+                    <Carousel logo={this.state.logo} data={this.data} showFullText={this.showFullText} />
+                </React.Fragment>)
+            }))
         })
     }
 

@@ -40,10 +40,9 @@ class Homepage extends Component {
                     transitionLeave={false}>
                     <h1 className="title display-4" id="title-top">Așezările rupestre</h1>
                     <h1 className="title display-4" id="title-bot">de la Bozioru</h1>
-                    <h3 className="text">O călatorie in negura istoriei judetului Buzau</h3>
-                    <h3 className="text">Ecce, festus palus!Ubi est teres parma?Ecce, ventus!</h3>
-                    <h3 className="text">Never taste a bilge rat.Scabbards hobble from passions like misty
-                        tobaccos.</h3>
+                    <h3 className="text">O întoarcere în peisajul creștinismului timpuriu,</h3>
+                    <h3 className="text">Unde pietrele spun povestea locului</h3>
+                    <h3 className="text">De la începutul istoriei și până acum.</h3>
                     <Link to="/harta" className="btn btn-success mt-5">Vezi harta! </Link>
                 </CSSTransitionGroup>
             </div>
