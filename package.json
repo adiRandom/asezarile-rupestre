@@ -1,8 +1,9 @@
 {
   "name": "asezarile-rupestre",
-  "version": "1.0.0pre3",
+  "version": "1.0.0pre4",
   "private": false,
   "dependencies": {
+    "3d-react-carousal": "^2.0.1",
     "bootstrap": "^4.1.3",
     "classnames": "^2.2.6",
     "google-maps-react": "^2.0.2",

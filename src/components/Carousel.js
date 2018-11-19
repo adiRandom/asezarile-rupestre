@@ -29,8 +29,8 @@ export default class Carousel extends React.Component {
                 entered: true
             }),
             slideBackgroundStyle: {
-                backgroundImage: `url(${slideBackground})`,
-                backgroundSize: 'cover',
+                backgroundColor: this.props.color,
+                backgroundSize: 'cover'
             },
             imageElement: null,
             logo:null
@@ -54,7 +54,9 @@ export default class Carousel extends React.Component {
         //Declare the image node and add it to the state in order to unmount it 
         //and remount it to reset the animation
 
-        //Import the apropiae image
+        //Import the apropiae imagees
+
+        if (this.props.data[this.state.currentIndice].pictures){  //Check if there are more pictures for the slideshow
             this.imageElement = (
                 <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
                     <CSSTransitionGroup
@@ -72,8 +74,31 @@ export default class Carousel extends React.Component {
             this.setState((prev) => ({
                 imageElement: this.imageElement,
                 readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">
+                    <img src={bookIcon} style={{ maxHeight: '32px', maxWidth: '32px', margin: '10px' }} />Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
+            }))
+        }
+        else //There is only a picture, so don't use the slideshow
+            import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
+                this.imageElement = (
+                    <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center' }}>
+                        <CSSTransitionGroup
+                            transitionName="image-enter"
+                            transitionAppear={true}
+                            transitionAppearTimeout={5000}
+                            transitionEnter={false}
+                            transitionLeave={false}>
+                            <img src={image}
+                                style={this.props.data[this.state.currentIndice].style ?
+                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                        </CSSTransitionGroup>
+                    </div>
+                );
+            this.setState((prev) => ({
+                imageElement: this.imageElement,
+                readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">
                         <img src={bookIcon} style={{maxHeight:'32px',maxWidth:'32px',margin:'10px'}}/>Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
             }))
+        })
     }
 
 
@@ -203,15 +228,17 @@ export default class Carousel extends React.Component {
     enteringFromTheRight() { //Mark that the next piece of content should enter from the right side
 
         //Update the image that is being displayed
+
+        if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>
                     <CSSTransitionGroup
                         transitionName="image-enter"
                         transitionAppear={true}
                         transitionAppearTimeout={5000}
                         transitionEnter={false}
                         transitionLeave={false}>
-                        <Slideshow images={this.props.data[this.state.currentIndice].picture}
+                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
                     </CSSTransitionGroup>
@@ -230,37 +257,99 @@ export default class Carousel extends React.Component {
                 }),
                 imageElement: this.imageElement //The node is visible so 'mount' it
             })
+        }
+        else //There is only a picture, so don't use the slideshow
+            import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
+                this.imageElement = (
+                    <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center' }}>
+                        <CSSTransitionGroup
+                            transitionName="image-enter"
+                            transitionAppear={true}
+                            transitionAppearTimeout={5000}
+                            transitionEnter={false}
+                            transitionLeave={false}>
+                            <img src={image}
+                                style={this.props.data[this.state.currentIndice].style ?
+                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                        </CSSTransitionGroup>
+                    </div>
+                );
+                //Update the state
+                this.setState({
+                    style: classNames({
+                        'leaving-left': false,
+                        'leaving-right': false,
+                        'left-left': false,
+                        'left-right': false,
+                        'entering-left': false,
+                        'entering-right': true,
+                        entered: false
+                    }),
+                    imageElement: this.imageElement //The node is visible so 'mount' it
+                })
+            })
     }
     enteringFromTheLeft() { //Mark that the next piece of content should enter from the left side
 
+        if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>
                     <CSSTransitionGroup
                         transitionName="image-enter"
                         transitionAppear={true}
                         transitionAppearTimeout={5000}
                         transitionEnter={false}
                         transitionLeave={false}>
-                        <Slideshow images={this.props.data[this.state.currentIndice].picture}
+                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
                     </CSSTransitionGroup>
                 </div>
             );
-        //Update the state
-        this.setState({
-            style: classNames({
-                'leaving-left': false,
-                'leaving-right': false,
-                'left-left': false,
-                'left-right': false,
-                'entering-left': true,
-                'entering-right': false,
-                entered: false
-            }),
-            imageElement: this.imageElement //The node is visible so 'mount' it
-        })
-
+            //Update the state
+            this.setState({
+                style: classNames({
+                    'leaving-left': false,
+                    'leaving-right': false,
+                    'left-left': false,
+                    'left-right': false,
+                    'entering-left': false,
+                    'entering-right': true,
+                    entered: false
+                }),
+                imageElement: this.imageElement //The node is visible so 'mount' it
+            })
+        }
+        else //There is only a picture, so don't use the slideshow
+            import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
+                this.imageElement = (
+                    <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center' }}>
+                        <CSSTransitionGroup
+                            transitionName="image-enter"
+                            transitionAppear={true}
+                            transitionAppearTimeout={5000}
+                            transitionEnter={false}
+                            transitionLeave={false}>
+                            <img src={image}
+                                style={this.props.data[this.state.currentIndice].style ?
+                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                        </CSSTransitionGroup>
+                    </div>
+                );
+                //Update the state
+                this.setState({
+                    style: classNames({
+                        'leaving-left': false,
+                        'leaving-right': false,
+                        'left-left': false,
+                        'left-right': false,
+                        'entering-left': false,
+                        'entering-right': true,
+                        entered: false
+                    }),
+                    imageElement: this.imageElement //The node is visible so 'mount' it
+                })
+            })
     }
 
     markAsEntered() {  //Mark that the next piece of content entered

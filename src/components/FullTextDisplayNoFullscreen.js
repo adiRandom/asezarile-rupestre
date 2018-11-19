@@ -25,13 +25,13 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
         })
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         //Set the image node of the component
         if (this.props.pictures) {
             for (let item of this.props.pictures) {
                 await import(`../assets/img/${item}`).then((image) => {
                     let temp = this.state.images;
-                    temp.push((<img src={image} />));
+                    temp.push(image);
                     console.log(temp)
                     this.setState({
                         images: temp
@@ -43,15 +43,16 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
     }
 
     render() {
+        console.log(this.state.images)
         return (
             <div className='full-text-display-no-fullscreen-grid-container' style={{
                 ...this.props.style, color: 'black',
-                height: '85vh',
+                height: '86.3vh',
                 position: 'relative',
                 top: 0,
             }}>
                 <div style={{backgroundColor: 'rgb(246,246,246)', margin: 0,display:'flex',
-                flexDirection:'column'}}>
+                flexDirection:'column',gridColumn:'1/2'}}>
                     <h2 style={{ marginTop: '30px' }}> <img src={this.props.logo} style={{ height: '64px', width: '64px',
                         display: 'inline-block',margin:'20px' }} />{this.props.title}</h2>
                     <p style={{ fontSize: '1.5rem',margin:'0px 20px'}}>{this.props.textChopped}</p>
@@ -66,8 +67,8 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                         alignSelf:'center',margin:'50px',width:'30%',
                         fontSize:'2rem'}} onClick={this.toggleFullText}>Vezi mai multe</button>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'rgba(45,132,67,0.45)'}}>
-                    {this.state.images} {/* The image node */}
+                <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: this.props.color ,gridColumn:'2/3'}}>
+                    {this.state.images.map((item,key)=>(<img src={item} key={key} style={{maxWidth:'95%',margin:'20px 0 20px 2.5%'}} />))} {/* The image node */}
                 </div>
             </div>
         );
