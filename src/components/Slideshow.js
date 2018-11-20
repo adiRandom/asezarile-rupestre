@@ -1,4 +1,7 @@
 import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import '../assets/stylesheets/slideshow.css'
 
 export default class Slideshow extends React.Component {
 
@@ -17,14 +20,9 @@ export default class Slideshow extends React.Component {
             await import(`../assets/img/${this.props.images[i]}`).then((photo) => {
                 this.setState((prev) => {
                     let temp = prev.elements;
-                    if (i != 0)
-                        temp.push((<div className="carousel-item">
-                            <img src={photo} style={{ maxWidth: '60%' }} key={i} />
-                        </div>));
-                    else //Special case for the first element to add the active class
-                        temp.push((<div className="carousel-item active">
-                            <img src={photo} style={{ maxWidth: '60%' }} key={i} />
-                        </div>));
+                    temp.push((<div>
+                                <img src={photo} style={{ maxWidth: '60%', maxHeight: '60%' }} key={i} />
+                            </div>));
                     return {
                         elements: temp
                     }
@@ -35,19 +33,9 @@ export default class Slideshow extends React.Component {
 
     render() {
         return (
-                <div id="carouselExampleFade" className="carousel slide carousel-fade" data-ride="carousel" >
-                    <div className="carousel-inner">
-                        {this.state.elements}
-                    </div>
-                    <a className="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Previous</span>
-                    </a>
-                    <a className="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="sr-only">Next</span>
-                    </a>
-                </div>
+                <Carousel infiniteLoop={true} showThumbs={false} showArrows={false}>
+                    {this.state.elements}
+                </Carousel>
         )
     }
 }

@@ -1,8 +1,7 @@
 import React from 'react';
 import '../assets/stylesheets/full-text-display.css'
 import * as closeIcon from '../assets/graphics/close-circle-512.png'
-import { CSSTransitionGroup } from "react-transition-group";
-import Slideshow from './Slideshow'
+import { CSSTransitionGroup } from "react-transition-group"
 
 
 export default class FullTextDisplay extends React.Component {
@@ -10,8 +9,9 @@ export default class FullTextDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            element: null,
-            style:{}
+            images:[],
+            style:{},
+            logo: null
         }
         this.containerRef = React.createRef();
     }
@@ -29,29 +29,6 @@ export default class FullTextDisplay extends React.Component {
         },()=>setTimeout(this.props.close,1000)))
     }
 
-    componentWillMount() {
-    
-        //Set the image node of the component
-        if(this.props.pictures){
-            //Add the slideshow
-            this.element = (<div id='image-container' style={{ gridRow: '2/3', textAlign: 'center' }}>
-                <Slideshow images={this.props.pictures}/>
-            </div>)
-            this.setState({
-                element: this.element
-            });
-        }
-        else if(this.props.picture)
-        //Create the image
-        import(`../assets/img/${this.props.picture}`).then((picture) => {
-            this.element = (<div id='image-container' style={{ gridRow: '2/3', textAlign: 'center' }}>
-                <img src={picture} style={{ maxHeight: '95%' }} />
-            </div>)
-            this.setState({
-                element: this.element
-            });
-        })
-    }
     render() {
         return (
             <CSSTransitionGroup
@@ -65,17 +42,21 @@ export default class FullTextDisplay extends React.Component {
                         <img src={closeIcon} onClick={this.close} />
                     </div>
                     <div className='full-text-display-grid-container' style={{
-                        ...this.props.style, backgroundColor: 'rgba(255, 255, 255,0.80)', color: 'black',
+                        ...this.props.style, backgroundColor: this.props.color, color: 'black',
                         WebkitBoxShadow: '-7px -7px 22px 0 rgba(97,97,97,0.35) inset',
                         BoxShadow: '-7px -7px 22px 0 rgba(97,97,97,0.35) inset', overflow: 'hidden',
-                        overflowY: 'scroll',
                         height: '100vh',
                         width: '60vw',
+                        overflowY: 'scroll',
                         position: 'relative',
                         top: 0
                     }} ref={this.containerRef}>
-                        {this.state.element} {/* The image node */}
-                        <p style={{ fontSize: '2rem', gridRow: '3/4' }}>{this.props.text}</p>
+                    {/* <img src={this.props.logo} style={{gridRow:'2/3',gridColumn:'1/3',marginLeft:'30%',opacity:0.45}}/> */}
+                        <h1 style={{gridRow:'1/2',gridColumn:'1/3',marginTop:'10px',fontStyle:'italic',
+                                    borderBottom:'black','borderBottomStyle':'solid',borderBottomWidth:'2px'}}>{this.props.title}</h1>
+                            <p style={{ fontSize: '2rem', backgroundImage: `url(${this.props.logo})`, 
+                                        gridRow: '2/3', gridColumn: '1/2',
+                                backgroundPositionX: 'center', backgroundPositionY: 'center'}}>{this.props.text}</p>
                     </div>
                 </div>
             </CSSTransitionGroup>);

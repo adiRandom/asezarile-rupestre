@@ -24,8 +24,7 @@ export default class InfoDisplay extends React.Component {
         }
         this.state = {
             fullText: this.data[0].textFull,
-            picture: this.data[0].picture,
-            pictures: this.data[0].pictures,
+            title:this.data[0].title,
             element: null,
             logo:null
         }
@@ -37,13 +36,12 @@ export default class InfoDisplay extends React.Component {
         //And add it to the state for the FullTextDisplay node to take
         this.setState({
             fullText: this.data[indice].textFull,
-            picture: this.data[indice].picture,
-            pictures: this.data[indice].pictures
+            title:this.data[indice].title
         }, () => this.setState({
             element: (<React.Fragment>
                 <Carousel color={this.props.color} logo={this.state.logo} data={this.data} showFullText={this.showFullText} />
-                <FullTextDisplay text={this.state.fullText} picture={this.state.picture}
-                    close={this.closeFullText} pictures={this.state.pictures} />
+                <FullTextDisplay title={this.state.title} logo={this.state.logo} color={this.props.color} text={this.state.fullText}
+                    close={this.closeFullText} />
             </React.Fragment>)
         }));
 

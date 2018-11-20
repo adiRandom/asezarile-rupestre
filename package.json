@@ -1,6 +1,6 @@
 {
   "name": "asezarile-rupestre",
-  "version": "1.0.0pre4",
+  "version": "1.0.0pre5",
   "private": false,
   "dependencies": {
     "3d-react-carousal": "^2.0.1",
@@ -13,6 +13,7 @@
     "react": "^16.5.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.5.0",
+    "react-responsive-carousel": "^3.1.43",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
