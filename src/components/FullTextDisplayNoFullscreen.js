@@ -11,7 +11,8 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
             fullTextToggle:false,
             textFullStyle:{
                 display:'none'
-            }
+            },
+            buttonText:'Vezi mai multe'
         }
     }
 
@@ -21,7 +22,8 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
             fullTextToggle:!this.state.fullTextToggle,
             textFullStyle: {
                 display: this.state.fullTextToggle ? 'none' : 'block'
-            }
+            },
+            buttonText:this.state.fullTextToggle ? 'Vezi mai putin' : 'Vezi mai multe'
         })
     }
 
@@ -53,7 +55,7 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
             }}>
                 <div style={{backgroundColor: 'rgb(246,246,246)', margin: 0,display:'flex',
                 flexDirection:'column',gridColumn:'1/2'}}>
-                    <h2 style={{ marginTop: '30px' }}> <img src={this.props.logo} style={{ height: '64px', width: '64px',
+                    <h2 style={{ marginTop: '30px' }}> <img src={this.props.logo} style={{width: '64px',
                         display: 'inline-block',margin:'20px' }} />{this.props.title}</h2>
                     <p style={{ fontSize: '1.5rem',margin:'0px 20px'}}>{this.props.textChopped}</p>
                     <div style={{ ...this.state.textFullStyle, transition: 'all 2s ease-out'}}>

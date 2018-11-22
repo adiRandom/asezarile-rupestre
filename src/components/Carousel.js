@@ -381,7 +381,7 @@ export default class Carousel extends React.Component {
                         style={{ gridColumn: '2/3', justifySelf: 'center', marginTop: '30px' }}
                     />
                     <img src={this.props.logo} style={{
-                        height: '64px', width: '64px',
+                        width: '64px',
                         display: 'inline-block', margin: '20px'
                     }} />
                 </div>

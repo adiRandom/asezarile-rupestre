@@ -55,7 +55,7 @@ export default class FullTextDisplay extends React.Component {
                         <h1 style={{gridRow:'1/2',gridColumn:'1/3',marginTop:'10px',fontStyle:'italic',
                                     borderBottom:'black','borderBottomStyle':'solid',borderBottomWidth:'2px'}}>{this.props.title}</h1>
                             <p style={{ fontSize: '2rem', backgroundImage: `url(${this.props.logo})`, 
-                                        gridRow: '2/3', gridColumn: '1/2',
+                                        gridRow: '2/3', gridColumn: '1/2', marginLeft:'30px',
                                 backgroundPositionX: 'center', backgroundPositionY: 'center'}}>{this.props.text}</p>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ import * as classNames from "classnames";
 import "../assets/stylesheets/main.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { routeCoordinates } from "../properties/route.js"
-import objectives from "../properties/objectives.js"
+import * as objectives from "../properties/objectives.json"
 
 
 
@@ -393,10 +393,9 @@ export class MapContainer extends React.Component {
     addObjectiveMarker = () => { //After zooming in show the marker on the map
         //Add a marker and a info window
         let infoWindow;
-        import ('../assets/img/back1.png').then((img)=>{
-            console.log('Hey');
+        import(`../assets/img/${objectives.objective[this.state.count].picture}`).then((img)=>{
             infoWindow = new window.google.maps.InfoWindow({
-            content: `<h1>Hello</h1>` + `<img src =${img} height = 300px width=300px >`
+            content: `<h1>${objectives.objective.title}</h1>` + `<img src =${img} height = 300px width=300px >`
         });
         var marker = new window.google.maps.Marker({
             position: objectives.objective[this.state.count].center,
