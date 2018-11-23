@@ -52,9 +52,9 @@ export default class FullTextDisplay extends React.Component {
                         top: 0
                     }} ref={this.containerRef}>
                     {/* <img src={this.props.logo} style={{gridRow:'2/3',gridColumn:'1/3',marginLeft:'30%',opacity:0.45}}/> */}
-                        <h1 style={{gridRow:'1/2',gridColumn:'1/3',marginTop:'10px',fontStyle:'italic',
+                        <h1 style={{gridRow:'1/2',fontFamily:'Bernard MT Condensed',gridColumn:'1/3',marginTop:'10px',fontStyle:'italic',
                                     borderBottom:'black','borderBottomStyle':'solid',borderBottomWidth:'2px'}}>{this.props.title}</h1>
-                            <p style={{ fontSize: '2rem', backgroundImage: `url(${this.props.logo})`, 
+                            <p style={{ fontSize: '1.7rem',fontFamily:'Calibri', backgroundImage: `url(${this.props.logo})`, 
                                         gridRow: '2/3', gridColumn: '1/2', marginLeft:'30px',
                                 backgroundPositionX: 'center', backgroundPositionY: 'center'}}>{this.props.text}</p>
                     </div>

@@ -1,3 +1,5 @@
+@import url("./fonts.css");
+
 .full-text-display-grid-container{
     display: grid;
     grid-template-columns: 80% 20%;

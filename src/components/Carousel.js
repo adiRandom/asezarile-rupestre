@@ -390,8 +390,8 @@ export default class Carousel extends React.Component {
                         orientation='left' onClick={this.changeSlide} />
                     {this.state.imageElement}
                     <div id='empty-block-top'></div>
-                    <div className="carousel-text-content" >
-                        <h1>
+                    <div className="carousel-text-content" style={{fontFamili:'Calibri'}}>
+                        <h1 style={{fontFamily:'Century Gothic', fontStyle:'bold'}}>
                             {this.props.data[this.state.currentIndice].title}
                         </h1>
                         {this.props.data[this.state.currentIndice].textChopped}
