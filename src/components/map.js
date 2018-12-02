@@ -4,13 +4,13 @@
 
 import React from "react";
 import Navbar from './Navbar'
-import { properties } from "../properties/properties";
+import * as properties from "../properties/properties.json";
 import { GoogleApiWrapper, Map } from "google-maps-react";
 import "bootstrap/dist/js/bootstrap.min";
 import * as classNames from "classnames";
 import "../assets/stylesheets/main.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { routeCoordinates } from "../properties/route.js"
+import * as routeCoordinates from "../properties/route.json"
 import * as objectives from "../properties/objectives.json"
 
 
@@ -396,7 +396,7 @@ export class MapContainer extends React.Component {
         const _objectives = objectives; //Copy the imported object into a local variable to access it in the import statement
         import(`../assets/img/${_objectives.objective[this.state.count].picture}`).then((img)=>{
             infoWindow = new window.google.maps.InfoWindow({
-            content: `<h1>${_objectives.objective[this.state.count].title}</h1>` + `<img src =${img} height = 300px width=300px >`
+            content: `<h1>${_objectives.objective[this.state.count].name}</h1>` + `<img src =${img} height = 300px width=300px >`
         });
         var marker = new window.google.maps.Marker({
             position: _objectives.objective[this.state.count].center,
