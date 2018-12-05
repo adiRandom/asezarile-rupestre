@@ -5,7 +5,6 @@ import * as classNames from "classnames";
 import { CSSTransitionGroup } from "react-transition-group";
 import * as bookIcon from '../assets/icons/book-icon.png';
 
-import * as slideBackground from '../assets/img/slidegreen.png'
 import Arrow from './Arrow.js';
 import Slideshow from './Slideshow'
 
@@ -74,7 +73,7 @@ export default class Carousel extends React.Component {
             this.setState((prev) => ({
                 imageElement: this.imageElement,
                 readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">
-                    <img src={bookIcon} style={{ maxHeight: '32px', maxWidth: '32px', margin: '10px' }} />Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
+                    <img alt='read-more-icon' src={bookIcon} style={{ maxHeight: '32px', maxWidth: '32px', margin: '10px' }} />Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
             }))
         }
         else //There is only a picture, so don't use the slideshow

@@ -53,6 +53,7 @@ export default class Info extends React.Component {
                     element: (<Bibliography location={this.props.location}/>)
                 })
             break;
+            default: break;
         }
     }
 

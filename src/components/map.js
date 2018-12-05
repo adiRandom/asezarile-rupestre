@@ -111,9 +111,8 @@ export class MapContainer extends React.Component {
 
     toDemo() {
 
-        let window = window.open('/tur', 'Tour');
-        window.focus();
-
+    window.open('/tur', 'Tour');
+    
     }
 
     clickHandler() {
@@ -226,7 +225,7 @@ export class MapContainer extends React.Component {
             }, () => setTimeout(this.zoomContinuation, 650));
 
         }
-        else if (this.state.stage == 3){
+        else if (this.state.stage === 3){
             this.goToRoute();
         }
     }

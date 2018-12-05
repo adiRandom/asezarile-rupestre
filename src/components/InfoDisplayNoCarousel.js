@@ -12,7 +12,7 @@ export default class InfoDisplayNoCarousel extends React.Component {
         if (!Array.isArray(this.data[0].textFull)) { //Check if the data hasn't been previously mapped already
             for (let i = 0; i < this.data.length; i++) {
                 this.data[i].textChopped = this.data[i].textChopped.split('\r\n').map((item, key) => {
-                    return <span style={{color:key == 0? 'black':'grey'}} key={key}>{item}<br /></span>
+                    return <span style={{color:key === 0? 'black':'grey'}} key={key}>{item}<br /></span>
                 });
                 this.data[i].textFull = this.data[i].textFull.split('\r\n').map((item, key) => {
                     return <span style={{ color:'grey' }} key={key}>{item}<br /></span>

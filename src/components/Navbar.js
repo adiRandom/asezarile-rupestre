@@ -2,7 +2,6 @@ import React from "react";
 import * as Logo from "../assets/icons/logo.png";
 import {NavLink,Link} from "react-router-dom";
 import "bootstrap/dist/js/bootstrap.min";
-import * as classNames from "classnames";
 import "../assets/stylesheets/navbar.css";
 
 export default class Homepage extends React.Component {
@@ -17,8 +16,7 @@ export default class Homepage extends React.Component {
 
     toVirtualTour() {
 
-        let window = window.open('/tur', 'Tur virtual');
-        window.focus();
+        window.open('/tur', 'Tur virtual');
     }
 
     render() {

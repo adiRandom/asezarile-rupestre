@@ -39,7 +39,7 @@ export default class FullTextDisplay extends React.Component {
                 transitionLeave={false}>
                 <div className='full-text-display-wrapper' style={{ ...this.state.style,width:'100vw' }}>
                     <div id='close-icon'>
-                        <img src={closeIcon} onClick={this.close} />
+                        <img alt='close-icon' src={closeIcon} onClick={this.close} />
                     </div>
                     <div className='full-text-display-grid-container' style={{
                         ...this.props.style, backgroundColor: this.props.color, color: 'black',

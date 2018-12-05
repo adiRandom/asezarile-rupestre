@@ -21,7 +21,7 @@ export default class Slideshow extends React.Component {
                 this.setState((prev) => {
                     let temp = prev.elements;
                     temp.push((<div>
-                                <img src={photo} style={{ maxWidth: '60%', maxHeight: '60%' }} key={i} />
+                                <img alt='slide-image' src={photo} style={{ maxWidth: '60%', maxHeight: '60%' }} key={i} />
                             </div>));
                     return {
                         elements: temp
