@@ -12,6 +12,7 @@ import "../assets/stylesheets/main.css";
 import "bootstrap/dist/css/bootstrap.css";
 import * as routeCoordinates from "../properties/route.json"
 import * as objectives from "../properties/objectives.json"
+import Controll from "./Controll";
 
 
 
@@ -368,19 +369,25 @@ export class MapContainer extends React.Component {
 
         }, () => {
             route.setMap(this.mapRef.current.map);
-            this.transitionToIndividual();  //Call the function responsable with shwoing each objective throughout the route
+            this.transitionToIndividual();  //Call the function responsable with showing each objective throughout the route
         });
     }
 
     transitionToIndividual() {
-        setTimeout(this.goToObjective, 3000);
+        this.setState({
+            controlls:(<div id='controlls' style={{position:'absolute',height:'5vh',top:'90vh',left:'5vw','zIndex':2}}> {/*Create the controlls container*/}
+                        <Controll orientation='left' onClick={this.changeObjective}></Controll>
+                        <Controll orientation='right' onClick={this.changeObjective}></Controll>
+                    </div>)
+        }, () => { setTimeout(this.goToObjective, 3000);})
+        
     }
 
     goToObjective() { //Start going to the individual points after 3 seconds
-        if (this.state.count < objectives.objective.length)
+            console.log('hey')
             this.setState({
                 center: objectives.objective[this.state.count].center,
-            }, () => setTimeout(this.zoomToObjective, 700))
+            }, () =>setTimeout(this.zoomToObjective, 700))
     }
 
     zoomToObjective = () => {
@@ -404,27 +411,43 @@ export class MapContainer extends React.Component {
         });
 
         infoWindow.open(this.mapRef.current.map, marker); //Dispaly the infowindow
-        setTimeout(() => this.removeObjectiveMarker(marker, infoWindow), 5000);
+        this.setState({
+            infoWindow:infoWindow,
+            marker:marker
+        })
     });
     }
 
-    removeObjectiveMarker = (marker, infoWindow) => { //After a second remove the marker, zoom back out and increase the counter
+    removeObjectiveMarker = (marker, infoWindow,amount) => { //After a second remove the marker, zoom back out and increase the counter
         //Remove the marker and the info windows
         marker.setMap(null);
         infoWindow.close();
-        setTimeout(this.resetToCenter, 2000) //reset to the route
+        this.resetToCenter(amount) //reset to the route
     }
 
-    resetToCenter = () => {
+    resetToCenter = (amount) => {
         this.setState((prev)=>({
             zoom: objectives.initial.zoom, //First zoom out then with a callback re-center the route
-            count: prev.count + 1
-        }), () => setTimeout(() =>
+            count: this.arrayBondryValidator(prev,amount)
+        }), () => {
             this.setState({
                 center: objectives.initial.center
-            }, () => setTimeout(this.goToObjective, 1000)), 500)
-        )
+            }, () => this.goToObjective())
+        })
     }
+
+    arrayBondryValidator(prev,amount){
+        if (amount > 0)
+            return prev.count + amount >= objectives.objective.length ? -1 + amount : prev.count + amount
+        else
+            return prev.count + amount < 0 ? objectives.objective.length - 1 : prev.count + amount
+    }
+
+    changeObjective = (amount)=>{
+        this.removeObjectiveMarker(this.state.marker,this.state.infoWindow,amount) //Remove the current objective and swith to another one 
+                                                                                    //Based on the amount argument
+    }
+
     render() {
         return (
 
@@ -439,6 +462,7 @@ export class MapContainer extends React.Component {
                             ref={this.mapRef} />
                     </div>
                 </div>
+                {this.state.controlls} {/* The controlls JSX should be added after the first objective is being showed*/}
             </div>
         );
     }
