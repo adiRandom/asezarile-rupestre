@@ -7,6 +7,7 @@ import * as bookIcon from '../assets/icons/book-icon.png';
 
 import Arrow from './Arrow.js';
 import Slideshow from './Slideshow'
+import Controll from './Controll';
 
 
 export default class Carousel extends React.Component {
@@ -32,7 +33,10 @@ export default class Carousel extends React.Component {
                 backgroundSize: 'cover'
             },
             imageElement: null,
-            logo:null
+            logo: (<img src={this.props.logo} onClick={this.spinLogo} style={{
+                width: '64px',
+                display: 'inline-block', margin: '20px'
+            }} />)
         }; //Set the initial state of the component
 
         this.changeSlide = this.changeSlide.bind(this); //Event to handle the scroll on the carousel
@@ -49,24 +53,51 @@ export default class Carousel extends React.Component {
 
     }
 
-    componentWillMount() {
+    spinLogo = () => {
+        this.setState({
+            logo: (
+                <CSSTransitionGroup
+                    transitionName="logo-spin"
+                    transitionAppear={true}
+                    transitionAppearTimeout={5000}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <img src={this.props.logo} style={{
+                        width: '64px',
+                        display: 'inline-block', margin: '20px'
+                    }} />
+                </CSSTransitionGroup>
+            )
+        }, () => { setTimeout(this.changeLogoBack, 1000) })
+    }
+
+    changeLogoBack = () => {
+        this.setState({
+            logo: (<img src={this.props.logo} onClick={this.spinLogo} style={{
+                width: '64px',
+                display: 'inline-block', margin: '20px'
+            }} />)
+        })
+    }
+
+    async componentWillMount() {
         //Declare the image node and add it to the state in order to unmount it 
         //and remount it to reset the animation
 
         //Import the apropiae imagees
 
-        if (this.props.data[this.state.currentIndice].pictures){  //Check if there are more pictures for the slideshow
+        if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>
                     <CSSTransitionGroup
                         transitionName="image-enter"
                         transitionAppear={true}
                         transitionAppearTimeout={5000}
                         transitionEnter={false}
                         transitionLeave={false}>
-                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
-                            style={this.props.data[this.state.currentIndice].style ?
-                                { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                            <Slideshow images={this.props.data[this.state.currentIndice].pictures}
+                                style={this.props.data[this.state.currentIndice].style ?
+                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
                     </CSSTransitionGroup>
                 </div>
             );
@@ -77,7 +108,7 @@ export default class Carousel extends React.Component {
             }))
         }
         else //There is only a picture, so don't use the slideshow
-            import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
+            await import(`../assets/img/${this.props.data[this.state.currentIndice].picture}`).then((image) => {
                 this.imageElement = (
                     <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center' }}>
                         <CSSTransitionGroup
@@ -92,12 +123,12 @@ export default class Carousel extends React.Component {
                         </CSSTransitionGroup>
                     </div>
                 );
-            this.setState((prev) => ({
-                imageElement: this.imageElement,
-                readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">
-                        <img src={bookIcon} style={{maxHeight:'32px',maxWidth:'32px',margin:'10px'}}/>Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
-            }))
-        })
+                this.setState((prev) => ({
+                    imageElement: this.imageElement,
+                    readMore: this.props.data[prev.currentIndice].textFull ? (<h3 onClick={this.readMore} id="read-more">
+                        <img src={bookIcon} style={{ maxHeight: '32px', maxWidth: '32px', margin: '10px' }} />Citeste mai mult</h3>) : null //Check if the first slide should have the 'read more' button
+                }))
+            })
     }
 
 
@@ -372,25 +403,21 @@ export default class Carousel extends React.Component {
 
     render() {
 
-        console.log(this.props)
         return (
             <div className="carrousel" style={this.props.style}>
                 <div className="grid-container">
                     <PageIndicator size={this.props.data.length} activeIndice={this.state.currentIndice}
                         style={{ gridColumn: '2/3', justifySelf: 'center', marginTop: '30px' }}
                     />
-                    <img src={this.props.logo} style={{
-                        width: '64px',
-                        display: 'inline-block', margin: '20px'
-                    }} />
+                    {this.state.logo}
                 </div>
                 <div id="carousel-data" style={this.state.slideBackgroundStyle} className={this.state.style}>
                     <Arrow style={{ gridColumnStart: '1', gridRow: '3/4', justifySelf: 'center', alignSelf: 'center' }}
                         orientation='left' onClick={this.changeSlide} />
                     {this.state.imageElement}
                     <div id='empty-block-top'></div>
-                    <div className="carousel-text-content" style={{fontFamili:'Calibri'}}>
-                        <h1 style={{fontFamily:'Century Gothic', fontStyle:'bold'}}>
+                    <div className="carousel-text-content" style={{ fontFamili: 'Calibri' }}>
+                        <h1 style={{ fontFamily: 'Century Gothic', fontStyle: 'bold' }}>
                             {this.props.data[this.state.currentIndice].title}
                         </h1>
                         {this.props.data[this.state.currentIndice].textChopped}

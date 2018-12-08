@@ -27,14 +27,13 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
         })
     }
 
-    async componentDidMount() {
+    async componentWillMount() {
         //Set the image node of the component
         if (this.props.pictures) {
             for (let item of this.props.pictures) {
                 await import(`../assets/img/${item}`).then((image) => {
                     let temp = this.state.images;
                     temp.push(image);
-                    console.log(temp)
                     this.setState({
                         images: temp
                     })
@@ -45,7 +44,6 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
     }
 
     render() {
-        console.log(this.state.images)
         return (
             <div className='full-text-display-no-fullscreen-grid-container' style={{
                 ...this.props.style, color: 'black',

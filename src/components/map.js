@@ -402,7 +402,7 @@ export class MapContainer extends React.Component {
         const _objectives = objectives; //Copy the imported object into a local variable to access it in the import statement
         import(`../assets/img/${_objectives.objective[this.state.count].picture}`).then((img)=>{
             infoWindow = new window.google.maps.InfoWindow({
-            content: `<h1>${_objectives.objective[this.state.count].name}</h1>` + `<img src =${img} height = 300px width=300px >`
+            content: `<h1>${_objectives.objective[this.state.count].name}</h1>` + `<img src =${img} height = 300px width=300px style=${{textAlign:'center'}} >`
         });
         var marker = new window.google.maps.Marker({
             position: _objectives.objective[this.state.count].center,

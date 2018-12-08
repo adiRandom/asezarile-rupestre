@@ -88,3 +88,12 @@
     clip-path: circle(1000px at center);
     transition: all 2s ease-in;
 }
+
+.logo-spin-appear {
+    transform: rotateZ(0deg);
+}
+
+.logo-spin-appear.logo-spin-appear-active {
+    transform: rotate(360deg);
+    transition: all 1s ease-in;
+}
