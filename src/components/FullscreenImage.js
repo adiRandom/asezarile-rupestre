@@ -29,7 +29,7 @@ export default class FullscreenImage extends React.component{
     render(){
         return(
             <div style={{height:'100vh',width:'100vw',
-            display:'flex',justifyContent:'center',alignContent:'center'
+            display:'flex',justifyContent:'center',alignContent:'center',
             position:'absolute',
             top:0,left:0}}>
                 <CSSTransitionGroup
