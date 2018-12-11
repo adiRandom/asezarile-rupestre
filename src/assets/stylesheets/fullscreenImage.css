@@ -1,0 +1,30 @@
+.make-image-fullscreen-appear {
+    opacity: 0.01;
+    width:0;
+    height:0;
+}
+
+.make-image-fullscreen-appear.make-image-fullscreen-appear-active {
+    opacity: 1;
+    width:100%;
+    height:100%;
+    transition: opacity 2s ease-in;
+}
+
+#close-icon{
+    grid-column:4/5;
+    justify-self: center;
+    margin: 10px;
+}
+
+#close-icon img{
+    max-width:16px; 
+    max-height:16px;
+}
+
+@media only screen and (min-width: 768px){
+    #close-icon img{
+        max-width:32px; 
+        max-height:32px;
+    }
+}

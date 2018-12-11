@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/stylesheets/full-text-display.css'
+import FullscreenImage from './FullscreenImage';
 
 
 export default class FullTextDisplayNoFullscreen extends React.Component {
@@ -12,7 +13,8 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
             textFullStyle:{
                 display:'none'
             },
-            buttonText:'Vezi mai multe'
+            buttonText:'Vezi mai multe',
+            fullscreenImage : null
         }
     }
 
@@ -44,6 +46,18 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
         }
     }
 
+    showImageFullscreen = (name)=>{
+        this.setState({
+            fullscreenImage : (<FullscreenImage name = {name} onClose = {this.closeFullscreenImage}/>)
+        })
+    }
+
+    closeFullscreenImage = ()=>{
+        this.setState({
+            fullscreenImage : null
+        })
+    }
+
     render() {
         console.log(this.state.images)
         return (
@@ -53,6 +67,7 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                 position: 'relative',
                 top: 0,
             }}>
+            {this.state.fullscreenImage}
                 <div style={{backgroundColor: 'rgb(246,246,246)', margin: 0,display:'flex',
                 flexDirection:'column',gridColumn:'1/2'}}>
                     <h2 style={{ marginTop: '30px', fontFamily:'Century Gothic', fontStyle:'bold'}}> <img alt='logo' src={this.props.logo} style={{width: '64px',
@@ -70,7 +85,9 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                         fontSize:'1.7rem'}} onClick={this.toggleFullText}>{this.state.buttonText}</button>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: this.props.color ,gridColumn:'2/3'}}>
-                    {this.state.images.map((item,key)=>(<img alt='image' src={item} key={key} style={{maxWidth:'95%',margin:'20px 0 20px 2.5%'}} />))} {/* The image node */}
+                    {this.state.images.map((item,key)=>(<img alt={item} 
+                    onClick={(item)=>{this.showImageFullscreen(item)}} src={item} key={key} 
+                    style={{maxWidth:'95%',margin:'20px 0 20px 2.5%'}} />))} {/* The image node */}
                 </div>
             </div>
         );
