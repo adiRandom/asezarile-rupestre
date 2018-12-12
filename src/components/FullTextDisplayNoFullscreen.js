@@ -46,9 +46,9 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
         }
     }
 
-    showImageFullscreen = (name)=>{
+    showImageFullscreen = (index,pictures)=>{
         this.setState({
-            fullscreenImage : (<FullscreenImage name = {name} onClose = {this.closeFullscreenImage}/>)
+            fullscreenImage : (<FullscreenImage index = {index} images = {pictures} onClose = {this.closeFullscreenImage}/>)
         })
     }
 
@@ -86,7 +86,7 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: this.props.color ,gridColumn:'2/3'}}>
                     {this.state.images.map((item,key)=>(<img alt={item} 
-                    onClick={(item)=>{this.showImageFullscreen(item)}} src={item} key={key} 
+                    onClick={(event)=>{this.showImageFullscreen(key,this.props.pictures)}} src={item} key={key} 
                     style={{maxWidth:'95%',margin:'20px 0 20px 2.5%'}} />))} {/* The image node */}
                 </div>
             </div>

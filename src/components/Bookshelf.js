@@ -4,11 +4,12 @@ export default class Bookshef extends React.Component {
         super(props);
         this.state = {
             books: [],
-            styles: []
+            styles: [],
+            elements: []
         }
     }
 
-    componentWillMount() {
+    async componentWillMount() {
         for (let i = 0; i < this.props.data.length; i++) {
             //Add the styles for the new book in the component state
             let temp = this.state.styles;
@@ -18,7 +19,7 @@ export default class Bookshef extends React.Component {
                 titleSize: '1rem'
             }
             temp.push(style);
-            this.setState({
+            await this.setState({
                 styles: temp
             }, () => {
                 //Import the book cover and add it into the state
@@ -43,13 +44,27 @@ export default class Bookshef extends React.Component {
                 })
             })
 
+            let elements = [];
+            for (let i = 0; i <= this.state.books.length / 5; i++) {
+                let temp = [];
+                for (let j = 0; j < 5; j++)
+                    temp.push((
+                    <div className='col-5'>
+                        <img src={this.state.books[i + j]} />
+                    </div>
+                    ))
+                temp.push((<div className='row'>
+                    {temp}
+                </div>))
+            }
+
         }
     }
 
     onMouseEnter = (index) => {
         //Modify the state of the selected book
         let temp = this.state.styles;
-        temp[index].bookHeight = '20Heightvh';
+        temp[index].bookHeight = '20vh';
         temp[index].titleDisplay = 'inline'
         temp[index].titleSize = '2.5rem'
         this.setState({
@@ -60,7 +75,7 @@ export default class Bookshef extends React.Component {
     onMouseLeave = (index) => {
         //Modify the state of the selected book
         let temp = this.state.styles;
-        temp[index].bookHeight = '10Heightvh';
+        temp[index].bookHeight = '10vh';
         temp[index].titleDisplay = 'none'
         temp[index].titleSize = '1rem'
         this.setState({
@@ -79,7 +94,7 @@ export default class Bookshef extends React.Component {
                 justifyContent: 'space-around',
                 backgroundImage: bookshelf,
                 backgroundRepeat: 'repeat-y',
-                backgroundSize:'100vw 10vh'
+                backgroundSize: '100vw 10vh'
             }}>
                 {this.state.books}
             </div>
