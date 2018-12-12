@@ -3,6 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../assets/stylesheets/slideshow.css'
 import Controll from './Controll'
+import FullscreenImage from './FullscreenImage'
 
 export default class Slideshow extends React.Component {
 
@@ -10,7 +11,8 @@ export default class Slideshow extends React.Component {
         super(props);
         this.state = {
             elements: [],
-            selectedElement: 0
+            selectedElement: 0,
+            fullscreenImage: null
         }
     }
 
@@ -32,14 +34,14 @@ export default class Slideshow extends React.Component {
             })
     }
 
-    handleWrapparound =(prev,amount) =>{
-        if(amount > 0)
+    handleWrapparound = (prev, amount) => {
+        if (amount > 0)
             if (prev + amount < this.props.images.length)
                 return prev + amount;
             else
                 return -1 + amount;
         else
-            if(prev + amount >= 0)
+            if (prev + amount >= 0)
                 return prev + amount;
             else
                 return this.props.images.length + amount;
@@ -47,19 +49,35 @@ export default class Slideshow extends React.Component {
 
     changeElement = (amount) => {
         this.setState((prev) => ({
-            selectedElement: this.handleWrapparound(prev.selectedElement,amount)
-        }),()=>{console.log(this.state)})
+            selectedElement: this.handleWrapparound(prev.selectedElement, amount)
+        }), () => { console.log(this.state) })
+    }
+
+    showImageFullscreen = () => {
+        this.setState({
+            fullscreenImage: (<FullscreenImage index={this.state.selectedElement} images={this.props.images}
+                onClose={this.closeFullscreenImage} />)
+        })
+    }
+
+    closeFullscreenImage = () => {
+        this.setState({
+            fullscreenImage: null
+        })
     }
 
     render() {
         return (
-            <div style={{display:'flex',flexDirection:'column'}}>
-                <Carousel selectedItem={this.state.selectedElement} showIndicators={false} infiniteLoop={true} showThumbs={false} showArrows={false}>
-                    {this.state.elements}
-                </Carousel>
-                <div style={{marginTop:'25px'}}>
-                    <Controll orientation='left' onClick={this.changeElement}></Controll>
-                    <Controll orientation='right' onClick={this.changeElement}></Controll>
+            <div>
+                {this.state.fullscreenImage}
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Carousel onClickItem={this.showImageFullscreen} selectedItem={this.state.selectedElement} showIndicators={false} infiniteLoop={true} showThumbs={false} showArrows={false}>
+                        {this.state.elements}
+                    </Carousel>
+                    <div style={{ marginTop: '25px' }}>
+                        <Controll orientation='left' onClick={this.changeElement}></Controll>
+                        <Controll orientation='right' onClick={this.changeElement}></Controll>
+                    </div>
                 </div>
             </div>
         )

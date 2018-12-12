@@ -11,7 +11,8 @@ export default class FullTextDisplay extends React.Component {
         this.state = {
             images:[],
             style:{},
-            logo: null
+            logo: null,
+            fullscreenImage : null
         }
         this.containerRef = React.createRef();
     }
