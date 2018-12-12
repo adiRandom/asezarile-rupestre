@@ -58,16 +58,9 @@ export default class Carousel extends React.Component {
         if (this.props.data[this.state.currentIndice].pictures){  //Check if there are more pictures for the slideshow
             this.imageElement = (
                 <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
-                    <CSSTransitionGroup
-                        transitionName="image-enter"
-                        transitionAppear={true}
-                        transitionAppearTimeout={5000}
-                        transitionEnter={false}
-                        transitionLeave={false}>
                         <Slideshow images={this.props.data[this.state.currentIndice].pictures}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
-                    </CSSTransitionGroup>
                 </div>
             );
             this.setState((prev) => ({
@@ -230,17 +223,9 @@ export default class Carousel extends React.Component {
 
         if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>
-                    <CSSTransitionGroup
-                        transitionName="image-enter"
-                        transitionAppear={true}
-                        transitionAppearTimeout={5000}
-                        transitionEnter={false}
-                        transitionLeave={false}>
-                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
-                    </CSSTransitionGroup>
                 </div>
             );
             //Update the state
@@ -293,16 +278,9 @@ export default class Carousel extends React.Component {
         if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
                 <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>
-                    <CSSTransitionGroup
-                        transitionName="image-enter"
-                        transitionAppear={true}
-                        transitionAppearTimeout={5000}
-                        transitionEnter={false}
-                        transitionLeave={false}>
                         <Slideshow images={this.props.data[this.state.currentIndice].pictures}
                             style={this.props.data[this.state.currentIndice].style ?
                                 { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
-                    </CSSTransitionGroup>
                 </div>
             );
             //Update the state
