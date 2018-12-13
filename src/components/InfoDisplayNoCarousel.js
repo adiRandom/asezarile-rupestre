@@ -1,5 +1,6 @@
 import React from 'react';
 import FullTextDisplayNoFullscreen from './FullTextDisplayNoFullscreen';
+import '../assets/stylesheets/infoDisplayNoCarousel.css'
 
 
 export default class InfoDisplayNoCarousel extends React.Component {
@@ -12,10 +13,26 @@ export default class InfoDisplayNoCarousel extends React.Component {
         if (!Array.isArray(this.data[0].textFull)) { //Check if the data hasn't been previously mapped already
             for (let i = 0; i < this.data.length; i++) {
                 this.data[i].textChopped = this.data[i].textChopped.split('\r\n').map((item, key) => {
-                    return <span style={{color:key === 0? 'black':'grey'}} key={key}>{item}<br /></span>
+                    return(
+                    <div>
+                    <style>
+                    {`
+                    #first-paragraph::first-letter{
+                    color: ${this.props.color};
+                    float: left;
+                    font-family: Georgia;
+                    font-size: 75px;
+                    line-height: 30px;
+                    padding-right: 8px;
+                    padding-left: 3px;
+                    }
+                    `}
+                    </style>
+                    <p style={{color:'black',display:'inline-block',marginLeft:'30px',}} id='first-paragraph' key={key}>{item}<br /></p>
+                    </div>)
                 });
                 this.data[i].textFull = this.data[i].textFull.split('\r\n').map((item, key) => {
-                    return <span style={{ color:'grey' }} key={key}>{item}<br /></span>
+                    return <p style={{ color:'black',display:'inline-block',textIndent: '50px',marginLeft:'30px' }} key={key}>{item}<br /></p>
                 })
             }
         }
