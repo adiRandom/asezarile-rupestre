@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import * as routeCoordinates from "../properties/route.json"
 import * as objectives from "../properties/objectives.json"
 import Controll from "./Controll";
+import * as logo from '../assets/icons/logo.png'
 
 
 
@@ -468,8 +469,24 @@ export class MapContainer extends React.Component {
     }
 }
 
+const LoadingContainer = (props) => (
+    <div>
+    <Navbar></Navbar>
+<div style={{
+    display: 'flex', flexDirection: 'column',
+    justifyContent: 'center', height: '86.2vh',
+    top:'13.8vh',
+    width: '100%', background: 'rgb(222, 233, 252)',
+    alignItems: 'center',position:'fixed'
+}}>
+    <img style={{ width: '160px' }} src={logo} />
+    <div>Loading...</div>
+</div>
+</div>);
+
 export default GoogleApiWrapper({
-    apiKey: properties.maps_api_key
+    apiKey: properties.maps_api_key,
+    LoadingContainer: LoadingContainer
 })(MapContainer)
 
 
