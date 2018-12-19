@@ -75,8 +75,8 @@ export default class Slideshow extends React.Component {
                         {this.state.elements}
                     </Carousel>
                     <div style={{ marginTop: '25px' }}>
-                        <Controll orientation='left' onClick={this.changeElement}></Controll>
-                        <Controll orientation='right' onClick={this.changeElement}></Controll>
+                        <Controll margin='20px' background='transparent' orientation='left' onClick={this.changeElement}></Controll>
+                        <Controll margin='20px' background='transparent' orientation='right' onClick={this.changeElement}></Controll>
                     </div>
                 </div>
             </div>

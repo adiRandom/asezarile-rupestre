@@ -123,7 +123,7 @@ export default class Bibliography extends React.Component {
             <div style={{height:'87vh'}}>
                 <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
                 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-                <Slider ref={c => (this.slider = c)} className='slider' dots={false} arrows={false}>
+                <Slider ref={c => (this.slider = c)} className='slider-bibiliografie' dots={false} arrows={false}>
                     {this.state.slides}
                 </Slider>
                 <LeftArrow onClick={this.previous} />

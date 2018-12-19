@@ -377,8 +377,8 @@ export class MapContainer extends React.Component {
     transitionToIndividual() {
         this.setState({
             controlls:(<div id='controlls' style={{position:'absolute',height:'5vh',top:'90vh',left:'5vw','zIndex':2}}> {/*Create the controlls container*/}
-                        <Controll orientation='left' onClick={this.changeObjective}></Controll>
-                        <Controll orientation='right' onClick={this.changeObjective}></Controll>
+                        <Controll margin='0' background='rgba(34, 94, 150, 0.6)' orientation='left' onClick={this.changeObjective}></Controll>
+                <Controll margin='0' background='rgba(34, 94, 150, 0.6)' orientation='right' onClick={this.changeObjective}></Controll>
                     </div>)
         }, () => { setTimeout(this.goToObjective, 3000);})
         

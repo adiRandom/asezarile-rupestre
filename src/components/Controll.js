@@ -15,7 +15,7 @@ export default class Controll extends React.Component{
     render(){
         return(
             <button style={{
-                backgroundColor: 'white', margin: 0, background: 'rgba(34, 94, 150, 0.6)',
+                backgroundColor: 'white', margin: this.props.margin, background: this.props.background,
                 clipPath: 'polygon(0% 0 %, 75 % 0 %, 100 % 50 %, 75 % 100 %, 0 % 100 %)',
                 border:'none' }} id={this.state.id} onClick={this.clickHandler}>
                 <img src={this.state.icon} alt={this.state.alt} />
