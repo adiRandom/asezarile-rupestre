@@ -1,11 +1,3 @@
 {
-    "entries":[{
-        "title":"First book",
-        "image":"theBook.jpg",
-        "info":"mmm"
-    },{
-        "title": "First book",
-        "image": "theBook.jpg",
-        "info": "nnn"
-    }]
+    "titles":["The fisrt book","Another book","Yet another book","Got tired to write titles"]
 }
