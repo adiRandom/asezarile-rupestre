@@ -1,26 +1,20 @@
-.slider-bibliography{
-    height:100%;
-    background-image: url('../graphics/scrollBackground.jpg');
+.credits-appear {
+  transform: translateY(100vh);
+  /* transform: rotateX(40deg); */
 }
 
-#title::first-letter{
-    color: red;
-    float: left;
-    font-family: Georgia;
-    font-size: 50px;
-    line-height: 45px;
-    padding-right: 8px;
-                    padding-left: 3px;
-                    text-indent:30px;
-                    }
+.credits-appear.credits-appear-active {
+  transform: translateY(-300vh);
+  /* transform: rotateX(40deg); */
+  transition: all 20s ease-in-out;
+}
 
-                    #info::first-letter{
+.list-item::first-letter{
                     color: red;
                     float: left;
                     font-family: Georgia;
-                    font-size: 50px;
-                    line-height: 30px;
+                    font-size: 75px;
+                    line-height: 70px;
                     padding-right: 8px;
                     padding-left: 3px;
-                    text-indent:30px;
                     }

@@ -32,7 +32,7 @@ export default class Homepage extends React.Component {
                 </Link>
 
                 <div className="ml-auto">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav">
                         <li className="nav-item">
                             <NavLink activeClassName="active" className={'nav-link'} to="/harta">Hartă</NavLink>
                         </li>
@@ -55,9 +55,6 @@ export default class Homepage extends React.Component {
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/legende">Legende&superstiții</NavLink>
                                 <NavLink activeClassName="active" className={'dropdown-item'} to="/info/bibliografie">Bibliografie</NavLink>
                             </div>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/evaluare">Evaluare</Link>
                         </li>
                     </ul>
                 </div>

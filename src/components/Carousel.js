@@ -8,6 +8,7 @@ import * as bookIcon from '../assets/icons/book-icon.png';
 import Arrow from './Arrow.js';
 import Slideshow from './Slideshow'
 import Controll from './Controll';
+import FullscreenImage from "./FullscreenImage"
 
 
 export default class Carousel extends React.Component {
@@ -36,7 +37,8 @@ export default class Carousel extends React.Component {
             logo: (<img src={this.props.logo} onClick={this.spinLogo} style={{
                 width: '64px',
                 display: 'inline-block', margin: '20px'
-            }} />)
+            }} />),
+            fullscreenImage:null
         }; //Set the initial state of the component
 
         this.changeSlide = this.changeSlide.bind(this); //Event to handle the scroll on the carousel
@@ -51,6 +53,27 @@ export default class Carousel extends React.Component {
 
         this.markAsEntered = this.markAsEntered.bind(this);
 
+
+    }
+
+    showImageFullscreen = (image) => {
+        console.log(image);
+        this.setState({
+            fullscreenImage: image
+        })
+    }
+
+    _showImageFullscreen = () => {
+        this.setState({
+            fullscreenImage: (<FullscreenImage index={0} images={[this.props.data[this.state.currentIndice].picture]}
+                onClose={this.closeFullscreenImage} />)
+        })
+    }
+
+    closeFullscreenImage = () => {
+        this.setState({
+            fullscreenImage: null
+        })
     }
 
     spinLogo = () => {
@@ -88,10 +111,11 @@ export default class Carousel extends React.Component {
 
         if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign:'center' }}>
-                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
-                            style={this.props.data[this.state.currentIndice].style ?
-                                { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>
+                    <Slideshow showImageFullscreen={this.showImageFullscreen} closeFullscreenImage={this.closeFullscreenImage}
+                    images={this.props.data[this.state.currentIndice].pictures}
+                        style={this.props.data[this.state.currentIndice].style ?
+                            { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' }} />
                 </div>
             );
             this.setState((prev) => ({
@@ -110,9 +134,9 @@ export default class Carousel extends React.Component {
                             transitionAppearTimeout={5000}
                             transitionEnter={false}
                             transitionLeave={false}>
-                            <img src={image}
+                            <img src={image} onClick={this._showImageFullscreen}
                                 style={this.props.data[this.state.currentIndice].style ?
-                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' }} />
                         </CSSTransitionGroup>
                     </div>
                 );
@@ -254,9 +278,9 @@ export default class Carousel extends React.Component {
 
         if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
-                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
-                            style={this.props.data[this.state.currentIndice].style ?
-                                { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>                        <Slideshow showImageFullscreen={this.showImageFullscreen} closeFullscreenImage={this.closeFullscreenImage}images={this.props.data[this.state.currentIndice].pictures}
+                    style={this.props.data[this.state.currentIndice].style ?
+                        { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' }} />
                 </div>
             );
             //Update the state
@@ -283,9 +307,9 @@ export default class Carousel extends React.Component {
                             transitionAppearTimeout={5000}
                             transitionEnter={false}
                             transitionLeave={false}>
-                            <img src={image}
+                            <img src={image} onClick={this._showImageFullscreen}
                                 style={this.props.data[this.state.currentIndice].style ?
-                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' }} />
                         </CSSTransitionGroup>
                     </div>
                 );
@@ -302,6 +326,7 @@ export default class Carousel extends React.Component {
                     }),
                     imageElement: this.imageElement //The node is visible so 'mount' it
                 })
+                this.fullscreenImageContainerRef = React.createRef();
             })
     }
     enteringFromTheLeft() { //Mark that the next piece of content should enter from the left side
@@ -309,9 +334,9 @@ export default class Carousel extends React.Component {
         if (this.props.data[this.state.currentIndice].pictures) {  //Check if there are more pictures for the slideshow
             this.imageElement = (
                 <div className="carousel-image" style={{ gridColumnStart: '2/3', gridRow: '2/4', justifySelf: 'center', alignSelf: 'center', textAlign: 'center' }}>
-                        <Slideshow images={this.props.data[this.state.currentIndice].pictures}
-                            style={this.props.data[this.state.currentIndice].style ?
-                                { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                    <Slideshow showImageFullscreen={this.showImageFullscreen} closeFullscreenImage={this.closeFullscreenImage} images={this.props.data[this.state.currentIndice].pictures}
+                        style={this.props.data[this.state.currentIndice].style ?
+                            { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' }} />
                 </div>
             );
             //Update the state
@@ -338,9 +363,9 @@ export default class Carousel extends React.Component {
                             transitionAppearTimeout={5000}
                             transitionEnter={false}
                             transitionLeave={false}>
-                            <img src={image}
+                            <img src={image} onClick={this._showImageFullscreen}
                                 style={this.props.data[this.state.currentIndice].style ?
-                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', transitionDelay: '1000ms' }} />
+                                    { ...this.props.data[this.state.currentIndice].style, display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' } : { display: "inline-block", maxWidth: '95%', maxHeight: '50vh', transitionDelay: '1000ms' }} />
                         </CSSTransitionGroup>
                     </div>
                 );
@@ -383,6 +408,7 @@ export default class Carousel extends React.Component {
 
         return (
             <div className="carrousel" style={this.props.style}>
+                {this.state.fullscreenImage}
                 <div className="grid-container">
                     <PageIndicator size={this.props.data.length} activeIndice={this.state.currentIndice}
                         style={{ gridColumn: '2/3', justifySelf: 'center', marginTop: '30px' }}

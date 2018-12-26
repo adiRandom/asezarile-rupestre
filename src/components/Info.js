@@ -50,7 +50,7 @@ export default class Info extends React.Component {
             }); break;
             case 'bibliografie':
                 this.setState({
-                    element: (<Bibliography location={this.props.location}/>)
+                    element: (<Bibliography location={this.props.location}></Bibliography>)
                 })
             break;
             default: break;
@@ -112,7 +112,7 @@ export default class Info extends React.Component {
                         element: (<Bibliography location={this.props.location}/>)
                     }))
                     return true;
-                default: return true;
+                default: return true;       
             }
         }
 

@@ -54,22 +54,17 @@ export default class Slideshow extends React.Component {
     }
 
     showImageFullscreen = () => {
-        this.setState({
-            fullscreenImage: (<FullscreenImage index={this.state.selectedElement} images={this.props.images}
-                onClose={this.closeFullscreenImage} />)
-        })
+        this.props.showImageFullscreen( (<FullscreenImage index={this.state.selectedElement} images={this.props.images}
+                onClose={this.closeFullscreenImage} />))
     }
 
     closeFullscreenImage = () => {
-        this.setState({
-            fullscreenImage: null
-        })
+       this.props.closeFullscreenImage();
     }
 
     render() {
         return (
             <div>
-                {this.state.fullscreenImage}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <Carousel onClickItem={this.showImageFullscreen} selectedItem={this.state.selectedElement} showIndicators={false} infiniteLoop={true} showThumbs={false} showArrows={false}>
                         {this.state.elements}
