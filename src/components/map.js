@@ -113,8 +113,8 @@ export class MapContainer extends React.Component {
 
     toDemo() {
 
-    window.open('/tur', 'Tour');
-    
+        window.open('/tur', 'Tour');
+
     }
 
     clickHandler() {
@@ -227,7 +227,7 @@ export class MapContainer extends React.Component {
             }, () => setTimeout(this.zoomContinuation, 650));
 
         }
-        else if (this.state.stage === 3){
+        else if (this.state.stage === 3) {
             this.goToRoute();
         }
     }
@@ -249,8 +249,8 @@ export class MapContainer extends React.Component {
                     lat: properties.rupestre_map_properties.center.lat + 0.02,
                     lng: properties.rupestre_map_properties.center.lng
                 }
-            }, () => setTimeout(() => this.setState({ zoom: properties.rupestre_map_properties.zoom },()=> //Go to the route
-            setTimeout(this.clickHandler,2700))), 480) //Continue the animation to Asezarile Rupestre
+            }, () => setTimeout(() => this.setState({ zoom: properties.rupestre_map_properties.zoom }, () => //Go to the route
+                setTimeout(this.clickHandler, 2700))), 480) //Continue the animation to Asezarile Rupestre
         }
         else {
 
@@ -364,7 +364,7 @@ export class MapContainer extends React.Component {
         this.setState({
 
             zoom: objectives.initial.zoom, //Zoom out in order to see the route
-            center:objectives.initial.center, //Ceter the image
+            center: objectives.initial.center, //Ceter the image
             endReached: false //Make the renderer not go back and forth between the objective and the route
 
 
@@ -375,20 +375,14 @@ export class MapContainer extends React.Component {
     }
 
     transitionToIndividual() {
-        this.setState({
-            controlls:(<div id='controlls' style={{position:'absolute',height:'5vh',top:'90vh',left:'5vw','zIndex':2}}> {/*Create the controlls container*/}
-                        <Controll margin='0' background='rgba(34, 94, 150, 0.6)' orientation='left' onClick={this.changeObjective}></Controll>
-                <Controll margin='0' background='rgba(34, 94, 150, 0.6)' orientation='right' onClick={this.changeObjective}></Controll>
-                    </div>)
-        }, () => { setTimeout(this.goToObjective, 3000);})
-        
+        setTimeout(this.goToObjective, 3000);
+
     }
 
     goToObjective() { //Start going to the individual points after 3 seconds
-            console.log('hey')
-            this.setState({
-                center: objectives.objective[this.state.count].center,
-            }, () =>setTimeout(this.zoomToObjective, 700))
+        this.setState({
+            center: objectives.objective[this.state.count].center,
+        }, () => setTimeout(this.zoomToObjective, 700))
     }
 
     zoomToObjective = () => {
@@ -401,25 +395,33 @@ export class MapContainer extends React.Component {
         //Add a marker and a info window
         let infoWindow;
         const _objectives = objectives; //Copy the imported object into a local variable to access it in the import statement
-        import(`../assets/img/${_objectives.objective[this.state.count].picture}`).then((img)=>{
+        import(`../assets/img/${_objectives.objective[this.state.count].picture}`).then((img) => {
             infoWindow = new window.google.maps.InfoWindow({
-            content: `<h1>${_objectives.objective[this.state.count].name}</h1>` + `<img src =${img} height = 300px width=300px style=${{textAlign:'center'}} >`
-        });
-        var marker = new window.google.maps.Marker({
-            position: _objectives.objective[this.state.count].center,
-            map: this.mapRef.current.map,
-            title: 'Titlu'
-        });
+                content: `<h1>${_objectives.objective[this.state.count].name}</h1>` + `<img src =${img} height = 300px width=300px style=${{ textAlign: 'center' }} >`
+            });
+            var marker = new window.google.maps.Marker({
+                position: _objectives.objective[this.state.count].center,
+                map: this.mapRef.current.map,
+                title: 'Titlu'
+            });
 
-        infoWindow.open(this.mapRef.current.map, marker); //Dispaly the infowindow
-        this.setState({
-            infoWindow:infoWindow,
-            marker:marker
-        })
-    });
+            infoWindow.open(this.mapRef.current.map, marker); //Dispaly the infowindow
+            this.setState({
+                infoWindow: infoWindow,
+                marker: marker,
+            }, () => {
+                if (!this.state.controlls)
+                    this.setState({
+                        controlls: (<div id='controlls' style={{ position: 'absolute', height: '5vh', top: '90vh', left: '5vw', 'zIndex': 2 }}> {/*Create the controlls container*/}
+                            <Controll margin='0' background='rgba(34, 94, 150, 0.6)' orientation='left' onClick={this.changeObjective}></Controll>
+                            <Controll margin='0' background='rgba(34, 94, 150, 0.6)' orientation='right' onClick={this.changeObjective}></Controll>
+                        </div>)
+                    })
+            })
+        });
     }
 
-    removeObjectiveMarker = (marker, infoWindow,amount) => { //After a second remove the marker, zoom back out and increase the counter
+    removeObjectiveMarker = (marker, infoWindow, amount) => { //After a second remove the marker, zoom back out and increase the counter
         //Remove the marker and the info windows
         marker.setMap(null);
         infoWindow.close();
@@ -427,9 +429,9 @@ export class MapContainer extends React.Component {
     }
 
     resetToCenter = (amount) => {
-        this.setState((prev)=>({
+        this.setState((prev) => ({
             zoom: objectives.initial.zoom, //First zoom out then with a callback re-center the route
-            count: this.arrayBondryValidator(prev,amount)
+            count: this.arrayBondryValidator(prev, amount)
         }), () => {
             this.setState({
                 center: objectives.initial.center
@@ -437,16 +439,16 @@ export class MapContainer extends React.Component {
         })
     }
 
-    arrayBondryValidator(prev,amount){
+    arrayBondryValidator(prev, amount) {
         if (amount > 0)
             return prev.count + amount >= objectives.objective.length ? -1 + amount : prev.count + amount
         else
             return prev.count + amount < 0 ? objectives.objective.length - 1 : prev.count + amount
     }
 
-    changeObjective = (amount)=>{
-        this.removeObjectiveMarker(this.state.marker,this.state.infoWindow,amount) //Remove the current objective and swith to another one 
-                                                                                    //Based on the amount argument
+    changeObjective = (amount) => {
+        this.removeObjectiveMarker(this.state.marker, this.state.infoWindow, amount) //Remove the current objective and swith to another one 
+        //Based on the amount argument
     }
 
     render() {
@@ -471,18 +473,18 @@ export class MapContainer extends React.Component {
 
 const LoadingContainer = (props) => (
     <div>
-    <Navbar></Navbar>
-<div style={{
-    display: 'flex', flexDirection: 'column',
-    justifyContent: 'center', height: '86.2vh',
-    top:'13.8vh',
-    width: '100%', background: 'rgb(222, 233, 252)',
-    alignItems: 'center',position:'fixed'
-}}>
-    <img style={{ width: '160px' }} src={logo} />
-    <div>Loading...</div>
-</div>
-</div>);
+        <Navbar></Navbar>
+        <div style={{
+            display: 'flex', flexDirection: 'column',
+            justifyContent: 'center', height: '86.2vh',
+            top: '13.8vh',
+            width: '100%', background: 'rgb(222, 233, 252)',
+            alignItems: 'center', position: 'fixed'
+        }}>
+            <img style={{ width: '160px' }} src={logo} />
+            <div>Loading...</div>
+        </div>
+    </div>);
 
 export default GoogleApiWrapper({
     apiKey: properties.maps_api_key,
