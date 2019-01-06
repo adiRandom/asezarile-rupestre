@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import InfoDisplay from './InfoDisplay';
 import InfoDisplayNoCarousel from './InfoDisplayNoCarousel'
 import Bibliography from './Bibliography'
+import Turism from './Turism'
 
 export default class Info extends React.Component {
 
@@ -30,12 +31,12 @@ export default class Info extends React.Component {
             }); break;
             case 'geografie': import('../data/geography.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplayNoCarousel color='rgba(45,132,67,0.45)' logo='mt.png' data={data.content} location={this.props.location} />)
+                    element: (<InfoDisplayNoCarousel geography={true} color='rgba(45,132,67,0.45)' logo='mt.png' data={data.content} location={this.props.location} />)
                 })
             }); break;
             case 'turism': import('../data/turism.json').then((data) => {
                 this.setState({
-                    element: (<InfoDisplayNoCarousel color='rgba(24, 184, 224,0.45)' logo='path.png' data={data.content} location={this.props.location} />)
+                    element: (<Turism />)
                 })
             }); break;
             case 'religie': import('../data/religie.json').then((data) => {
@@ -52,12 +53,12 @@ export default class Info extends React.Component {
                 this.setState({
                     element: (<Bibliography location={this.props.location}></Bibliography>)
                 })
-            break;
+                break;
             default: break;
         }
     }
 
-    shouldComponentUpdate(nextProps,nextState) {
+    shouldComponentUpdate(nextProps, nextState) {
 
         //Check if the location changed and update the displaying node
 
@@ -65,7 +66,7 @@ export default class Info extends React.Component {
             switch (nextProps.match.params.id) {
                 case 'legende': import('../data/legends.json').then((data) => {
                     this.setState({
-                        element:null //Mark the element as null to unmount it and remount the new node
+                        element: null //Mark the element as null to unmount it and remount the new node
                     }, () => this.setState({
                         element: (<InfoDisplay color='rgb(10, 145, 52)' logo="vase.png" data={data.content} location={this.props.location} />)
                     }))
@@ -81,14 +82,14 @@ export default class Info extends React.Component {
                     this.setState({
                         element: null
                     }, () => this.setState({
-                        element: (<InfoDisplayNoCarousel color='rgba(45,132,67,0.45)' logo='mt.png' data={data.content} location={this.props.location} />)
+                        element: (<InfoDisplayNoCarousel geography={true} color='rgba(45,132,67,0.45)' logo='mt.png' data={data.content} location={this.props.location} />)
                     }))
                 }); return true;
                 case 'turism': import('../data/turism.json').then((data) => {
                     this.setState({
                         element: null
                     }, () => this.setState({
-                        element: (<InfoDisplayNoCarousel color='rgba(24, 184, 224,0.45)' logo='path.png' data={data.content} location={this.props.location} />)
+                        element: (<Turism />)
                     }))
                 }); return true;
                 case 'arheologie': import('../data/arheologie.json').then((data) => {
@@ -109,10 +110,10 @@ export default class Info extends React.Component {
                     this.setState({
                         element: null
                     }, () => this.setState({
-                        element: (<Bibliography location={this.props.location}/>)
+                        element: (<Bibliography location={this.props.location} />)
                     }))
                     return true;
-                default: return true;       
+                default: return true;
             }
         }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../assets/stylesheets/full-text-display.css'
 import FullscreenImage from './FullscreenImage';
+import * as videoSrc from '../assets/video/DSC_0541.mp4';
 
 
 export default class FullTextDisplayNoFullscreen extends React.Component {
@@ -14,8 +15,10 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                 display: 'none'
             },
             buttonText: 'Vezi mai multe',
-            fullscreenImage: null
+            fullscreenImage: null,
+            animation: null
         }
+        this.ref = React.createRef();
     }
 
     toggleFullText = () => {
@@ -26,6 +29,12 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                 display: this.state.fullTextToggle ? 'none' : 'block'
             },
             buttonText: this.state.fullTextToggle ? 'Vezi mai multe' : 'Vezi mai putine'
+        })
+    }
+
+    onEnded = ()=>{
+        this.setState({
+            animation:null
         })
     }
 
@@ -41,7 +50,29 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                     })
                 });
             }
+        }
 
+        if (this.props.geography) {
+                this.setState({
+                    animation: (
+                        <div style={{
+                            width: '100vw', height: '100vh',
+                            position: 'fixed',
+                            top: 0, left: 0,
+                            display: 'flex',
+                            backgroundColor: 'rgba(0,0,0,0.7)',
+                            justifyContent: 'center',
+                            alignItems:'center'
+                        }}>
+                            <video src={videoSrc} ref={this.ref} controls={false}
+                                style={{ width: '100%',
+                                'height':'50vh',}}
+                                onEnded={this.onEnded}
+                                ></video>
+                        </div>)
+                },()=>{
+                    this.ref.current.play();
+                })
         }
     }
 
@@ -67,6 +98,7 @@ export default class FullTextDisplayNoFullscreen extends React.Component {
                     position: 'relative',
                     top: 0,
                 }}>
+                    {this.state.animation}
                     <div style={{
                         backgroundColor: 'rgb(246,246,246)', margin: 0, display: 'flex',
                         flexDirection: 'column', gridColumn: '1/2'

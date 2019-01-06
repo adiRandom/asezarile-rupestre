@@ -59,7 +59,7 @@ export default class InfoDisplayNoCarousel extends React.Component {
 
         return (
             <React.Fragment>
-                <FullTextDisplayNoFullscreen color={this.props.color} logo={this.state.logo} textChopped={this.state.textChopped} textFull={this.state.fullText}
+                <FullTextDisplayNoFullscreen geography={this.props.geography} color={this.props.color} logo={this.state.logo} textChopped={this.state.textChopped} textFull={this.state.fullText}
                     picture={this.state.picture} pictures={this.state.pictures} title={this.state.title} />
             </React.Fragment>
         )
