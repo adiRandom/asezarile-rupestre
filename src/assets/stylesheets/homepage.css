@@ -1,0 +1,48 @@
+#main-flex-container{
+    display:flex;
+    flex-direction: column;
+    width:100vw;
+    height:100vh;
+}
+
+#image-container{
+    height: 80vh;
+}
+
+#main-text-container{
+    position: absolute;
+    left:10vw;
+    top:20vh;
+    color:white;
+    width:25vw;
+}
+
+.sm-break{
+    color:white;
+    width:5vw;
+}
+
+#main-image{
+    width: 100vw;
+    height: 80vh;
+}
+
+#map-button{
+    color: white;
+    border-radius: 20px;
+    background-color: #EA4D44;
+    border: none;
+    font-size: 1.3rem;
+}
+
+#map-button:hover{
+    background-color: #f7635b;
+}
+
+#title-down{
+    font-size:3rem;
+}
+
+#description{
+    font-size:1.3rem;
+}

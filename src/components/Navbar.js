@@ -1,68 +1,25 @@
 import React from "react";
-import * as Logo from "../assets/icons/logo.png";
-import {NavLink,Link} from "react-router-dom";
-import "bootstrap/dist/js/bootstrap.min";
+import { NavLink } from 'react-router-dom';
+import * as logo from '../assets/icons/logo.png';
 import "../assets/stylesheets/navbar.css";
 
-export default class Homepage extends React.Component {
-
-
-    constructor(props) {
-
-        super(props);
-
-        this.toVirtualTour = this.toVirtualTour.bind(this);
-    }
-
-    toVirtualTour() {
-
-        window.open('/tur', 'Tur virtual');
-    }
-
+export default class Navbar extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-sm navbar-light" style={{"background-color": "white"}}>
-                <Link className="navbar-brand" to="/"><img src={Logo} alt={"Logoul acestui site"}
-                                                            style={{width: "70px", height: "47px"}} className="mb-3"/>
-                    <span className="ml-2" style={{
-                        "font-weight": "bold",
-                        "font-family": "Bernard MT Condensed",
-                        "font-size": "34px"
-                    }}>Bozioru</span>
-                </Link>
-
-                <div className="ml-auto">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink activeClassName="active" className={'nav-link'} to="/harta">Hartă</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink activeClassName="active" className={'nav-link'} to="/tur" onClick={this.toVirtualTour}>Tur
-                                virtual</NavLink>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Informații
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                {/* TODO: Add the links after creating the pages*/}
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/istorie">Istorie</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/geografie">Geografie</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/religie">Religie</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/arheologie">Arheologie</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/turism">Turism</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/legende">Legende&superstiții</NavLink>
-                                <NavLink activeClassName="active" className={'dropdown-item'} to="/info/bibliografie">Bibliografie</NavLink>
-                            </div>
-                        </li>
-                    </ul>
+            <div id="navbar-container">
+                <div id="logo-container">
+                    <img id="logo" alt="logo" src={logo}></img>
+                    <h4 id="name">Bozioru</h4>
                 </div>
-            </nav>
-
-        );
-
-
+                <ul id="links">
+                    <li><NavLink exact={true} to="/" activeClassName="selected-link">
+                        <span className="link-wrapper">Acasa</span></NavLink></li>
+                    <li><NavLink exact={true} to="/harta" activeClassName="selected-link">
+                        <span className="link-wrapper">Harta</span></NavLink></li>
+                    <li><NavLink exact={true} to="/tur" activeClassName="selected-link">
+                        <span className="link-wrapper">Tur virtual</span></NavLink></li>
+                </ul>
+            </div>
+        )
     }
-
 }

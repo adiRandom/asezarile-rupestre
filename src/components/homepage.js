@@ -1,55 +1,59 @@
-/**
- * Created by Adrian on 29-Aug-18.
- */
-
-import React, {Component} from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {Link} from "react-router-dom";
-import background from "../assets/img/back1.png";
-import Navbar from "../components/Navbar";
-import {CSSTransitionGroup} from "react-transition-group";
+import React from 'react'
+import {Redirect} from 'react-router'
+import * as backgroundImage from "../assets/img/MIH_6583.JPG";
+import "../assets/stylesheets/homepage.css"
+import Navbar from './Navbar';
+import InfoMenu from './InfoMenu.js'
 
 
-import "../assets/stylesheets/main.css";
-import "../assets/stylesheets/animation.css";
-
-class Homepage extends Component {
-
+export default class Homepege extends React.Component {
 
     constructor() {
-
         super();
-
-        //Manipulate the page background
-        //Init the bg
-        document.getElementsByTagName("body")[0].style.backgroundImage = `url(${background})`;
-        document.getElementsByTagName("body")[0].style.backgroundSize = `cover`;
-        document.getElementsByTagName("body")[0].style.backgroundRepeat = `no-repeat`;
+        this.state = {
+            redirect: null,
+            icons:[
+            "shield",
+            "mt",
+            "path",
+            "crux",
+            "vase",
+            "book-icon"
+        ],
+            items:[
+                "Istorie",
+                "Geogrefie",
+                "Turism",
+                "Religie",
+                "Legende",
+                "Bibliografie"
+        ]
+        }
     }
-
+    redirectToMap = () => {
+        this.setState({
+            redirect: (<Redirect to="/map"></Redirect>)
+        })
+    }
 
     render() {
         return (
-            <div>
-                <Navbar/>
-                <CSSTransitionGroup
-                    transitionName="example"
-                    transitionAppear={true}
-                    transitionAppearTimeout={5000}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <h1 className="title display-4" id="title-top">Așezările rupestre</h1>
-                    <h1 className="title display-4" id="title-bot">de la Bozioru</h1>
-                    <h3 className="text">O întoarcere în peisajul creștinismului timpuriu,</h3>
-                    <h3 className="text">Unde pietrele spun povestea locului</h3>
-                    <h3 className="text">De la începutul istoriei și până acum.</h3>
-                    <Link to="/harta" className="btn btn-success mt-5">Vezi harta! </Link>
-                </CSSTransitionGroup>
+            <div id="main-flex-continer">
+                <Navbar></Navbar>
+                <div id="image-container">
+                    <img id="main-image" src={backgroundImage} alt="bozioru"></img>
+                    <div id="main-text-container">
+                        <h2 id="title-up">Asezarile Rupestre</h2>
+                        <h1 id="title-down">Bozioru</h1>
+                        <br className="sm-break"></br>
+                        <p id="description">O întoarcere în peisajul creștinismului timpuriu,
+                        unde pietrele spun povestea locului de la începutul istoriei și până acum.</p>
+                        <button id="map-button" onClick={this.redirectToMap}>Catre harta</button>
+                        {this.state.redirect}
+                    </div>
+                </div>
+                <InfoMenu icons={this.state.icons} items={this.state.items}/>
             </div>
-
-        );
+        )
     }
 }
-
-export default Homepage;
-
