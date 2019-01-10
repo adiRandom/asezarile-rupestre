@@ -1,0 +1,40 @@
+
+
+#info-display-flex-container{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    background-color:white;
+    color:black;
+}
+
+#info-display-title-container{
+    margin:5vh 0;
+}
+
+#info-displa-title{
+    font-size: 2rem;
+}
+
+#info-display-text-wrapper{
+    width: 50vw;
+    text-align: justify;
+    font-size:1.2rem;
+}
+
+.info-display-image{
+    width:50vw;
+}
+
+.carousel{
+    width:50vw!important;
+    margin:10vh 0!important;
+}
+
+.slide{
+    background-color: transparent!important;
+}
+
+.control-arrow:hover {
+    background: transparent!important;
+}

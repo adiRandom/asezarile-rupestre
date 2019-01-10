@@ -1,9 +1,10 @@
 import React from 'react'
-import {Redirect} from 'react-router'
+import { Redirect } from 'react-router'
 import * as backgroundImage from "../assets/img/MIH_6583.JPG";
 import "../assets/stylesheets/homepage.css"
 import Navbar from './Navbar';
 import InfoMenu from './InfoMenu.js'
+import InfoDisplay from './InfoDisplay';
 
 
 export default class Homepege extends React.Component {
@@ -12,28 +13,150 @@ export default class Homepege extends React.Component {
         super();
         this.state = {
             redirect: null,
-            icons:[
-            "shield",
-            "mt",
-            "path",
-            "crux",
-            "vase",
-            "book-icon"
-        ],
-            items:[
+            icons: [
+                "shield",
+                "mt",
+                "path",
+                "crux",
+                "vase",
+                "book-icon"
+            ],
+            items: [
                 "Istorie",
-                "Geogrefie",
+                "Geografie",
                 "Turism",
                 "Religie",
                 "Legende",
                 "Bibliografie"
-        ]
+            ],
+            infoDisplayTitle: null,
+            infoDisplayText: null,
+            infoDisplaySplitMedia: null,
+            infoDisplayImages: null,
+            isLegends: false,
+            isBibliography: false
         }
     }
     redirectToMap = () => {
         this.setState({
             redirect: (<Redirect to="/map"></Redirect>)
         })
+    }
+
+    onClick = async (key) => {
+        switch (key) {
+            case "Istorie":
+                await import("../data/history.json").then(async (data) => {
+                    if (data.splitMedia) {
+                        await import(`../assets/${data.splitMedia.media}`).then((media) => {
+                            this.setState({
+                                infoDisplayTitle: data.title,
+                                infoDisplayText: data.text,
+                                infoDisplaySplitMedia: media,
+                                infoDisplayImages: data.images,
+                                isBibliography:false,
+                                isLegends:false
+                            })
+                        })
+                    }
+                    else {
+                        this.setState({
+                            infoDisplayTitle: data.title,
+                            infoDisplayText: data.text,
+                            infoDisplayImages: data.images,
+                            isBibliography: false,
+                            isLegends: false
+                        })
+                    }
+                }); break;
+
+            case "Geografie":
+                await import("../data/geography.json").then(async (data) => {
+                    if (data.splitMedia) {
+                        await import(`../assets/${data.splitMedia.media}`).then((media) => {
+                            this.setState({
+                                infoDisplayTitle: data.title,
+                                infoDisplayText: data.text,
+                                infoDisplaySplitMedia: media,
+                                infoDisplayImages: data.images,
+                                isBibliography: false,
+                                isLegends: false
+                            })
+                        })
+                    }
+                    else {
+                        this.setState({
+                            infoDisplayTitle: data.title,
+                            infoDisplayText: data.text,
+                            infoDisplayImages: data.images,
+                            isBibliography: false,
+                            isLegends: false
+                        })
+                    }
+                }); break;
+
+            case "Turism":
+                await import("../data/turism.json").then(async (data) => {
+                    if (data.splitMedia) {
+                        await import(`../assets/${data.splitMedia.media}`).then((media) => {
+                            this.setState({
+                                infoDisplayTitle: data.title,
+                                infoDisplayText: data.text,
+                                infoDisplaySplitMedia: media,
+                                infoDisplayImages: data.images,
+                                isBibliography: false,
+                                isLegends: false
+                            })
+                        })
+                    }
+                    else {
+                        this.setState({
+                            infoDisplayTitle: data.title,
+                            infoDisplayText: data.text,
+                            infoDisplayImages: data.images,
+                            isBibliography: false,
+                            isLegends: false
+                        })
+                    }
+                }); break;
+
+            case "Religie":
+                await import("../data/religie.json").then(async (data) => {
+                    if (data.splitMedia) {
+                        await import(`../assets/${data.splitMedia.media}`).then((media) => {
+                            this.setState({
+                                infoDisplayTitle: data.title,
+                                infoDisplayText: data.text,
+                                infoDisplaySplitMedia: media,
+                                infoDisplayImages: data.images,
+                                isBibliography: false,
+                                isLegends: false
+                            })
+                        })
+                    }
+                    else {
+                        this.setState({
+                            infoDisplayTitle: data.title,
+                            infoDisplayText: data.text,
+                            infoDisplayImages: data.images,
+                            isBibliography: false,
+                            isLegends: false
+                        })
+                    }   
+                }); break;
+
+            case "Legende":
+                this.state = {
+                    isLegends: true,
+                    isBibliography:false
+                }; break;
+
+            case "Bibliografie":
+                this.state = {
+                    isBibliography: true,
+                    isLegends:false
+                }; break;
+        }
     }
 
     render() {
@@ -52,7 +175,10 @@ export default class Homepege extends React.Component {
                         {this.state.redirect}
                     </div>
                 </div>
-                <InfoMenu icons={this.state.icons} items={this.state.items}/>
+                <InfoMenu onClick={this.onClick} icons={this.state.icons} items={this.state.items} />
+                {!this.state.isBibliography && !this.state.isLegends && this.state.infoDisplayTitle &&
+                    <InfoDisplay text={this.state.infoDisplayText} title={this.state.infoDisplayTitle}
+                        splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}
             </div>
         )
     }

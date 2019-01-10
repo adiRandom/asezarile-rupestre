@@ -8,11 +8,12 @@ export default class InfoMenu extends React.Component {
         this.state = { items: [] }
     }
 
+
     componentDidMount = async () => {
         for (let i = 0; i < this.props.items.length; i++) {
             await import(`../assets/icons/${this.props.icons[i]}.png`).then((icon) => {
                 let element = (
-                    <div className="item" key={i}>
+                    <div className="item" key={i} onClick={(event) => this.props.onClick(this.props.items[i])}>
                         <img alt="icon" className="icon" src={icon}></img>
                         <h3 className="item-name">{this.props.items[i]}</h3>
                     </div>
