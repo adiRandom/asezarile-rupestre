@@ -1,11 +1,7 @@
 {
-    "content": [
-        {
             "title": "Turism",
             "splitMedia":{
                 "type":"video",
                 "media":"video/1.mp4"
             }
-        }
-    ]
 }

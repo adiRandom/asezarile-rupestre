@@ -23,18 +23,35 @@
 }
 
 .info-display-image{
-    width:50vw;
+    width:auto!important;
+    height: 50vh;
 }
 
 .carousel{
     width:50vw!important;
     margin:10vh 0!important;
+    height:50vh!important;
 }
 
 .slide{
-    background-color: transparent!important;
+    background-color: rgba(44, 60, 76, 0.3)!important;
+    height: 100vh;
 }
 
 .control-arrow:hover {
     background: transparent!important;
+}
+
+#info-display-slide{
+    height:50vh;
+}
+
+#split-text-video{
+    width:50vw;
+}
+
+#back-up-link{
+    background-color:#EA4D44;
+    width:25vw;
+    text-size:1.3rem;
 }

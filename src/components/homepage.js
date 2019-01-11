@@ -52,7 +52,10 @@ export default class Homepege extends React.Component {
                             this.setState({
                                 infoDisplayTitle: data.title,
                                 infoDisplayText: data.text,
-                                infoDisplaySplitMedia: media,
+                                infoDisplaySplitMedia: {
+                                    type: data.splitMedia.type,
+                                    media: media
+                                },
                                 infoDisplayImages: data.images,
                                 isBibliography:false,
                                 isLegends:false
@@ -77,7 +80,10 @@ export default class Homepege extends React.Component {
                             this.setState({
                                 infoDisplayTitle: data.title,
                                 infoDisplayText: data.text,
-                                infoDisplaySplitMedia: media,
+                                infoDisplaySplitMedia: {
+                                    type:data.splitMedia.type,
+                                    media:media
+                                },
                                 infoDisplayImages: data.images,
                                 isBibliography: false,
                                 isLegends: false
@@ -102,7 +108,10 @@ export default class Homepege extends React.Component {
                             this.setState({
                                 infoDisplayTitle: data.title,
                                 infoDisplayText: data.text,
-                                infoDisplaySplitMedia: media,
+                                infoDisplaySplitMedia: {
+                                    type: data.splitMedia.type,
+                                    media: media
+                                },
                                 infoDisplayImages: data.images,
                                 isBibliography: false,
                                 isLegends: false
@@ -127,7 +136,10 @@ export default class Homepege extends React.Component {
                             this.setState({
                                 infoDisplayTitle: data.title,
                                 infoDisplayText: data.text,
-                                infoDisplaySplitMedia: media,
+                                infoDisplaySplitMedia: {
+                                    type: data.splitMedia.type,
+                                    media: media
+                                },
                                 infoDisplayImages: data.images,
                                 isBibliography: false,
                                 isLegends: false
