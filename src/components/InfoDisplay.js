@@ -17,17 +17,37 @@ export default class InfoDisplay extends React.Component {
         }
         console.log(props)
         if (props.splitMedia)
-            switch (props.splitMedia.type) {
-                case "image": this.state = {
-                    splitMedia: (<img src={props.splitMedia.media} alt="split-text-picture"></img>)
-                }; break;
-
-                case "video":
-                    this.state = {
-                        splitMedia: (<video src={props.splitMedia.media} controls={true} id="split-text-video"></video>)
+            if (!Array.isArray(props.splitMedia))
+                switch (props.splitMedia.type) {
+                    case "image": this.state = {
+                        splitMedia: (<img src={props.splitMedia.media} className="split-text-picture"></img>)
                     }; break;
 
-                default: break;
+                    case "video":
+                        this.state = {
+                            splitMedia: (<video src={props.splitMedia.media} controls={true} className="split-text-video"></video>)
+                        }; break;
+
+                    default: break;
+                }
+            else {
+                let elements = [];
+                for (let element of props.splitMedia) {
+                    switch (element.type) {
+                        case "image":
+                            elements.push((<img src={element.media} className="split-text-picture"></img>)
+                            ); break;
+
+                        case "video":
+                            elements.push((<video src={element.media} controls={true} className="split-text-video"></video>)
+                            ); break;
+
+                        default: break;
+                    }
+                }
+                this.setState({
+                    splitMedia: elements
+                })
             }
     }
 
@@ -82,22 +102,22 @@ export default class InfoDisplay extends React.Component {
                 <div id='info-display-title-container'>
                     <h1 id='info-display-title'>{this.props.title}</h1>
                 </div>
-                    <div id='info-display-content-container'>
-                        {/* Check if the text is supposed to be split in two */}
-                        {Array.isArray(this.props.text) && (<div id="info-display-text-1-wrapper">{this.props.text[0]}</div>)}
-                        {/* Display the split media if there is any */}
-                        {this.props.splitMedia && (<div id='info-dispaly-split-media-container'>
-                            {this.state.splitMedia}
-                        </div>)}
-                        {Array.isArray(this.props.text) && (<div id="info-display-text-2-wrapper">{this.props.text[1]}</div>)}
-                        {/* If the text is a string, display it */}
-                        {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.props.text}</div>)}
-                        {this.props.images &&
-                            (<Carousel showIndicators={false} autopla={true} showThumbs={false} >
-                                {this.state.images}
-                            </Carousel>)
-                        }
-                    </div>
+                <div id='info-display-content-container'>
+                    {/* Check if the text is supposed to be split in two */}
+                    {Array.isArray(this.props.text) && (<div id="info-display-text-1-wrapper">{this.props.text[0]}</div>)}
+                    {/* Display the split media if there is any */}
+                    {this.props.splitMedia && (<div id='info-dispaly-split-media-container'>
+                        {this.state.splitMedia}
+                    </div>)}
+                    {Array.isArray(this.props.text) && (<div id="info-display-text-2-wrapper">{this.props.text[1]}</div>)}
+                    {/* If the text is a string, display it */}
+                    {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.props.text}</div>)}
+                    {this.props.images &&
+                        (<Carousel showIndicators={false} autopla={true} showThumbs={false} >
+                            {this.state.images}
+                        </Carousel>)
+                    }
+                </div>
             </div>
         )
     }
