@@ -89,23 +89,23 @@ export default class InfoDisplay extends React.Component {
                         })
                     }
                 }
-                if (props.splitMedia)
-                    if (!Array.isArray(props.splitMedia))
-                        switch (props.splitMedia.type) {
+                if (this.props.splitMedia)
+                    if (!Array.isArray(this.props.splitMedia))
+                        switch (this.props.splitMedia.type) {
                             case "image": this.state = {
-                                splitMedia: (<img src={props.splitMedia.media} className="split-text-picture"></img>)
+                                splitMedia: (<img src={this.props.splitMedia.media} className="split-text-picture"></img>)
                             }; break;
 
                             case "video":
                                 this.state = {
-                                    splitMedia: (<video src={props.splitMedia.media} controls={true} className="split-text-video"></video>)
+                                    splitMedia: (<video src={this.props.splitMedia.media} controls={true} className="split-text-video"></video>)
                                 }; break;
 
                             default: break;
                         }
                     else {
                         let elements = [];
-                        for (let element of props.splitMedia) {
+                        for (let element of this.props.splitMedia) {
                             switch (element.type) {
                                 case "image":
                                     elements.push((<img src={element.media} className="split-text-picture"></img>)
