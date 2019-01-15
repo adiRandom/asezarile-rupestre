@@ -15,7 +15,6 @@ export default class InfoDisplay extends React.Component {
             splitMedia: null,
             images: []
         }
-        console.log(props)
         if (props.splitMedia)
             if (!Array.isArray(props.splitMedia))
                 switch (props.splitMedia.type) {
@@ -72,7 +71,8 @@ export default class InfoDisplay extends React.Component {
     async shouldComponentUpdate(nextProps) {
         if (nextProps !== this.props) {
             this.setState({
-                images: []
+                images: [],
+                splitMedia: null
             }, async () => {
                 if (this.props.images) {
                     for (let i = 0; i < this.props.images.length; i++) {
@@ -89,6 +89,39 @@ export default class InfoDisplay extends React.Component {
                         })
                     }
                 }
+                if (props.splitMedia)
+                    if (!Array.isArray(props.splitMedia))
+                        switch (props.splitMedia.type) {
+                            case "image": this.state = {
+                                splitMedia: (<img src={props.splitMedia.media} className="split-text-picture"></img>)
+                            }; break;
+
+                            case "video":
+                                this.state = {
+                                    splitMedia: (<video src={props.splitMedia.media} controls={true} className="split-text-video"></video>)
+                                }; break;
+
+                            default: break;
+                        }
+                    else {
+                        let elements = [];
+                        for (let element of props.splitMedia) {
+                            switch (element.type) {
+                                case "image":
+                                    elements.push((<img src={element.media} className="split-text-picture"></img>)
+                                    ); break;
+
+                                case "video":
+                                    elements.push((<video src={element.media} controls={true} className="split-text-video"></video>)
+                                    ); break;
+
+                                default: break;
+                            }
+                        }
+                        this.setState({
+                            splitMedia: elements
+                        })
+                    }
                 return true;
             });
         }
@@ -96,7 +129,6 @@ export default class InfoDisplay extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div id='info-display-flex-container'>
                 <div id='info-display-title-container'>

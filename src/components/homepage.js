@@ -39,7 +39,7 @@ export default class Homepege extends React.Component {
     }
     redirectToMap = () => {
         this.setState({
-            redirect: (<Redirect to="/map"></Redirect>)
+            redirect: (<Redirect to="/harta"></Redirect>)
         })
     }
 
