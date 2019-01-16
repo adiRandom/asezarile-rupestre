@@ -68,7 +68,8 @@ export default class Homepege extends React.Component {
                             infoDisplayText: data.text,
                             infoDisplayImages: data.images,
                             isBibliography: false,
-                            isLegends: false
+                            isLegends: false,
+                            infoDisplaySplitMedia:null
                         })
                     }
                 }); break;
@@ -96,7 +97,8 @@ export default class Homepege extends React.Component {
                             infoDisplayText: data.text,
                             infoDisplayImages: data.images,
                             isBibliography: false,
-                            isLegends: false
+                            isLegends: false,
+                            infoDisplaySplitMedia:null
                         })
                     }
                 }); break;
@@ -124,7 +126,8 @@ export default class Homepege extends React.Component {
                             infoDisplayText: data.text,
                             infoDisplayImages: data.images,
                             isBibliography: false,
-                            isLegends: false
+                            isLegends: false,
+                            infoDisplaySplitMedia:null
                         })
                     }
                 }); break;
@@ -152,7 +155,8 @@ export default class Homepege extends React.Component {
                             infoDisplayText: data.text,
                             infoDisplayImages: data.images,
                             isBibliography: false,
-                            isLegends: false
+                            isLegends: false,
+                            infoDisplaySplitMedia:null
                         })
                     }   
                 }); break;

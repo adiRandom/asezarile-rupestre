@@ -48,12 +48,14 @@ export default class InfoDisplay extends React.Component {
                     splitMedia: elements
                 })
             }
+
     }
 
     async componentDidMount() {
         if (this.props.images) {
             for (let i = 0; i < this.props.images.length; i++) {
                 await import(`../assets/img/${this.props.images[i]}`).then((image) => {
+                    console.log(this.state);
                     let temp = this.state.images;
                     temp.push((
                         <div id="info-display-slide" key={i}>
@@ -66,9 +68,25 @@ export default class InfoDisplay extends React.Component {
                 })
             }
         }
+
+        //Map \r\n to <br>
+        if(!Array.isArray(this.props.text)){
+            this.setState({
+                text:this.props.text.split('\r\n').map((item, key) => {
+                   return <span key={key}>{item}<br /></span>
+               })
+            })
+        }
+        else
+        this.setState({
+           text:this.props.text.split('\r\n').map((item, key) => {
+              return <span key={key}>{item}<br /></span>
+          })
+       })
     }
 
     async shouldComponentUpdate(nextProps) {
+        console.log(nextProps);
         if (nextProps !== this.props) {
             this.setState({
                 images: [],
@@ -89,23 +107,23 @@ export default class InfoDisplay extends React.Component {
                         })
                     }
                 }
-                if (this.props.splitMedia)
-                    if (!Array.isArray(this.props.splitMedia))
-                        switch (this.props.splitMedia.type) {
-                            case "image": this.state = {
-                                splitMedia: (<img src={this.props.splitMedia.media} className="split-text-picture"></img>)
-                            }; break;
+                if (nextProps.splitMedia)
+                    if (!Array.isArray(nextProps.splitMedia))
+                        switch (nextProps.splitMedia.type) {
+                            case "image": this.setState({
+                                splitMedia: (<img src={nextProps.splitMedia.media} className="split-text-picture"></img>)
+                            }); break;
 
                             case "video":
-                                this.state = {
-                                    splitMedia: (<video src={this.props.splitMedia.media} controls={true} className="split-text-video"></video>)
-                                }; break;
+                                this.setState( {
+                                    splitMedia: (<video src={nextProps.splitMedia.media} controls={true} className="split-text-video"></video>)
+                                }); break;
 
                             default: break;
                         }
                     else {
                         let elements = [];
-                        for (let element of this.props.splitMedia) {
+                        for (let element of nextProps.splitMedia) {
                             switch (element.type) {
                                 case "image":
                                     elements.push((<img src={element.media} className="split-text-picture"></img>)
@@ -122,6 +140,21 @@ export default class InfoDisplay extends React.Component {
                             splitMedia: elements
                         })
                     }
+
+        //Map \r\n to <br>
+         if(!Array.isArray(nextProps.text)){
+            this.state={
+                text:nextProps.text.split('\r\n').map((item, key) => {
+                   return <span key={key}>{item}<br /></span>
+               })
+            }
+        }
+        else
+        this.state={
+           text:nextProps.text.split('\r\n').map((item, key) => {
+              return <span key={key}>{item}<br /></span>
+          })
+       }
                 return true;
             });
         }
@@ -129,6 +162,7 @@ export default class InfoDisplay extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div id='info-display-flex-container'>
                 <div id='info-display-title-container'>
@@ -143,7 +177,7 @@ export default class InfoDisplay extends React.Component {
                     </div>)}
                     {Array.isArray(this.props.text) && (<div id="info-display-text-2-wrapper">{this.props.text[1]}</div>)}
                     {/* If the text is a string, display it */}
-                    {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.props.text}</div>)}
+                    {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.state.text}</div>)}
                     {this.props.images &&
                         (<Carousel showIndicators={false} autopla={true} showThumbs={false} >
                             {this.state.images}
