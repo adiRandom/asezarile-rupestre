@@ -7,6 +7,34 @@
         "zoom": 15.6
     },
     "objective": [
+	    {
+            "center": {
+                "lat": 45.42547706282886, 
+                "lng": 26.447688303090445
+            },
+            "zoom": 18,
+            "name": "Fundatura",
+            "picture": "big_fundatura_(1).jpg"
+        },
+		{
+            "center": {
+                "lat": 45.42996469733594,
+                "lng": 26.445499620534292
+            },
+            "zoom": 18,
+            "name": "Lacul Mistretilor",
+            "picture": "big_lacul_mistretilor.jpg"
+        },
+
+		{
+            "center": {
+                "lat": 45.43153076767717,  
+                "lng": 26.445499620534292
+            },
+            "zoom": 18,
+            "name": "Agatonul Vechi",
+            "picture": "big_agatonul_vechi(4).jpg"
+        },
         {
             "center": {
                 "lat": 45.431734168973826, 
@@ -18,31 +46,23 @@
         },
         {
             "center": {
-                "lat": 45.43153076767717,  
-                "lng": 26.445499620534292
+                "lat": 45.42692278269831, 
+                "lng": 26.439620218373648
             },
             "zoom": 18,
-            "name": "Agatonul Vechi",
-            "picture": "big_agatonul_vechi(4).jpg"
+            "name": "Bisericuta lui Iosif",
+            "picture": "1.JPG"
         },
         {
             "center": {
-                "lat": 45.42996469733594,
-                "lng": 26.445499620534292
+                "lat": 45.42312768907139, 
+                "lng": 26.436401567555777
             },
             "zoom": 18,
-            "name": "Lacul Mistretilor",
-            "picture": "big_lacul_mistretilor.jpg"
+            "name": "Chilia lui Dionisie",
+            "picture": "2.JPG"
         },
-        {
-            "center": {
-                "lat": 45.42547706282886, 
-                "lng": 26.447688303090445
-            },
-            "zoom": 18,
-            "name": "Fundatura",
-            "picture": "big_fundatura_(1).jpg"
-        },
+		
         {
             "center": {
                 "lat": 45.42296765022667,
@@ -60,24 +80,6 @@
             "zoom": 18,
             "name": "Scaunelele lui Negru Voda",
             "picture": "8757887164_1e0488e87b_b.jpg"
-        },
-        {
-            "center": {
-                "lat": 45.42312768907139, 
-                "lng": 26.436401567555777
-            },
-            "zoom": 18,
-            "name": "Chilia lui Dionisie",
-            "picture": "2.JPG"
-        },
-        {
-            "center": {
-                "lat": 45.42692278269831, 
-                "lng": 26.439620218373648
-            },
-            "zoom": 18,
-            "name": "Bisericuta lui Iosif",
-            "picture": "1.JPG"
         }
     ]
 }
