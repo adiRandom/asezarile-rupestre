@@ -61,3 +61,20 @@
 .split-text-picture,.split-text-video{
     width: 50vw;
 }
+
+#read-more-button{
+    border-radius: 30px;
+    background-color: transparent;
+    border-color: rgb(44, 60, 76);
+    color:rgb(44, 60, 76);
+    text-align: center;
+}
+
+#read-more-button:focus{
+    outline:none;
+}
+
+#read-more-button-wrapper{
+    display: flex;
+    justify-content: center;
+}

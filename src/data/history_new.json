@@ -1,0 +1,18 @@
+{
+    "text":["Primul paragraf","Al doilea paragraf","Al treilea paragraf"],
+    "shortText":"Textul care apare cand nu dai read_more",
+    "title":"Titlu",
+    "splitMedia":[{
+        "type":"video",
+        "media":"video/nume.mp4"
+    },{
+        "type":"image",
+        "media":"img/poza.jpg",
+        "isGallery":false
+    },{
+        "type":"image",
+        "media":["img/poza1.jpg","img/poza2.jpg"],
+        "isGallery":true,
+        "starge-asta-ca-e-pentru-explicatie-ca-nu-pot-pune-commenturi":"sus e false daca vrei ca atunci cand sunt mai multe poza sa fie una sub alta"
+    }]
+}
