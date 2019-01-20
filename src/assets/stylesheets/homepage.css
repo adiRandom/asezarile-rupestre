@@ -46,3 +46,13 @@
 #description{
     font-size:1.3rem;
 }
+
+#info-display-content-container{
+    width:50vw;
+}
+
+#info-display-short-text-wrapper{
+    text-align: justify;
+    font-size: 1.2rem;
+    margin-bottom:50px;
+}

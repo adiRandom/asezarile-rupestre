@@ -7,6 +7,135 @@ import { Carousel } from 'react-responsive-carousel';
 //SplitMedia has to specifie the type of media "image" "video"
 //The text prop can either be an array for two halves of the text or a string
 
+function deepCompare() {
+    var i, l, leftChain, rightChain;
+
+    function compare2Objects(x, y) {
+        var p;
+
+        // remember that NaN === NaN returns false
+        // and isNaN(undefined) returns true
+        if (isNaN(x) && isNaN(y) && typeof x === 'number' && typeof y === 'number') {
+            return true;
+        }
+
+        // Compare primitives and functions.     
+        // Check if both arguments link to the same object.
+        // Especially useful on the step where we compare prototypes
+        if (x === y) {
+            return true;
+        }
+
+        // Works in case when functions are created in constructor.
+        // Comparing dates is a common scenario. Another built-ins?
+        // We can even handle functions passed across iframes
+        if ((typeof x === 'function' && typeof y === 'function') ||
+            (x instanceof Date && y instanceof Date) ||
+            (x instanceof RegExp && y instanceof RegExp) ||
+            (x instanceof String && y instanceof String) ||
+            (x instanceof Number && y instanceof Number)) {
+            return x.toString() === y.toString();
+        }
+
+        // At last checking prototypes as good as we can
+        if (!(x instanceof Object && y instanceof Object)) {
+            return false;
+        }
+
+        if (x.isPrototypeOf(y) || y.isPrototypeOf(x)) {
+            return false;
+        }
+
+        if (x.constructor !== y.constructor) {
+            return false;
+        }
+
+        if (x.prototype !== y.prototype) {
+            return false;
+        }
+
+        // Check for infinitive linking loops
+        if (leftChain.indexOf(x) > -1 || rightChain.indexOf(y) > -1) {
+            return false;
+        }
+
+        // Quick checking of one object being a subset of another.
+        // todo: cache the structure of arguments[0] for performance
+        for (p in y) {
+            if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                return false;
+            }
+            else if (typeof y[p] !== typeof x[p]) {
+                return false;
+            }
+        }
+
+        for (p in x) {
+            if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                return false;
+            }
+            else if (typeof y[p] !== typeof x[p]) {
+                return false;
+            }
+
+            switch (typeof (x[p])) {
+                case 'object':
+                case 'function':
+
+                    leftChain.push(x);
+                    rightChain.push(y);
+
+                    if (!compare2Objects(x[p], y[p])) {
+                        return false;
+                    }
+
+                    leftChain.pop();
+                    rightChain.pop();
+                    break;
+
+                default:
+                    if (x[p] !== y[p]) {
+                        return false;
+                    }
+                    break;
+            }
+        }
+
+        return true;
+    }
+
+    if (arguments.length < 1) {
+        throw "Need two or more arguments to compare";
+    }
+
+    for (i = 1, l = arguments.length; i < l; i++) {
+
+        leftChain = [];
+        rightChain = [];
+
+        if (!compare2Objects(arguments[0], arguments[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+Array.prototype.isEqual = function (anotherArray) {
+    if (!Array.isArray(anotherArray))
+        return false
+    if (anotherArray.length !== this.length)
+        return false;
+    for (let i = 0; i < this.length; i++)
+        if (this[i] !== anotherArray[i])
+            return false;
+    return true;
+}
+
+Object.prototype.isEqual = function (anotherObject) {
+    return deepCompare(this, anotherObject)
+}
+
 export default class InfoDisplay extends React.Component {
 
     constructor(props) {
@@ -24,93 +153,6 @@ export default class InfoDisplay extends React.Component {
 
     }
 
-    createSplitMedia = (_splitMedia) => {
-        if (!Array.isArray(_splitMedia)) {
-            if (!Array.isArray(_splitMedia.media))
-                switch (_splitMedia.type) {
-                    case "image": this.state = {
-                        splitMedia: (<img src={_splitMedia.media} className="split-text-picture"></img>)
-                    }; break;
-
-                    case "video":
-                        this.state = {
-                            splitMedia: (<video src={_splitMedia.media} controls={true} className="split-text-video"></video>)
-                        }; break;
-
-                    default: break;
-                }
-            else {
-                let elements = [];
-                for (let element of _splitMedia.media) {
-                    switch (element.type) {
-                        case "image":
-                            elements.push((<img src={element.media} className="split-text-picture"></img>)
-                            ); break;
-
-                        case "video":
-                            elements.push((<video src={element.media} controls={true} className="split-text-video"></video>)
-                            ); break;
-
-                        default: break;
-                    }
-                }
-                if (_splitMedia.type === 'image' && _splitMedia.gallery) {
-                    let gallery = (<div id='split-media-gallery'>
-                        <Carousel showIndicators={false} autoplay={true} showThumbs={false} >
-                            {elements}
-                        </Carousel>
-                    </div>)
-                    this.setState({
-                        splitMedia: gallery
-                    })
-                }
-                else
-                    this.setState({
-                        splitMedia: elements
-                    })
-            }
-        }
-        else {
-            let splitMediaElements = [];
-            for (let splitMedia in _splitMedia) {
-                if (!Array.isArray(splitMedia.media))
-                    switch (splitMedia.type) {
-                        case "image": splitMediaElements.push((<img src={splitMedia.media} className="split-text-picture"></img>))
-                            break;
-
-                        case "video": splitMediaElements.push((<video src={splitMedia.media} controls={true} className="split-text-video"></video>))
-                            break;
-                        default: break;
-                    }
-                else {
-                    let elements = [];
-                    for (let element of splitMedia.media) {
-                        switch (element.type) {
-                            case "image":
-                                elements.push((<img src={element.media} className="split-text-picture"></img>)
-                                ); break;
-
-                            case "video":
-                                elements.push((<video src={element.media} controls={true} className="split-text-video"></video>)
-                                ); break;
-
-                            default: break;
-                        }
-                    }
-                    if (splitMedia.type === 'image' && splitMedia.gallery) {
-                        let gallery = (<div id='split-media-gallery'>
-                            <Carousel showIndicators={false} autoplay={true} showThumbs={false} >
-                                {elements}
-                            </Carousel>
-                        </div>)
-                        splitMediaElements.push(gallery)
-                    }
-                    else
-                        splitMediaElements.push(elements);
-                }
-            }
-        }
-    }
 
     mapNewLineToBr = (_text) => {
         //Map \r\n to <br>
@@ -155,14 +197,18 @@ export default class InfoDisplay extends React.Component {
     }
 
     async shouldComponentUpdate(nextProps) {
-        if (nextProps !== this.props) {
+        if (!nextProps.isEqual(this.props)) {
             this.setState({
                 images: [],
-                splitMedia: null
+                splitMedia: null,
+                showAllText: false,
+                fullTextDispalyStyle: {
+                    display: 'none'
+                }
             }, async () => {
-                if (this.props.images) {
-                    for (let i = 0; i < this.props.images.length; i++) {
-                        await import(`../assets/img/${this.props.images[i]}`).then((image) => {
+                if (nextProps.images && nextProps.images.isEqual(this.props.images)) {
+                    for (let i = 0; i < nextProps.images.length; i++) {
+                        await import(`../assets/img/${nextProps.images[i]}`).then((image) => {
                             let temp = this.state.images;
                             temp.push((
                                 <div id="info-display-slide" key={i}>
@@ -171,7 +217,7 @@ export default class InfoDisplay extends React.Component {
                             ));
                             this.setState({
                                 images: temp
-                            })
+                            }, () => console.log(i))
                         })
                     }
                 }
@@ -202,17 +248,18 @@ export default class InfoDisplay extends React.Component {
     createTextContainerWhenTextSplit = () => {
 
         let result = [];
-        for (let i = 0; i < this.state.text.length; i++) {
-            let temp = (
-                <div id="info-display-split-text-container" key={i} >
-                    <div id="info-display-text-1-wrapper">{this.state.text[i]}</div>
-                    <div id='info-dispaly-split-media-container'>
-                        {this.state.splitMedia[i]}
+        if (Array.isArray(this.state.text) && Array.isArray(this.state.splitMedia))
+            for (let i = 0; i < this.state.text.length; i++) {
+                let temp = (
+                    <div id="info-display-split-text-container" key={i} >
+                        <div id="info-display-text-wrapper">{this.state.text[i]}</div>
+                        <div id='info-dispaly-split-media-container'>
+                            {this.state.splitMedia[i]}
+                        </div>
                     </div>
-                </div>
-            )
-            result.push(temp);
-        }
+                )
+                result.push(temp);
+            }
         return result;
     }
 
@@ -223,7 +270,9 @@ export default class InfoDisplay extends React.Component {
                     <h1 id='info-display-title'>{this.props.title}</h1>
                 </div>
                 <div id='info-display-content-container'>
-                    {this.props.shortText}
+                    <div id="info-display-short-text-wrapper">
+                        {this.props.shortText}
+                    </div>
                     <div id='info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
                         {/* Check if the text is supposed to be split in two */}
                         {Array.isArray(this.props.text) && this.createTextContainerWhenTextSplit()}

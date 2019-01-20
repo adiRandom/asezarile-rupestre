@@ -1,0 +1,18 @@
+{
+    "title": "Istorie",
+    "shortText": "Text scurt, un singur paragraf",
+    "images": [
+        "nume.jpg",
+        "alta.jpg"
+    ],
+    "paragraphs": [
+        {
+            "text": "Textul pentru acest paragraf. Pentru a crea pseudoparagrafe foloseste \r\n",
+            "images": [
+                "imagine.jpg",
+                "alta.jpg"
+            ],
+            "isGallery": true
+        }
+    ]
+}
