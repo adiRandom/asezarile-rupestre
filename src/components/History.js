@@ -14,6 +14,8 @@ export default class History extends React.Component {
             },
             images: []
         }
+
+        this.count = 0;
     }
 
     mapNewLineToBr = (_text) => {
@@ -54,19 +56,21 @@ export default class History extends React.Component {
             }
         }
 
-        this.mapNewLineToBr(this.props.text);
+        await this.createParagraphs();
     }
 
     createParagraphs = async () => {
-        for (let paragraph of this.props.paragraphs) {
+        for (let i = 0; i < this.props.paragraphs.length; i++) {
             let snapshot = this.state.paragraphs;
             this.setState({
                 auxArray: []
             }, async () => {
-                for (let image of paragraph.images) {
+                for (let image of this.props.paragraphs[i].images) {
                     await import(`../assets/img/${image}`).then((res) => {
                         let _snapshot = this.state.auxArray;
-                        _snapshot.push((
+                        if (!Array.isArray(_snapshot[i]))
+                            _snapshot[i] = [];
+                        _snapshot[i].push((
                             <div id="info-display-slide">
                                 <img className="info-display-image" src={res}></img>
                             </div>
@@ -77,9 +81,9 @@ export default class History extends React.Component {
                     })
                 }
                 snapshot.push({
-                    text: this.mapNewLineToBr(paragraph.text),
-                    isGallery: paragraph.isGallery,
-                    images: this.state.auxArray
+                    text: this.mapNewLineToBr(this.props.paragraphs[i].text),
+                    isGallery: this.props.paragraphs[i].isGallery,
+                    images: this.state.auxArray[i]
                 })
                 this.setState({
                     paragraphs: snapshot
@@ -87,11 +91,13 @@ export default class History extends React.Component {
             })
         }
 
-        //Now create the galleris if steted
+    }
+
+    createGaleries = () => {
         for (let i = 0; i < this.state.paragraphs.length; i++) {
-            if (this.state.paragraphs[i].isGallery) {
-                let snapshot = this.state.paragraphs.images;
-                snapshot[i] = (
+            if (this.state.paragraphs[i].isGallery && Array.isArray(this.state.paragraphs[i].images)) {
+                let snapshot = this.state.paragraphs;
+                snapshot[i].images = (
                     <Carousel showIndicators={false} autoplay={true} showThumbs={false} >
                         {this.state.paragraphs[i].images}
                     </Carousel>
@@ -101,6 +107,25 @@ export default class History extends React.Component {
                 })
             }
         }
+    }
+
+    mapParagraphsToJSX = () => {
+        return this.state.paragraphs.map((item, key) => {
+            return (
+                <div className='paragraph-container' key={key}>
+                    <div id='paragraph-text-container'>
+                        {item.text}
+                    </div>
+                    <div id='paragraph-image-container'>
+                        {item.images}
+                    </div>
+                </div>
+            )
+        })
+    }
+
+    componentDidUpdate(){
+        this.createGaleries();
     }
 
     render() {
@@ -114,7 +139,7 @@ export default class History extends React.Component {
                         {this.props.shortText}
                     </div>
                     <div id='info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
-                        {this.createParagraphs()}
+                        {this.mapParagraphsToJSX()}
                     </div>
                     <div id='read-more-button-wrapper'>
                         <button id='read-more-button' onClick={this.toggleFullTextDisplay}>

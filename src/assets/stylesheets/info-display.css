@@ -77,4 +77,13 @@
 #read-more-button-wrapper{
     display: flex;
     justify-content: center;
+    margin-bottom:50px;
+}
+
+.paragraph-container{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    font-size:1.2rem;
+    margin-bottom: 3vh;
 }

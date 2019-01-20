@@ -46,8 +46,8 @@ export default class Homepege extends React.Component {
 
     importData = async (fileName) => {
         await import(`../data/${fileName}`).then(async (data) => {
-            if (data.splitMedia) {
-                if (!data.paragraphs) {
+            if (!data.paragraphs) {
+                if (data.splitMedia) {
                     if (!Array.isArray(data.splitMedia.media)) {
                         await import(`../assets/${data.splitMedia.media}`).then((media) => {
                             this.setState({
@@ -62,7 +62,7 @@ export default class Homepege extends React.Component {
                                 infoDisplayImages: data.images,
                                 isBibliography: false,
                                 isLegends: false,
-                                isHistory: true
+                                isHistory: false
                             })
                         })
                     }
@@ -94,7 +94,7 @@ export default class Homepege extends React.Component {
                                 infoDisplayImages: data.images,
                                 isBibliography: false,
                                 isLegends: false,
-                                isHistory: true
+                                isHistory: false
                             }))
                         })
                     }
@@ -102,25 +102,26 @@ export default class Homepege extends React.Component {
                 else {
                     this.setState({
                         infoDisplayTitle: data.title,
-                        infoDisplayShortText: data.shortText,
+                        infoDisplayText: data.text,
                         infoDisplayImages: data.images,
-                        infoDisplayParagraphs: data.paragraphs,
                         isBibliography: false,
                         isLegends: false,
-                        isHistory: true
-                    });
+                        infoDisplaySplitMedia: null,
+                        infoDisplayShortText: data.shortText,
+                        isHistory: false
+                    })
                 }
             }
             else {
                 this.setState({
                     infoDisplayTitle: data.title,
-                    infoDisplayText: data.text,
+                    infoDisplayShortText: data.shortText,
                     infoDisplayImages: data.images,
+                    infoDisplayParagraphs: data.paragraphs,
                     isBibliography: false,
                     isLegends: false,
-                    infoDisplaySplitMedia: null,
-                    infoDisplayShortText: data.shortText
-                })
+                    isHistory: true
+                });
             }
         });
     }
@@ -176,8 +177,8 @@ export default class Homepege extends React.Component {
                 {!this.state.isBibliography && !this.state.isLegends && !this.state.isHistory && this.state.infoDisplayTitle &&
                     <InfoDisplay text={this.state.infoDisplayText} title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText}
                         splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}
-                {this.state.isHistory && <History paragraphs={this.state.paragraphs}
-                    title={this.state.title} images={this.state.images} shortText={this.state.shortText} />}
+                {this.state.isHistory && <History paragraphs={this.state.infoDisplayParagraphs}
+                    title={this.state.infoDisplayTitle} images={this.state.infoDisplayImages} shortText={this.state.infoDisplayShortText} />}
             </div>
         )
     }
