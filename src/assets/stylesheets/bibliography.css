@@ -1,0 +1,20 @@
+.credits-appear {
+    transform: translateY(100vh);
+  /* transform: rotateX(40deg); */
+}
+
+.credits-appear.credits-appear-active {
+    transform: translateY(-300vh);
+  /* transform: rotateX(40deg); */
+    transition: all 20s ease-in-out;
+}
+
+.list-item::first-letter{
+    color: #EA4D44;
+    float: left;
+    font-family: Georgia;
+    font-size: 75px;
+    line-height: 70px;
+    padding-right: 8px;
+    padding-left: 3px;
+}

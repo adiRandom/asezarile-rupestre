@@ -6,6 +6,8 @@ import Navbar from './Navbar';
 import InfoMenu from './InfoMenu.js'
 import InfoDisplay from './InfoDisplay';
 import History from './History'
+import Legends from './Legends';
+import Bibliography from "./Bibliography"
 
 export default class Homepege extends React.Component {
 
@@ -127,6 +129,7 @@ export default class Homepege extends React.Component {
     }
 
     onClick = async (key) => {
+        console.log(key)
         switch (key) {
             case "Istorie": await this.importData("history.json");
                 break;
@@ -141,18 +144,24 @@ export default class Homepege extends React.Component {
                 await this.importData("religie.json"); break;
 
             case "Legende":
-                this.state = {
-                    isLegends: true,
-                    isBibliography: false,
-                    isHistory: true
-                }; break;
+                await import("../data/legends.json").then((data) => {
+                    this.setState({
+                        legends: data.legends,
+                        isLegends: true,
+                        isBibliography: false,
+                        isHistory: false
+                    });
+                }); break;
 
             case "Bibliografie":
-                this.state = {
-                    isBibliography: true,
-                    isLegends: false,
-                    isHistory: true
-                }; break;
+                await import("../data/bibliography.json").then((data) => {
+                    this.setState({
+                        titles: data.titles,
+                        isBibliography: true,
+                        isLegends: false,
+                        isHistory: false
+                    });
+                }); break;
         }
     }
 
@@ -179,6 +188,8 @@ export default class Homepege extends React.Component {
                         splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}
                 {this.state.isHistory && <History paragraphs={this.state.infoDisplayParagraphs}
                     title={this.state.infoDisplayTitle} images={this.state.infoDisplayImages} shortText={this.state.infoDisplayShortText} />}
+                {this.state.isLegends && <Legends legends={this.state.legends}></Legends>}
+                {this.state.isBibliography && <Bibliography titles={this.state.titles} />}
             </div>
         )
     }
