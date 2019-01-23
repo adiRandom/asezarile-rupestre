@@ -129,10 +129,8 @@ export default class Homepege extends React.Component {
     }
 
     onClick = async (key) => {
-        console.log(key)
         switch (key) {
-            case "Istorie": await this.importData("history.json");
-                break;
+            case "Istorie": await this.importData("history.json"); break;
 
             case "Geografie":
                 await this.importData("geography.json"); break;
@@ -164,6 +162,7 @@ export default class Homepege extends React.Component {
                 }); break;
         }
     }
+
 
     render() {
         console.log(this.state);

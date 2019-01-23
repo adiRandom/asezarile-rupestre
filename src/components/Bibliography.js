@@ -1,7 +1,6 @@
 import React from 'react'
 import '../assets/stylesheets/bibliography.css'
 import * as background from '../assets/graphics/scrollBackground.jpg'
-import { CSSTransitionGroup } from "react-transition-group";
 
 class Bibliography extends React.Component {
 

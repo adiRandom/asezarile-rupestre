@@ -79,9 +79,10 @@ export class MapContainer extends React.Component {
         this.mapRef = React.createRef();
     }
 
-    componentDidMount() {
+    componentDidMount() {   
 
         //Set the style of the map
+        console.log(this.mapRef)
         this.mapRef.current.map.mapTypeId = 'hybrid';
 
         //Init the border
@@ -483,7 +484,7 @@ const LoadingContainer = (props) => (
         }}>
             <img style={{ width: '160px' }} src={logo} />
             <div>Loading...</div>
-        </div>
+        </div>  
     </div>);
 
 export default GoogleApiWrapper({

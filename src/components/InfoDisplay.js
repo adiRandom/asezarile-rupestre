@@ -132,8 +132,8 @@ Array.prototype.isEqual = function (anotherArray) {
     return true;
 }
 
-Object.prototype.isEqual = function (anotherObject) {
-    return deepCompare(this, anotherObject)
+function isObjectEqualTo (firstObject,anotherObject) {
+    return deepCompare(firstObject, anotherObject)
 }
 
 export default class InfoDisplay extends React.Component {
@@ -156,6 +156,7 @@ export default class InfoDisplay extends React.Component {
 
     mapNewLineToBr = (_text) => {
         //Map \r\n to <br>
+        if(_text){
         if (!Array.isArray(_text)) {
             this.setState({
                 text: _text.split('\r\n').map((item, key) => {
@@ -174,6 +175,7 @@ export default class InfoDisplay extends React.Component {
                 text: result
             })
         }
+    }
     }
 
     async componentDidMount() {
@@ -194,19 +196,23 @@ export default class InfoDisplay extends React.Component {
         }
 
         this.mapNewLineToBr(this.props.text);
+        if(this.props.splitMedia)
+            this.createSplitMedia(this.props.splitMedia);
     }
 
     async shouldComponentUpdate(nextProps) {
-        if (!nextProps.isEqual(this.props)) {
+        if (!isObjectEqualTo(nextProps,this.props)) {
             this.setState({
                 images: [],
                 splitMedia: null,
                 showAllText: false,
                 fullTextDispalyStyle: {
                     display: 'none'
-                }
+                },
+                text:""
             }, async () => {
-                if (nextProps.images && nextProps.images.isEqual(this.props.images)) {
+                if (nextProps.images &&
+                    isObjectEqualTo( nextProps.images,this.props.images)) {
                     for (let i = 0; i < nextProps.images.length; i++) {
                         await import(`../assets/img/${nextProps.images[i]}`).then((image) => {
                             let temp = this.state.images;
@@ -217,7 +223,7 @@ export default class InfoDisplay extends React.Component {
                             ));
                             this.setState({
                                 images: temp
-                            }, () => console.log(i))
+                            })
                         })
                     }
                 }
@@ -231,6 +237,20 @@ export default class InfoDisplay extends React.Component {
         return false;
     }
 
+    createSplitMedia = (source)=>{
+        if(source.type === "image"){
+            this.setState({
+                splitMedia:(<img alt="split-media" className="split-text-picture" src={source.media}/>)
+            }
+            )
+        }
+        else{
+            this.setState({
+                splitMedia:(<video className="split-text-video" controls src={source.media}></video>)
+            })
+        }
+    }
+
     getButtonMessage = () => {
         return this.state.showAllText ? 'Vezi mai putin' : 'Vezi mai mult'
     }
@@ -241,29 +261,18 @@ export default class InfoDisplay extends React.Component {
             fullTextDispalyStyle: {
                 display: prevState.fullTextDispalyStyle.display === 'none' ? 'block' : 'none'
             }
-        }))
-        //Make the page scroll a bit to fix the scrolling bug
-    }
-
-    createTextContainerWhenTextSplit = () => {
-
-        let result = [];
-        if (Array.isArray(this.state.text) && Array.isArray(this.state.splitMedia))
-            for (let i = 0; i < this.state.text.length; i++) {
-                let temp = (
-                    <div id="info-display-split-text-container" key={i} >
-                        <div id="info-display-text-wrapper">{this.state.text[i]}</div>
-                        <div id='info-dispaly-split-media-container'>
-                            {this.state.splitMedia[i]}
-                        </div>
-                    </div>
-                )
-                result.push(temp);
+        }),()=>{
+            if(this.state.showAllText === false){
+                window.scrollBy(0,100);
             }
-        return result;
+        })
+        //Make the page scroll a bit to fix the scrolling bug
+
     }
+
 
     render() {
+        console.log(this.state.splitMedia)
         return (
             <div id='info-display-flex-container'>
                 <div id='info-display-title-container'>
@@ -273,17 +282,17 @@ export default class InfoDisplay extends React.Component {
                     <div id="info-display-short-text-wrapper">
                         {this.props.shortText}
                     </div>
+                    {this.state.splitMedia}
                     <div id='info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
-                        {/* Check if the text is supposed to be split in two */}
-                        {Array.isArray(this.props.text) && this.createTextContainerWhenTextSplit()}
-                        {/* If the text is a string, display it */}
                         {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.state.text}</div>)}
                     </div>
+                    {this.state.text &&
                     <div id='read-more-button-wrapper'>
                         <button id='read-more-button' onClick={this.toggleFullTextDisplay}>
                             <span>{this.getButtonMessage()}</span>
                         </button>
                     </div>
+                    }
                     {this.props.images &&
                         (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
                             {this.state.images}
