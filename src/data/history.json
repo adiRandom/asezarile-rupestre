@@ -1,86 +1,87 @@
 {
-    "title": "Istorie",
-    "shortText": "\r Studiul interdisciplinar, realizat recent de specialiști din țară și din străinătate apreciază că ne găsim în fața „unei entități arheologice cu totul remarcabile\r Singularitatea constă în „extrema raritate a ceea ce ne procură din punct de vedere științific spațiul redus al grotei (Fundul Peșterii) și zona înconjurătoare”.\r\n \r Cele mai timpurii elemente, „de veche sorginte paleolitică”, sunt grupurile de linii verticale și oblice, aparținând primei faze de activitate, în neoliticul târziu sau epipaleoliticul timpuriu, când oamenii preistorici aparținând culturilor Precucuteni-Boian-Turdaș-Petrești încep să folosească grota în scopuri culturale. \r\n \r A doua fază, după apariția pumnalelor de metal, din eneolitic, epoca cuprului și bronzului timpuriu și mijlociu, culturilor Monteoru-Tei-Vietenberg.\r\n \r Ultima etapă aparține tranziției de la bronzul mijlociu la cel târziu, fazelor târzii a celor 3 culturi de mai înainte. Mesajul grotei, greu de descifrat azi, se adresa beneficiarilor celor 140 de incizii, plasate în spatele peșterii, unde soarele nu pătrunde.\r\n \r „Operele de artă de la Custapeta, Galicia și Bozioru nu sunt singulare, ele reprezintă cele mai mari reușite ale epocii bronzului ca o consecință firească a vehiculării pe arii largi a ideilor inovatoare, a schimburilor, a ideologiei pe cât de diversă pe atât de unitară pe spații geografice mari, fapt ilustrat de întregul patrimoniu material și spiritual.”\r\n \r „Descoperirile de la Bozioru fac dovada legăturilor strânse pe care comunitățile umane din epoca bronzului de pe teritoriul țării noastre le-au avut cu cele din spațiul mediteraneean. Ele nu fac altceva decât să confirme ceea ce ansamblul cercetărilor arheologice atestă în legătură cu circulația și schimbul de valori materiale din epoca bronzului le-au avut cu regiunile mediteraneene”. ",
-    "images": [
-    ],
-    "paragraphs": [
+    "content": [
         {
+            "title": "Fundătura",
             "text": "\r Fundătura e o bisericuță săpată într-o stâncă de circa 15m lungime, 5m lățime și 10m înălțime, aflată în mijlocul unei poieni. Intrarea se deschide în peretele de vest care arată că a fost conecpută ca un lăcaș de cult. Interiorul arată ca un monobloc cu părți componente: pronaos, naos, altar, care dau aspectul unei biserici de tip roman. \r\n \r Se pare că datarea ei nu poate coborî sub secolului XI și a dăinuit până în secolul XIX. Câteva grafite și vestgii atestă că acea bisericuță a făcut parte dintr-un așezământ monahal, de exemplu pe peretele de est se poate citi „Ghe(o)rghe ier(omonah), Pavel și Hl(i)cherie psalt” cu datele 1820,1858 și 1864.",
             "images": [
-                "3.Nucu_Fundatura (1).JPG",
-                "Nucu_schitul_Fundatura (9).JPG",
-                "3.Nucu_Fundatura (3).JPG",
-                "3.Nucu_Fundatura (8).JPG",
-                "3.Nucu_Fundatura (17).JPG",
-                "Nucu_schitul_Fundatura (3).JPG",
-                "Nucu_schitul_Fundatura (2).JPG",
-                "Nucu_schitul_Fundatura (4).JPG",
-                "Nucu_schitul_Fundatura (12).JPG"
-                ],
-            "isGallery": true
-        },
-        {
-            "text":   "-săpată în stânca muntelui l. Spătaru\r\n-are 5m lungime și 4m lățime.\r\n-piatra de stâncă ce acopera altarul se menține încă, restul s-a prăbușit.\r\n-urme ale stranelor săpate în piatră se văd și acum .\r\n-părăsită înainte de secolul XVI.",
-            
-            "images": [
-                "5.Nucu_Agatonul_Vechi (4).JPG",
-                "5.Nucu_Agatonul_Vechi (1).png",
-                "5.Nucu_Agatonul_Vechi (3).JPG",
-                "5.Nucu_Agatonul_Vechi (5).png",
-                "5.Nucu_Agatonul_Vechi (7).JPG",
-                "5.Nucu_Agatonul_Vechi (8).JPG",
-                "5.Nucu_Agatonul_Vechi (9).png",
-                "Nucu_Agatonul_vechi (2).JPG"
-                ],
-            "isGallery": true
-        },
-        {
-            "text":"-săpat într-un bloc de piatră, pe marginea unui abrupt de 45-50m\r\n-e un ansamblu de 4 încăperi și un beci (2 sunt în stare bună, a treia parțial redusă, din a patra se păstrează podeaua și fragmentele de jos ale zidurilor).\r\n",
-            "images": [
-                "6.Nucu_Agatonul_Nou (18).JPG",
-                "6.Nucu_Agatonul_Nou (5).png",
-                "6.Nucu_Agatonul_Nou (6).JPG",
-                "6.Nucu_Agatonul_Nou (8).JPG",
-                "6.Nucu_Agatonul_Nou (12).JPG",
-                "6.Nucu_Agatonul_Nou (19).JPG",
-                "Nucu_Agatonul_nou (1).JPG",
-                "Nucu_Agatonul_nou (10).JPG",
-                "Nucu_Agatonul_nou (12).JPG",
-                "Nucu_Agatonul_nou (13).JPG"
-                ],
-            "isGallery": true
-        },
-        {
-            "text":         "se află pe un pisc în fața schitului Agaton\r\nA servit drept capelă pentru fostul schit Sf. Gheorghe din vecinătate\r\nAlcătuit din 2 încăperi, cu 3 ferestre amenajate rudimentar pe latura sudică.\r\nDatare- săpată și folosită în secolele II-IX și apoi în perioada feudală.\r\n A servit drept capelă pentru fostul schit Sf. Gheorghe din vecinătate. Alcătuit din 2 încăperi, cu 3 ferestre amenajate rudimentar pe latura sudică. Lângă fereastra de vest sunt grafitate 2 cruci, una – o cruce de Malta, alta, cu 3 brațe, patriarhală. În interior sau exterior apar incizate numeroase cruci cu brațele lățite la capete, specifice secolelor V-VI. Datare- săpată și folosită în secolele II-IX și apoi în perioada feudală.",
-            "images": [
-                "8757887164_1e0488e87b_b.jpg"
+                "img/3.Nucu_Fundatura (1).JPG",
+                "img/Nucu_schitul_Fundatura (9).JPG",
+                "img/3.Nucu_Fundatura (3).JPG",
+                "img/3.Nucu_Fundatura (8).JPG",
+                "img/3.Nucu_Fundatura (17).JPG",
+                "img/Nucu_schitul_Fundatura (3).JPG",
+                "img/Nucu_schitul_Fundatura (2).JPG",
+                "img/Nucu_schitul_Fundatura (4).JPG",
+                "img/Nucu_schitul_Fundatura (12).JPG"
             ],
-            "isGallery": false
+            "isGalery": true
         },
         {
-            "text":         "-situată într-o stâncă piramidală a muntelui Crucea Spătarului.  \r\n-prezintă un pește situat deasupra ușii de intrare (simbol paleocreștin) și 2 arce frânte, săpate în piatră, deasupra ferestrei și intrării, demonstrând influențe gotice.\r\n-se încadrează în rândul bisericilor săpate și folosit în secolele III-IV\r\n",
+            "title": "Schitul Agatonul Vechi",
+            "text": "Schitul Agatonul Vechi este săpat în stânca muntelui Spătaru\r\n Are 5m lungime și 4m lățime.\r\n Piatra de stâncă ce acopera altarul se menține încă, restul s-a prăbușit.\r\n Urme ale stranelor săpate în piatră se văd și acum.\r\n A fost părăsit înainte de secolul XVI.",
             "images": [
-                "Nucu_pestera_lui_iosif (3).JPG"
+                "img/5.Nucu_Agatonul_Vechi (4).JPG",
+                "img/5.Nucu_Agatonul_Vechi (1).png",
+                "img/5.Nucu_Agatonul_Vechi (3).JPG",
+                "img/5.Nucu_Agatonul_Vechi (5).png",
+                "img/5.Nucu_Agatonul_Vechi (7).JPG",
+                "img/5.Nucu_Agatonul_Vechi (8).JPG",
+                "img/5.Nucu_Agatonul_Vechi (9).png",
+                "img/Nucu_Agatonul_vechi (2).JPG"
             ],
-            "isGallery": false
+            "isGalery": true
         },
         {
-            "text":         "\r Situată într-o ramificație singuratică a muntelui Crucea Spătarului, greu accesibilă, deasupra unei platforme. Intrarea e flancată de 2 ferestre în arc frânt, care amintesc de goticul secolului IV. Interiorul reprezintă o încăpere aproximativ rectangulară. La baza intrări s-au săpat câte 2 șanțuri pentru fixarea scării de lemn, pe care schimnicul urca aproape 3m și apoi o trăgea la sine. Vorbind despre datare, se pare că a fost lucrată în secolele III-VI.",
-
+            "title": "Schitul Agatonul Nou",
+            "text": "Schitul Agatonul Nou este săpat într-un bloc de piatră, pe marginea unui abrupt de 45-50m\r\n E un ansamblu de 4 încăperi și un beci (2 sunt în stare bună, a treia parțial redusă, din a patra se păstrează podeaua și fragmentele de jos ale zidurilor).",
+            "images": [
+                "img/6.Nucu_Agatonul_Nou (18).JPG",
+                "img/6.Nucu_Agatonul_Nou (5).png",
+                "img/6.Nucu_Agatonul_Nou (6).JPG",
+                "img/6.Nucu_Agatonul_Nou (8).JPG",
+                "img/6.Nucu_Agatonul_Nou (12).JPG",
+                "img/6.Nucu_Agatonul_Nou (19).JPG",
+                "img/Nucu_Agatonul_nou (1).JPG",
+                "img/Nucu_Agatonul_nou (10).JPG",
+                "img/Nucu_Agatonul_nou (12).JPG",
+                "img/Nucu_Agatonul_nou (13).JPG"
+            ],
+            "isGalery": true
+        },
+        {
+            "title": "Peștera lui Iosif",
+            "text": "Peștera lui Iosif se află pe un pisc în fața schitului Agaton\r\n A servit drept capelă pentru fostul schit Sf. Gheorghe din vecinătate\r\n Este alcătuită din 2 încăperi, cu 3 ferestre amenajate rudimentar pe latura sudică.\r\n Datare- săpată și folosită în secolele II-IX și apoi în perioada feudală.\r\n Lângă fereastra de vest sunt grafitate 2 cruci, una – o cruce de Malta, alta, cu 3 brațe, patriarhală. În interior și exterior apar incizate numeroase cruci cu brațele lățite la capete, specifice secolelor V-VI.",
+            "images": [
+                "img/Nucu_pestera_lui_iosif (3).JPG"
+            ],
+            "isGalery": false
+        },
+        {
+            "title": "Piatra Îngăurită",
+            "text": "Piatra Îngăurită este situată într-o stâncă piramidală a muntelui Crucea Spătarului.  \r\n Prezintă un pește situat deasupra ușii de intrare (simbol paleocreștin) și 2 arce frânte, săpate în piatră, deasupra ferestrei și intrării, demonstrând influențe gotice.\r\n Se încadrează în rândul bisericilor săpate și folosit în secolele III-IV",
+            "images": [
+                "img/8757887164_1e0488e87b_b.jpg"            
+            ],
+            "isGalery": false
+        },
+        {
+            "title": "Chilia lui Dionisie Torcătorul",
+            "text": "Chilia lui Dionisie Torcătorul este situată într-o ramificație singuratică a muntelui Crucea Spătarului, greu accesibilă, deasupra unei platforme. Intrarea e flancată de 2 ferestre în arc frânt, care amintesc de goticul secolului IV. Interiorul reprezintă o încăpere aproximativ rectangulară. La baza intrări s-au săpat câte 2 șanțuri pentru fixarea scării de lemn, pe care schimnicul urca aproape 3m și apoi o trăgea la sine. Vorbind despre datare, se pare că a fost lucrată în secolele III-VI.",
             "images": [
                 "8.Nucu_Chilia_lui_Dionisie (5).JPG",
                 "8.Nucu_Chilia_lui_Dionisie (9).png",
                 "8.Nucu_Chilia_lui_Dionisie (7).JPG"
-                ],
-            "isGallery": true
+                    ],
+            "isGalery": false
         },
         {
-            "text":         "Fundul Peșterii\r\n-cercetarea arheologică a stabilit două nivele de locuire.\r\n-locuită de o popupulație geto-dacică în secolele VI-IV î.Hr.\r\n-locuită de o populație creștină în secolele IV-VI. \r\n-datare- amenajată și locuită în secolele VI-IV î.Hr. apoi refolosită în feudalism.\r\n\r Prezintă o bogăție de incizii făcute pe pereții de gresie, grupate la intrare: săbii de tip Akenakes, cu toate cele 3 tipuri, crucifixe, însemnări chirilice însoțite de onomastice: Vasilie, Badea logofăt, Sava din Govona etc. Cercetarea arheologică a stabilit două nivele de locuire: locuită de o populație geto-dacică în secolele VI-IV î.Hr. și locuită de o populație creștină în secolele IV-VI. Datare- amenajată și locuită în secolele VI-IV î.Hr. apoi refolosită în feudalism.",
-
+            "title": "Fundul Peșterii",
+            "text":"Cercetarea arheologică a stabilit două nivele de locuire: o popupulație geto-dacică în secolele VI-IV î.Hr și o populație creștină în secolele IV-VI. \r\n Amenajată și locuită în secolele VI-IV î.Hr. apoi refolosită în feudalism.\r\n\r Prezintă o bogăție de incizii făcute pe pereții de gresie, grupate la intrare: săbii de tip Akenakes, cu toate cele 3 tipuri, crucifixe, însemnări chirilice însoțite de onomastice: Vasilie, Badea logofăt, Sava din Govona etc. ",
             "images": [
-                "images.jpg"
-                        ],
-            "isGallery": false
+            ],
+            "isGalery": false
         }
-    ]
+    ],
+    "shortText": "\r Studiul interdisciplinar, realizat recent de specialiști din țară și din străinătate apreciază că ne găsim în fața „unei entități arheologice cu totul remarcabile\r Singularitatea constă în „extrema raritate a ceea ce ne procură din punct de vedere științific spațiul redus al grotei (Fundul Peșterii) și zona înconjurătoare”.\r\n \r Cele mai timpurii elemente, „de veche sorginte paleolitică”, sunt grupurile de linii verticale și oblice, aparținând primei faze de activitate, în neoliticul târziu sau epipaleoliticul timpuriu, când oamenii preistorici aparținând culturilor Precucuteni-Boian-Turdaș-Petrești încep să folosească grota în scopuri culturale. \r\n \r A doua fază, după apariția pumnalelor de metal, din eneolitic, epoca cuprului și bronzului timpuriu și mijlociu, culturilor Monteoru-Tei-Vietenberg.\r\n \r Ultima etapă aparține tranziției de la bronzul mijlociu la cel târziu, fazelor târzii a celor 3 culturi de mai înainte. Mesajul grotei, greu de descifrat azi, se adresa beneficiarilor celor 140 de incizii, plasate în spatele peșterii, unde soarele nu pătrunde.\r\n \r „Operele de artă de la Custapeta, Galicia și Bozioru nu sunt singulare, ele reprezintă cele mai mari reușite ale epocii bronzului ca o consecință firească a vehiculării pe arii largi a ideilor inovatoare, a schimburilor, a ideologiei pe cât de diversă pe atât de unitară pe spații geografice mari, fapt ilustrat de întregul patrimoniu material și spiritual.”\r\n \r „Descoperirile de la Bozioru fac dovada legăturilor strânse pe care comunitățile umane din epoca bronzului de pe teritoriul țării noastre le-au avut cu cele din spațiul mediteraneean. Ele nu fac altceva decât să confirme ceea ce ansamblul cercetărilor arheologice atestă în legătură cu circulația și schimbul de valori materiale din epoca bronzului le-au avut cu regiunile mediteraneene”.",
+    "title": "Istorie"
 }
