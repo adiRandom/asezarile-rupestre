@@ -6,8 +6,8 @@ import Navbar from './Navbar';
 import InfoMenu from './InfoMenu.js'
 import InfoDisplay from './InfoDisplay';
 import History from './History'
-import Legends from './Legends';
-import Bibliography from "./Bibliography"
+;import Bibliography from "./Bibliography"
+import MenuPickerInfoDisplay from './MenuPickerInfoDisplay';
 
 export default class Homepege extends React.Component {
 
@@ -36,7 +36,8 @@ export default class Homepege extends React.Component {
             infoDisplaySplitMedia: null,
             infoDisplayImages: null,
             isLegends: false,
-            isBibliography: false
+            isBibliography: false,
+            scrollbarColor: 'rgba(44, 60, 76, 0.3)'
         }
     }
     redirectToMap = () => {
@@ -48,7 +49,7 @@ export default class Homepege extends React.Component {
 
     importData = async (fileName) => {
         await import(`../data/${fileName}`).then(async (data) => {
-            if (!data.paragraphs) {
+            if (!data.content) {
                 if (data.splitMedia) {
                     if (!Array.isArray(data.splitMedia.media)) {
                         await import(`../assets/${data.splitMedia.media}`).then((media) => {
@@ -119,7 +120,7 @@ export default class Homepege extends React.Component {
                     infoDisplayTitle: data.title,
                     infoDisplayShortText: data.shortText,
                     infoDisplayImages: data.images,
-                    infoDisplayParagraphs: data.paragraphs,
+                    infoDisplayContent: data.content,
                     isBibliography: false,
                     isLegends: false,
                     isHistory: true
@@ -144,7 +145,7 @@ export default class Homepege extends React.Component {
             case "Legende":
                 await import("../data/legends.json").then((data) => {
                     this.setState({
-                        legends: data.legends,
+                        legends: data.content,
                         isLegends: true,
                         isBibliography: false,
                         isHistory: false
@@ -163,11 +164,13 @@ export default class Homepege extends React.Component {
         }
     }
 
+    changeScrollbarColor=(event)=>{
+        console.log(event);
+    }
 
     render() {
-        console.log(this.state);
         return (
-            <div id="main-flex-continer">
+            <div id="main-flex-continer" onScroll={this.changeScrollbarColor}>
                 <Navbar></Navbar>
                 <div id="image-container">
                     <img id="main-image" src={backgroundImage} alt="bozioru"></img>
@@ -185,9 +188,9 @@ export default class Homepege extends React.Component {
                 {!this.state.isBibliography && !this.state.isLegends && !this.state.isHistory && this.state.infoDisplayTitle &&
                     <InfoDisplay text={this.state.infoDisplayText} title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText}
                         splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}
-                {this.state.isHistory && <History paragraphs={this.state.infoDisplayParagraphs}
-                    title={this.state.infoDisplayTitle} images={this.state.infoDisplayImages} shortText={this.state.infoDisplayShortText} />}
-                {this.state.isLegends && <Legends legends={this.state.legends}></Legends>}
+                {this.state.isHistory && <History content={this.state.infoDisplayContent}
+                    title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText} />}
+                {this.state.isLegends && <MenuPickerInfoDisplay content={this.state.legends}></MenuPickerInfoDisplay>}
                 {this.state.isBibliography && <Bibliography titles={this.state.titles} />}
             </div>
         )

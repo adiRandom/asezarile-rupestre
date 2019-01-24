@@ -13,9 +13,6 @@ export default class Navbar extends React.Component {
         }
     }
 
-    onScroll=(event)=>{
-        console.log("hey");
-    }
 
     render() {
         return (

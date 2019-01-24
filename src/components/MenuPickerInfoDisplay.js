@@ -1,0 +1,95 @@
+import React from "react";
+import "../assets/stylesheets/menu-picker-info-display.css"
+import { Carousel } from 'react-responsive-carousel';
+
+
+export default class MenuPickerInfoDisplay extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuItems: [],
+            text: "Selecteaza mai intai o legenda",
+            style: {
+                display: "flex"
+            },
+            importedImages: [],
+            curentItem: -1,
+            newItemSelected:false
+        }
+    }
+
+    mapNewLineToBr = (_text) => {
+        //Map \r\n to <br>
+        return _text.split('\r\n').map((item, key) => {
+            return <div key={key}>{item}<br /></div>
+        })
+    }
+
+    selectItem = async (key) => {
+        this.setState({
+            importedImages: [],
+            curentItem:key,
+            text:"",
+            newItemSelected:true,
+        }, async () => {
+            for (let image of this.props.content[key].images) {
+                await import(`../assets/img/${image}`).then((res) => {
+                    let temp = this.state.importedImages;
+                    temp.push(<img src={res} alt="item-image" className="content-image"></img>)
+                    this.setState({
+                        importedImages: temp
+                    })
+                })
+            }
+        });
+
+
+    }
+
+    componentDidUpdate(){
+        if(this.state.curentItem !=-1)
+        if(this.state.newItemSelected&&this.state.importedImages.length === this.props.content[this.state.curentItem].images.length)
+            this.setState({
+                style: {
+                    display: "grid"
+                },
+                text: this.mapNewLineToBr(this.props.content[this.state.curentItem].text),
+                newItemSelected:false
+            })
+    }
+
+    componentDidMount() {
+        const menu = this.props.content.map((item, key) => {
+            return <button key={key} onClick={() => this.selectItem(key)} className="content-menu-button">{item.title}</button>
+        });
+
+        this.setState({
+            menuItems: menu
+        });
+    }
+
+    render() {
+        console.log(this.state)
+        return (
+            <div id="content-main-flex-container">
+                <div id="content-menu-bar">
+                    {this.state.menuItems}
+                </div>
+                <div id='content-text-zone' style={this.state.style}>
+                    {this.state.text}
+                    {this.state.curentItem >= 0 && this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length&&
+                        (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
+                            {this.state.importedImages}
+                        </Carousel>)
+                    }
+                    {this.state.curentItem >= 0 && !this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
+                        (<div id="content-images">
+                            {this.state.importedImages}
+                        </div>)
+                    }
+                </div>
+            </div>
+        )
+    }
+}

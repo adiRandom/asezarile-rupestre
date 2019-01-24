@@ -1,7 +1,7 @@
 import React from 'react';
-import "../assets/stylesheets/info-display.css"
+import "../assets/stylesheets/history.css"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import MenuPickerInfoDisplay from './MenuPickerInfoDisplay';
 
 export default class History extends React.Component {
     constructor(props) {
@@ -39,95 +39,6 @@ export default class History extends React.Component {
         //Make the page scroll a bit to fix the scrolling bug
     }
 
-    async componentDidMount() {
-        if (this.props.images) {
-            for (let i = 0; i < this.props.images.length; i++) {
-                await import(`../assets/img/${this.props.images[i]}`).then((image) => {
-                    let temp = this.state.images;
-                    temp.push((
-                        <div id="info-display-slide" key={i}>
-                            <img className="info-display-image" src={image}></img>
-                        </div>
-                    ));
-                    this.setState({
-                        images: temp
-                    })
-                })
-            }
-        }
-
-        await this.createParagraphs();
-    }
-
-    createParagraphs = async () => {
-        for (let i = 0; i < this.props.paragraphs.length; i++) {
-            let snapshot = this.state.paragraphs;
-            this.setState({
-                auxArray: []
-            }, async () => {
-                for (let image of this.props.paragraphs[i].images) {
-                    await import(`../assets/img/${image}`).then((res) => {
-                        let _snapshot = this.state.auxArray;
-                        if (!Array.isArray(_snapshot[i]))
-                            _snapshot[i] = [];
-                        _snapshot[i].push((
-                            <div id="info-display-slide">
-                                <img className="info-display-image" src={res}></img>
-                            </div>
-                        ));
-                        this.setState({
-                            auxArray: _snapshot
-                        })
-                    })
-                }
-                snapshot.push({
-                    text: this.mapNewLineToBr(this.props.paragraphs[i].text),
-                    isGallery: this.props.paragraphs[i].isGallery,
-                    images: this.state.auxArray[i]
-                })
-                this.setState({
-                    paragraphs: snapshot
-                })
-            })
-        }
-
-    }
-
-    createGaleries = () => {
-        for (let i = 0; i < this.state.paragraphs.length; i++) {
-            if (this.state.paragraphs[i].isGallery && Array.isArray(this.state.paragraphs[i].images)) {
-                let snapshot = this.state.paragraphs;
-                snapshot[i].images = (
-                    <Carousel showIndicators={false} autoplay={true} showThumbs={false} >
-                        {this.state.paragraphs[i].images}
-                    </Carousel>
-                );
-                this.setState({
-                    paragraphs: snapshot
-                })
-            }
-        }
-    }
-
-    mapParagraphsToJSX = () => {
-        return this.state.paragraphs.map((item, key) => {
-            return (
-                <div className='paragraph-container' key={key}>
-                    <div id='paragraph-text-container'>
-                        {item.text}
-                    </div>
-                    <div id='paragraph-image-container'>
-                        {item.images}
-                    </div>
-                </div>
-            )
-        })
-    }
-
-    componentDidUpdate(){
-        this.createGaleries();
-    }
-
     render() {
         return (
             <div id='info-display-flex-container'>
@@ -139,18 +50,14 @@ export default class History extends React.Component {
                         {this.props.shortText}
                     </div>
                     <div id='info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
-                        {this.mapParagraphsToJSX()}
+                        <hr />
+                        <MenuPickerInfoDisplay content={this.props.content} />
                     </div>
                     <div id='read-more-button-wrapper'>
                         <button id='read-more-button' onClick={this.toggleFullTextDisplay}>
                             <span>{this.getButtonMessage()}</span>
                         </button>
                     </div>
-                    {this.props.images &&
-                        (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
-                            {this.state.images}
-                        </Carousel>)
-                    }
                 </div>
             </div>
         )
