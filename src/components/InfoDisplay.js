@@ -132,7 +132,7 @@ Array.prototype.isEqual = function (anotherArray) {
     return true;
 }
 
-function isObjectEqualTo (firstObject,anotherObject) {
+function isObjectEqualTo(firstObject, anotherObject) {
     return deepCompare(firstObject, anotherObject)
 }
 
@@ -140,42 +140,44 @@ export default class InfoDisplay extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log()
         this.state = {
             splitMedia: null,
             images: [],
             showAllText: false,
             fullTextDispalyStyle: {
                 display: 'none'
-            }
+            },
+            leftBanner: null,
+            rightBanner: null
         }
         if (props.splitMedia)
             this.createSplitMedia(this.props.splitMedia);
-
     }
 
 
     mapNewLineToBr = (_text) => {
         //Map \r\n to <br>
-        if(_text){
-        if (!Array.isArray(_text)) {
-            this.setState({
-                text: _text.split('\r\n').map((item, key) => {
-                    return <span key={key}>{item}<br /></span>
+        if (_text) {
+            if (!Array.isArray(_text)) {
+                this.setState({
+                    text: _text.split('\r\n').map((item, key) => {
+                        return <span key={key}>{item}<br /></span>
+                    })
                 })
-            })
-        }
-        else {
-            let result = [];
-            for (let text of _text) {
-                result.push(text.split('\r\n').map((item, key) => {
-                    return <span key={key}>{item}<br /></span>
-                }))
             }
-            this.setState({
-                text: result
-            })
+            else {
+                let result = [];
+                for (let text of _text) {
+                    result.push(text.split('\r\n').map((item, key) => {
+                        return <span key={key}>{item}<br /></span>
+                    }))
+                }
+                this.setState({
+                    text: result
+                })
+            }
         }
-    }
     }
 
     async componentDidMount() {
@@ -195,13 +197,29 @@ export default class InfoDisplay extends React.Component {
             }
         }
 
+        if (this.props.leftBanner) {
+            await import(`../assets/img/${this.props.leftBanner}`).then((banner) => {
+                this.setState({
+                    leftBanner: banner
+                })
+            })
+        }
+
+        if (this.props.rightBanner) {
+            await import(`../assets/img/${this.props.rightBanner}`).then((banner) => {
+                this.setState({
+                    rightBanner: banner
+                })
+            })
+        }
+
         this.mapNewLineToBr(this.props.text);
-        if(this.props.splitMedia)
+        if (this.props.splitMedia)
             this.createSplitMedia(this.props.splitMedia);
     }
 
     async shouldComponentUpdate(nextProps) {
-        if (!isObjectEqualTo(nextProps,this.props)) {
+        if (!isObjectEqualTo(nextProps, this.props)) {
             this.setState({
                 images: [],
                 splitMedia: null,
@@ -209,10 +227,10 @@ export default class InfoDisplay extends React.Component {
                 fullTextDispalyStyle: {
                     display: 'none'
                 },
-                text:""
+                text: ""
             }, async () => {
                 if (nextProps.images &&
-                    isObjectEqualTo( nextProps.images,this.props.images)) {
+                    isObjectEqualTo(nextProps.images, this.props.images)) {
                     for (let i = 0; i < nextProps.images.length; i++) {
                         await import(`../assets/img/${nextProps.images[i]}`).then((image) => {
                             let temp = this.state.images;
@@ -230,6 +248,22 @@ export default class InfoDisplay extends React.Component {
                 if (nextProps.splitMedia)
                     this.createSplitMedia(nextProps.splitMedia)
 
+                    if (nextProps.leftBanner) {
+                        await import(`../assets/img/${nextProps.leftBanner}`).then((banner) => {
+                        this.setState({
+                            leftBanner: banner
+                        })
+                    })
+                }
+
+                    if (nextProps.rightBanner) {
+                        await import(`../assets/img/${nextProps.rightBanner}`).then((banner) => {
+                        this.setState({
+                            rightBanner: banner
+                        })
+                    })
+                }
+
                 this.mapNewLineToBr(nextProps.text)
                 return true;
             });
@@ -237,16 +271,16 @@ export default class InfoDisplay extends React.Component {
         return false;
     }
 
-    createSplitMedia = (source)=>{
-        if(source.type === "image"){
+    createSplitMedia = (source) => {
+        if (source.type === "image") {
             this.setState({
-                splitMedia:(<img alt="split-media" className="split-text-picture" src={source.media}/>)
+                splitMedia: (<img alt="split-media" className="split-text-picture" src={source.media} />)
             }
             )
         }
-        else{
+        else {
             this.setState({
-                splitMedia:(<video className="split-text-video" controls src={source.media}></video>)
+                splitMedia: (<video className="split-text-video" controls src={source.media}></video>)
             })
         }
     }
@@ -259,11 +293,11 @@ export default class InfoDisplay extends React.Component {
         this.setState((prevState) => ({
             showAllText: !prevState.showAllText,
             fullTextDispalyStyle: {
-                display: prevState.fullTextDispalyStyle.display === 'none' ? 'block' : 'none'
+                display: prevState.fullTextDispalyStyle.display === 'none' ? 'grid' : 'none'
             }
-        }),()=>{
-            if(this.state.showAllText === false){
-                window.scrollBy(0,100);
+        }), () => {
+            if (this.state.showAllText === false) {
+                window.scrollBy(0, 100);
             }
         })
         //Make the page scroll a bit to fix the scrolling bug
@@ -283,15 +317,23 @@ export default class InfoDisplay extends React.Component {
                         {this.props.shortText}
                     </div>
                     {this.state.splitMedia}
-                    <div id='info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
-                        {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.state.text}</div>)}
+                    <div id="info-display-full-text-grid" style={this.state.fullTextDispalyStyle}>
+                        <div id="info-display-full-text-left-banner">
+                            <img src={this.state.leftBanner} className="banner" alt="left-banner"></img>
+                        </div>
+                        <div id='info-display-full-text-container' >
+                            {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.state.text}</div>)}
+                        </div>
+                        <div id="info-display-full-text-right-banner">
+                            <img src={this.state.rightBanner} className="banner" alt="right-banner"></img>
+                        </div>
                     </div>
                     {this.state.text &&
-                    <div id='read-more-button-wrapper'>
-                        <button id='read-more-button' onClick={this.toggleFullTextDisplay}>
-                            <span>{this.getButtonMessage()}</span>
-                        </button>
-                    </div>
+                        <div id='read-more-button-wrapper'>
+                            <button id='read-more-button' onClick={this.toggleFullTextDisplay}>
+                                <span>{this.getButtonMessage()}</span>
+                            </button>
+                        </div>
                     }
                     {this.props.images &&
                         (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >

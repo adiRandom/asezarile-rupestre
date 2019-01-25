@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import InfoMenu from './InfoMenu.js'
 import InfoDisplay from './InfoDisplay';
 import History from './History'
-;import Bibliography from "./Bibliography"
+    ; import Bibliography from "./Bibliography"
 import MenuPickerInfoDisplay from './MenuPickerInfoDisplay';
 
 export default class Homepege extends React.Component {
@@ -37,7 +37,9 @@ export default class Homepege extends React.Component {
             infoDisplayImages: null,
             isLegends: false,
             isBibliography: false,
-            scrollbarColor: 'rgba(44, 60, 76, 0.3)'
+            infoDisplayLeftBanner: null,
+            infoDisplayRightBanner: null,
+            navbarColor: 'rgba(44, 60, 76, 0.3)'
         }
     }
     redirectToMap = () => {
@@ -45,6 +47,15 @@ export default class Homepege extends React.Component {
             redirect: (<Redirect to="/harta"></Redirect>)
         })
     }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.changeNavbarColor);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.changeNavbarColor);
+    }
+
 
 
     importData = async (fileName) => {
@@ -63,6 +74,8 @@ export default class Homepege extends React.Component {
                                 },
                                 infoDisplayShortText: data.shortText,
                                 infoDisplayImages: data.images,
+                                infoDisplayLeftBanner: data.leftBanner,
+                                infoDisplayRightBanner: data.rightBanner,
                                 isBibliography: false,
                                 isLegends: false,
                                 isHistory: false
@@ -95,6 +108,8 @@ export default class Homepege extends React.Component {
                                 },
                                 infoDisplayShortText: data.shortText,
                                 infoDisplayImages: data.images,
+                                infoDisplayLeftBanner: data.leftBanner,
+                                infoDisplayRightBanner: data.rightBanner,
                                 isBibliography: false,
                                 isLegends: false,
                                 isHistory: false
@@ -107,6 +122,8 @@ export default class Homepege extends React.Component {
                         infoDisplayTitle: data.title,
                         infoDisplayText: data.text,
                         infoDisplayImages: data.images,
+                        infoDisplayLeftBanner: data.leftBanner,
+                        infoDisplayRightBanner: data.rightBanner,
                         isBibliography: false,
                         isLegends: false,
                         infoDisplaySplitMedia: null,
@@ -121,6 +138,8 @@ export default class Homepege extends React.Component {
                     infoDisplayShortText: data.shortText,
                     infoDisplayImages: data.images,
                     infoDisplayContent: data.content,
+                    infoDisplayLeftBanner: data.leftBanner,
+                    infoDisplayRightBanner: data.rightBanner,
                     isBibliography: false,
                     isLegends: false,
                     isHistory: true
@@ -164,14 +183,24 @@ export default class Homepege extends React.Component {
         }
     }
 
-    changeScrollbarColor=(event)=>{
-        console.log(event);
+    changeNavbarColor = () => {
+        let h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        let current = window.pageYOffset;
+        if (current >= h && this.state.navbarColor === "rgba(44, 60, 76, 0.3)")
+            this.setState({
+                navbarColor: "rgb(44, 60, 76)"
+            });
+        if (current < h && this.state.navbarColor === "rgb(44, 60, 76)")
+            this.setState({
+                navbarColor: "rgba(44, 60, 76, 0.3)"
+            })
     }
 
     render() {
+        console.log(this.state)
         return (
-            <div id="main-flex-continer" onScroll={this.changeScrollbarColor}>
-                <Navbar></Navbar>
+            <div id="main-flex-continer">
+                <Navbar color={this.state.navbarColor}></Navbar>
                 <div id="image-container">
                     <img id="main-image" src={backgroundImage} alt="bozioru"></img>
                     <div id="main-text-container">
@@ -186,11 +215,13 @@ export default class Homepege extends React.Component {
                 </div>
                 <InfoMenu onClick={this.onClick} icons={this.state.icons} items={this.state.items} />
                 {!this.state.isBibliography && !this.state.isLegends && !this.state.isHistory && this.state.infoDisplayTitle &&
-                    <InfoDisplay text={this.state.infoDisplayText} title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText}
+                    <InfoDisplay leftBanner={this.state.infoDisplayLeftBanner}
+                        rightBanner={this.state.infoDisplayRightBanner} text={this.state.infoDisplayText}
+                        title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText}
                         splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}
                 {this.state.isHistory && <History content={this.state.infoDisplayContent}
                     title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText} />}
-                {this.state.isLegends && <MenuPickerInfoDisplay content={this.state.legends}></MenuPickerInfoDisplay>}
+                {this.state.isLegends && <MenuPickerInfoDisplay placeholder="Selecteaza mai intai o legenda" content={this.state.legends}></MenuPickerInfoDisplay>}
                 {this.state.isBibliography && <Bibliography titles={this.state.titles} />}
             </div>
         )

@@ -1,6 +1,8 @@
 import React from "react";
 import "../assets/stylesheets/menu-picker-info-display.css"
 import { Carousel } from 'react-responsive-carousel';
+import { CSSTransitionGroup } from 'react-transition-group'
+
 
 
 export default class MenuPickerInfoDisplay extends React.Component {
@@ -9,13 +11,13 @@ export default class MenuPickerInfoDisplay extends React.Component {
         super(props);
         this.state = {
             menuItems: [],
-            text: "Selecteaza mai intai o legenda",
+            text: this.props.placeholder,
             style: {
                 display: "flex"
             },
             importedImages: [],
             curentItem: -1,
-            newItemSelected:false
+            newItemSelected: false
         }
     }
 
@@ -29,9 +31,9 @@ export default class MenuPickerInfoDisplay extends React.Component {
     selectItem = async (key) => {
         this.setState({
             importedImages: [],
-            curentItem:key,
-            text:"",
-            newItemSelected:true,
+            curentItem: key,
+            text: "",
+            newItemSelected: true,
         }, async () => {
             for (let image of this.props.content[key].images) {
                 await import(`../assets/img/${image}`).then((res) => {
@@ -47,16 +49,27 @@ export default class MenuPickerInfoDisplay extends React.Component {
 
     }
 
-    componentDidUpdate(){
-        if(this.state.curentItem !=-1)
-        if(this.state.newItemSelected&&this.state.importedImages.length === this.props.content[this.state.curentItem].images.length)
-            this.setState({
-                style: {
-                    display: "grid"
-                },
-                text: this.mapNewLineToBr(this.props.content[this.state.curentItem].text),
-                newItemSelected:false
-            })
+    componentDidUpdate() {
+        if (this.state.curentItem != -1)
+            if (this.state.newItemSelected && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length)
+                this.setState({
+                    style: {
+                        display: "grid"
+                    },
+                    text: (
+                        <CSSTransitionGroup
+                            transitionName="text-fade"
+                            transitionAppear={true}
+                            transitionAppearTimeout={4000}
+                            transitionEnter={false}
+                            transitionLeave={false}>
+                            <div>
+                                {this.mapNewLineToBr(this.props.content[this.state.curentItem].text)}
+                            </div>
+                        </CSSTransitionGroup>
+                    ),
+                    newItemSelected: false
+                })
     }
 
     componentDidMount() {
@@ -70,26 +83,25 @@ export default class MenuPickerInfoDisplay extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
-            <div id="content-main-flex-container">
-                <div id="content-menu-bar">
-                    {this.state.menuItems}
+                <div id="content-main-flex-container">
+                    <div id="content-menu-bar">
+                        {this.state.menuItems}
+                    </div>
+                    <div id='content-text-zone' style={this.state.style}>
+                        {this.state.text}
+                        {this.state.curentItem >= 0 && this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
+                            (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
+                                {this.state.importedImages}
+                            </Carousel>)
+                        }
+                        {this.state.curentItem >= 0 && !this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
+                            (<div id="content-images">
+                                {this.state.importedImages}
+                            </div>)
+                        }
+                    </div>
                 </div>
-                <div id='content-text-zone' style={this.state.style}>
-                    {this.state.text}
-                    {this.state.curentItem >= 0 && this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length&&
-                        (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
-                            {this.state.importedImages}
-                        </Carousel>)
-                    }
-                    {this.state.curentItem >= 0 && !this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
-                        (<div id="content-images">
-                            {this.state.importedImages}
-                        </div>)
-                    }
-                </div>
-            </div>
         )
     }
 }

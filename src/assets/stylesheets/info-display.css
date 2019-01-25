@@ -12,6 +12,13 @@
     margin:5vh 0;
 }
 
+#info-display-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #info-displa-title{
     font-size: 2rem;
 }
@@ -86,4 +93,26 @@
     align-items:center;
     font-size:1.2rem;
     margin-bottom: 3vh;
+}
+
+#info-display-full-text-grid{
+    grid-template-columns: 25fr 50fr 25fr;
+    align-items: center;
+}
+
+#nfo-display-full-text-container{
+    grid-column: 2/3;
+}
+
+#info-display-full-text-left-banner{
+    grid-column:1/2;
+}
+
+#info-display-full-text-right-banner{
+    grid-column:3/4;
+}
+
+.banner{
+    max-width: 20vw;
+    margin: 0 2vw;
 }

@@ -41,17 +41,17 @@ export default class History extends React.Component {
 
     render() {
         return (
-            <div id='info-display-flex-container'>
-                <div id='info-display-title-container'>
-                    <h1 id='info-display-title'>{this.props.title}</h1>
+            <div id='history-info-display-flex-container'>
+                <div id='history-info-display-title-container'>
+                    <h1 id='history-info-display-title'>{this.props.title}</h1>
                 </div>
-                <div id='info-display-content-container'>
-                    <div id="info-display-short-text-wrapper">
+                <div id='history-info-display-content-container'>
+                    <div id="history-info-display-short-text-wrapper">
                         {this.props.shortText}
                     </div>
-                    <div id='info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
+                    <div id='history-info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
                         <hr />
-                        <MenuPickerInfoDisplay content={this.props.content} />
+                        <MenuPickerInfoDisplay placeholder="Selecteaza mai intai un obiectiv" content={this.props.content} />
                     </div>
                     <div id='read-more-button-wrapper'>
                         <button id='read-more-button' onClick={this.toggleFullTextDisplay}>

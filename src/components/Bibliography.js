@@ -1,6 +1,7 @@
 import React from 'react'
 import '../assets/stylesheets/bibliography.css'
 import * as background from '../assets/graphics/scrollBackground.jpg'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 class Bibliography extends React.Component {
 
@@ -9,7 +10,7 @@ class Bibliography extends React.Component {
         this.credits = this.props.titles.map((value, index) => (<li className="list-item" key={index}
             style={{
                 listStyle: 'khmer',
-                fontSize: '3rem',
+                fontSize: '1.2rem',
                 marginBottom: '10vh',
                 float:'none'
             }}>{value}</li>)
@@ -20,21 +21,20 @@ class Bibliography extends React.Component {
         return (
             <div style={{
                 display: 'flex', overflowY: 'hidden',
-                backgroundImage: `url(${background})`
+                backgroundImage: `url(${background})`,
             }}>
-                {/* <CSSTransitionGroup
+                <CSSTransitionGroup
                     transitionName="credits"
                     transitionAppear={true}
-                    transitionAppearTimeout={13000}
+                    transitionAppearTimeout={10500}
                     transitionEnter={false}
-                    transitionLeave={false}> */}
-                    <div key="transition-group-item">
-                        <ul style={{ marginLeft: '2vw' }}>
+                    transitionLeave={false}>
+                    <div style={{marginTop:'10vh'}}>
+                        <ul style={{ marginLeft: '2vw'}}>
                             {this.credits}
                         </ul>
                     </div>
-                    {/* HELLO
-                </CSSTransitionGroup> */}
+                </CSSTransitionGroup> 
             </div>
         );
     }
