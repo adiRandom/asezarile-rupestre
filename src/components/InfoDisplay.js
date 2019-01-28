@@ -227,7 +227,9 @@ export default class InfoDisplay extends React.Component {
                 fullTextDispalyStyle: {
                     display: 'none'
                 },
-                text: ""
+                text: "",
+                leftBanner: null,
+                rightBanner: null
             }, async () => {
                 if (nextProps.images &&
                     isObjectEqualTo(nextProps.images, this.props.images)) {
