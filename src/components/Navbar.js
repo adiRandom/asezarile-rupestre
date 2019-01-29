@@ -22,9 +22,9 @@ export default class Navbar extends React.Component {
                 </div>
                 <ul id="links">
                     <li><NavLink exact={true} to="/" activeClassName="selected-link">
-                        <span className="link-wrapper">Acasa</span></NavLink></li>
+                        <span className="link-wrapper">Acasă</span></NavLink></li>
                     <li><NavLink exact={true} to="/harta" activeClassName="selected-link">
-                        <span className="link-wrapper">Harta</span></NavLink></li>
+                        <span className="link-wrapper">Hartă</span></NavLink></li>
                     <li><NavLink exact={true} to="/tur" activeClassName="selected-link">
                         <span className="link-wrapper">Tur virtual</span></NavLink></li>
                 </ul>

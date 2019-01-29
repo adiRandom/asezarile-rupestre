@@ -204,7 +204,7 @@ export default class Homepege extends React.Component {
                 <div id="image-container">
                     <img id="main-image" src={backgroundImage} alt="bozioru"></img>
                     <div id="main-text-container">
-                        <h2 id="title-up">Asezarile Rupestre</h2>
+                        <h2 id="title-up">Așezările Rupestre</h2>
                         <h1 id="title-down">Bozioru</h1>
                         <br className="sm-break"></br>
                         <p id="description">O întoarcere în peisajul creștinismului timpuriu,
