@@ -78,3 +78,8 @@
   opacity: 1;
   transition: opacity .5s ease-in;
 }
+
+.paragraph{
+    display:inline-block;
+    text-indent:2rem;
+}

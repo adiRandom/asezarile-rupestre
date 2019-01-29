@@ -24,7 +24,7 @@ export default class MenuPickerInfoDisplay extends React.Component {
     mapNewLineToBr = (_text) => {
         //Map \r\n to <br>
         return _text.split('\r\n').map((item, key) => {
-            return <div key={key}>{item}<br /></div>
+            return <span className="paragraph" key={key}>{item}<br /></span>
         })
     }
 

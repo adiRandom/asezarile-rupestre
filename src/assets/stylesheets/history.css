@@ -101,9 +101,33 @@
     width: 50vw;
     justify-self: center;
     align-self: center;
+    grid-column: 2/3
     /* margin: 0; */
     }
 
     hr{
         border-top: 3px solid rgba(0, 0, 0, 0.1);
     }
+
+    .paragraph{
+    display:inline-block;
+    text-indent:2rem;
+}
+
+.banner{
+    max-width: 20vw;
+    margin: 0 2vw;
+}
+
+#history-info-display-short-text-grid{
+    display:grid;
+    grid-template-columns: 25fr 50fr 25fr;
+}
+
+#history-info-display-full-text-left-banner{
+    grid-column:1/2;
+}
+
+#history-info-display-full-text-right-banner{
+    grid-column:3/4;
+}

@@ -162,7 +162,7 @@ export default class InfoDisplay extends React.Component {
             if (!Array.isArray(_text)) {
                 this.setState({
                     text: _text.split('\r\n').map((item, key) => {
-                        return <span key={key}>{item}<br /></span>
+                        return <span className="paragraph" key={key}>{item}<br /></span>
                     })
                 })
             }
@@ -170,7 +170,7 @@ export default class InfoDisplay extends React.Component {
                 let result = [];
                 for (let text of _text) {
                     result.push(text.split('\r\n').map((item, key) => {
-                        return <span key={key}>{item}<br /></span>
+                        return <span className="paragraph" key={key}>{item}<br /></span>
                     }))
                 }
                 this.setState({
@@ -250,16 +250,16 @@ export default class InfoDisplay extends React.Component {
                 if (nextProps.splitMedia)
                     this.createSplitMedia(nextProps.splitMedia)
 
-                    if (nextProps.leftBanner) {
-                        await import(`../assets/img/${nextProps.leftBanner}`).then((banner) => {
+                if (nextProps.leftBanner) {
+                    await import(`../assets/img/${nextProps.leftBanner}`).then((banner) => {
                         this.setState({
                             leftBanner: banner
                         })
                     })
                 }
 
-                    if (nextProps.rightBanner) {
-                        await import(`../assets/img/${nextProps.rightBanner}`).then((banner) => {
+                if (nextProps.rightBanner) {
+                    await import(`../assets/img/${nextProps.rightBanner}`).then((banner) => {
                         this.setState({
                             rightBanner: banner
                         })
@@ -320,15 +320,15 @@ export default class InfoDisplay extends React.Component {
                     </div>
                     {this.state.splitMedia}
                     <div id="info-display-full-text-grid" style={this.state.fullTextDispalyStyle}>
-                        <div id="info-display-full-text-left-banner">
+                        {this.state.leftBanner && (<div id="info-display-full-text-left-banner">
                             <img src={this.state.leftBanner} className="banner" alt="left-banner"></img>
-                        </div>
+                        </div>)}
                         <div id='info-display-full-text-container' >
                             {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.state.text}</div>)}
                         </div>
-                        <div id="info-display-full-text-right-banner">
+                        {this.state.rightBanner && (<div id="info-display-full-text-right-banner">
                             <img src={this.state.rightBanner} className="banner" alt="right-banner"></img>
-                        </div>
+                        </div>)}
                     </div>
                     {this.state.text &&
                         <div id='read-more-button-wrapper'>

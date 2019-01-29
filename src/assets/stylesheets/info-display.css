@@ -100,7 +100,7 @@
     align-items: center;
 }
 
-#nfo-display-full-text-container{
+#info-display-full-text-container{
     grid-column: 2/3;
 }
 
@@ -115,4 +115,9 @@
 .banner{
     max-width: 20vw;
     margin: 0 2vw;
+}
+
+.paragraph{
+    display:inline-block;
+    text-indent:2rem;
 }

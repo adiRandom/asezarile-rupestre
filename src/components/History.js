@@ -12,7 +12,9 @@ export default class History extends React.Component {
             fullTextDispalyStyle: {
                 display: 'none'
             },
-            images: []
+            images: [],
+            leftBanner: null,
+            rightBanner: null
         }
 
         this.count = 0;
@@ -21,7 +23,7 @@ export default class History extends React.Component {
     mapNewLineToBr = (_text) => {
         //Map \r\n to <br>
         return _text.split('\r\n').map((item, key) => {
-            return <span key={key}>{item}<br /></span>
+            return <span className="paragraph" key={key}>{item}<br /></span>
         })
     }
 
@@ -39,6 +41,24 @@ export default class History extends React.Component {
         //Make the page scroll a bit to fix the scrolling bug
     }
 
+    async componentDidMount() {
+        if (this.props.leftBanner) {
+            await import(`../assets/img/${this.props.leftBanner}`).then((banner) => {
+                this.setState({
+                    leftBanner: banner
+                })
+            })
+        }
+
+        if (this.props.rightBanner) {
+            await import(`../assets/img/${this.props.rightBanner}`).then((banner) => {
+                this.setState({
+                    rightBanner: banner
+                })
+            })
+        }
+    }
+
     render() {
         return (
             <div id='history-info-display-flex-container'>
@@ -46,8 +66,16 @@ export default class History extends React.Component {
                     <h1 id='history-info-display-title'>{this.props.title}</h1>
                 </div>
                 <div id='history-info-display-content-container'>
-                    <div id="history-info-display-short-text-wrapper">
-                        {this.props.shortText}
+                    <div id="history-info-display-short-text-grid">
+                        {this.state.leftBanner && (<div id="history-info-display-full-text-left-banner">
+                            <img src={this.state.leftBanner} className="banner" alt="left-banner"></img>
+                        </div>)}
+                        <div id="history-info-display-short-text-wrapper">
+                            {this.props.shortText}
+                        </div>
+                        {this.state.rightBanner && (<div id="history-info-display-full-text-right-banner">
+                            <img src={this.state.rightBanner} className="banner" alt="right-banner"></img>
+                        </div>)}
                     </div>
                     <div id='history-info-display-full-text-container' style={this.state.fullTextDispalyStyle}>
                         <hr />
