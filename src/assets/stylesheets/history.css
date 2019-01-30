@@ -109,7 +109,7 @@
         border-top: 3px solid rgba(0, 0, 0, 0.1);
     }
 
-    .paragraph{
+.paragraph{
     display:inline-block;
     text-indent:2rem;
 }
@@ -122,6 +122,7 @@
 #history-info-display-short-text-grid{
     display:grid;
     grid-template-columns: 25fr 50fr 25fr;
+    align-items: center;
 }
 
 #history-info-display-full-text-left-banner{

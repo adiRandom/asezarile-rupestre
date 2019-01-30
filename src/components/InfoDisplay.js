@@ -316,7 +316,7 @@ export default class InfoDisplay extends React.Component {
                 </div>
                 <div id='info-display-content-container'>
                     <div id="info-display-short-text-wrapper">
-                        {this.props.shortText}
+                        {this.mapNewLineToBr(this.props.shortText)}
                     </div>
                     {this.state.splitMedia}
                     <div id="info-display-full-text-grid" style={this.state.fullTextDispalyStyle}>

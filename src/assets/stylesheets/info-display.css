@@ -53,8 +53,9 @@
     height:50vh;
 }
 
-#split-text-video{
+.split-text-video{
     width:50vw;
+    margin-bottom: 5vh;
 }
 
 

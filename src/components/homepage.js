@@ -209,7 +209,7 @@ export default class Homepege extends React.Component {
                         <br className="sm-break"></br>
                         <p id="description">O întoarcere în peisajul creștinismului timpuriu,
                         unde pietrele spun povestea locului de la începutul istoriei și până acum.</p>
-                        <button id="map-button" onClick={this.redirectToMap}>Catre harta</button>
+                        <button id="map-button" onClick={this.redirectToMap}>Către hartă</button>
                         {this.state.redirect}
                     </div>
                 </div>
@@ -219,7 +219,8 @@ export default class Homepege extends React.Component {
                         rightBanner={this.state.infoDisplayRightBanner} text={this.state.infoDisplayText}
                         title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText}
                         splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}
-                {this.state.isHistory && <History content={this.state.infoDisplayContent}
+                {this.state.isHistory && <History leftBanner={this.state.infoDisplayLeftBanner}
+                        rightBanner={this.state.infoDisplayRightBanner}  content={this.state.infoDisplayContent}
                     title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText} />}
                 {this.state.isLegends && <MenuPickerInfoDisplay placeholder="Selecteaza mai intai o legenda" content={this.state.legends}></MenuPickerInfoDisplay>}
                 {this.state.isBibliography && <Bibliography titles={this.state.titles} />}
