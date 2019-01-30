@@ -16,8 +16,9 @@ export default class MenuPickerInfoDisplay extends React.Component {
                 display: "flex"
             },
             importedImages: [],
-            curentItem: -1,
-            newItemSelected: false
+            curentItem: 0,
+            newItemSelected: false,
+            galery:null,
         }
     }
 
@@ -68,11 +69,22 @@ export default class MenuPickerInfoDisplay extends React.Component {
                             </div>
                         </CSSTransitionGroup>
                     ),
-                    newItemSelected: false
+                    newItemSelected: false,
+                    galery:null
+                },()=>{
+                    setTimeout(this.displayImages,4000);
                 })
     }
 
-    componentDidMount() {
+    displayImages=()=>{
+        this.setState({
+            galery:(<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
+                {this.state.importedImages}
+            </Carousel>)
+        })
+    }
+
+    async componentDidMount() {
         const menu = this.props.content.map((item, key) => {
             return <button key={key} onClick={() => this.selectItem(key)} className="content-menu-button">{item.title}</button>
         });
@@ -91,9 +103,10 @@ export default class MenuPickerInfoDisplay extends React.Component {
                     <div id='content-text-zone' style={this.state.style}>
                         {this.state.text}
                         {this.state.curentItem >= 0 && this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
-                            (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
-                                {this.state.importedImages}
-                            </Carousel>)
+                            (<div id='galery-container'>
+                                {this.state.galery}
+                            </div>
+                            )
                         }
                         {this.state.curentItem >= 0 && !this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
                             (<div id="content-images">

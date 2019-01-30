@@ -457,7 +457,7 @@ export class MapContainer extends React.Component {
 
 
             <div className="mapContainer">
-                <Navbar />
+                <Navbar color="rgb(44, 60, 76)" />
                 <div className="row m-0">
                     <div className="col-12" style={{ height: "95vh", top: "5vh", padding: 0 }}>
                         <Map google={this.props.google} style={{ height: "100%" }}
@@ -474,7 +474,7 @@ export class MapContainer extends React.Component {
 
 const LoadingContainer = (props) => (
     <div>
-        <Navbar></Navbar>
+        <Navbar color="rgb(44, 60, 76)"></Navbar>
         <div style={{
             display: 'flex', flexDirection: 'column',
             justifyContent: 'center', height: '86.2vh',

@@ -197,7 +197,6 @@ export default class Homepege extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div id="main-flex-continer">
                 <Navbar color={this.state.navbarColor}></Navbar>

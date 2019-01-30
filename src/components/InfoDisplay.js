@@ -158,26 +158,9 @@ export default class InfoDisplay extends React.Component {
 
     mapNewLineToBr = (_text) => {
         //Map \r\n to <br>
-        if (_text) {
-            if (!Array.isArray(_text)) {
-                this.setState({
-                    text: _text.split('\r\n').map((item, key) => {
-                        return <span className="paragraph" key={key}>{item}<br /></span>
-                    })
-                })
-            }
-            else {
-                let result = [];
-                for (let text of _text) {
-                    result.push(text.split('\r\n').map((item, key) => {
-                        return <span className="paragraph" key={key}>{item}<br /></span>
-                    }))
-                }
-                this.setState({
-                    text: result
-                })
-            }
-        }
+        return _text.split('\r\n').map((item, key) => {
+            return <span className="paragraph" key={key}>{item}<br /></span>
+        })
     }
 
     async componentDidMount() {
