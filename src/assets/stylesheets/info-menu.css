@@ -22,3 +22,7 @@
     height:32px;
     width:32px;
 }
+
+.active-item{
+    background-color: rgb(99, 128, 156);
+}

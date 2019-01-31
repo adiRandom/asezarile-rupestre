@@ -11,12 +11,23 @@ export default class MenuPickerInfoDisplay extends React.Component {
         super(props);
         this.state = {
             menuItems: [],
-            text: this.props.placeholder,
+            text: (
+                <CSSTransitionGroup
+                    transitionName="text-fade"
+                    transitionAppear={true}
+                    transitionAppearTimeout={4000}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <div>
+                        {this.mapNewLineToBr(this.props.content[0].text)}
+                    </div>
+                </CSSTransitionGroup>
+            ),
             style: {
-                display: "flex"
+                display: "grid"
             },
             importedImages: [],
-            curentItem: -1,
+            curentItem: 0,
             newItemSelected: false
         }
     }
@@ -72,7 +83,7 @@ export default class MenuPickerInfoDisplay extends React.Component {
                 })
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const menu = this.props.content.map((item, key) => {
             return <button key={key} onClick={() => this.selectItem(key)} className="content-menu-button">{item.title}</button>
         });
@@ -80,6 +91,16 @@ export default class MenuPickerInfoDisplay extends React.Component {
         this.setState({
             menuItems: menu
         });
+
+        for (let image of this.props.content[key].images) {
+            await import(`../assets/img/${image}`).then((res) => {
+                let temp = this.state.importedImages;
+                temp.push(<img src={res} alt="item-image" className="content-image"></img>)
+                this.setState({
+                    importedImages: temp
+                })
+            })
+        }
     }
 
     render() {

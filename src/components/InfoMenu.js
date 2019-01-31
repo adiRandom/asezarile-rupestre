@@ -5,7 +5,21 @@ export default class InfoMenu extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { items: [] }
+        this.state = {
+            items: [],
+            classes: [],
+            currentActive:0
+        }
+    }
+
+    setActiveItem = (key) => {
+        let _classes = this.state.classes;
+        _classes[this.state.currentActive] = "item"
+        _classes[key] = "item active-item";
+        this.setState({
+            classes:_classes,
+            currentActive:key
+        });
     }
 
 
@@ -13,14 +27,19 @@ export default class InfoMenu extends React.Component {
         for (let i = 0; i < this.props.items.length; i++) {
             await import(`../assets/icons/${this.props.icons[i]}.png`).then((icon) => {
                 let element = (
-                    <div className="item" key={i} onClick={(event) => this.props.onClick(this.props.items[i])}>
+                    <div className="item" onClick={() => this.setActiveItem(i)} key={i} onClick={(event) => this.props.onClick(this.props.items[i])}>
                         <img alt="icon" className="icon" src={icon}></img>
                         <h3 className="item-name">{this.props.items[i]}</h3>
                     </div>
                 );
                 let temp = this.state.items;
                 temp.push(element);
-                this.setState({ items: temp });
+                let _classes = this.state.classes;
+                _classes.push("item")
+                this.setState({
+                    items: temp,
+                    classes: _classes
+                });
             })
         }
     }
