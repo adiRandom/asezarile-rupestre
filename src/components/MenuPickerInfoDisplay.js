@@ -28,7 +28,8 @@ export default class MenuPickerInfoDisplay extends React.Component {
             },
             importedImages: [],
             curentItem: 0,
-            newItemSelected: false
+            newItemSelected: false,
+            galery:null,
         }
     }
 
@@ -79,8 +80,19 @@ export default class MenuPickerInfoDisplay extends React.Component {
                             </div>
                         </CSSTransitionGroup>
                     ),
-                    newItemSelected: false
+                    newItemSelected: false,
+                    galery:null
+                },()=>{
+                    setTimeout(this.displayImages,4000);
                 })
+    }
+
+    displayImages=()=>{
+        this.setState({
+            galery:(<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
+                {this.state.importedImages}
+            </Carousel>)
+        })
     }
 
     async componentDidMount() {
@@ -112,9 +124,10 @@ export default class MenuPickerInfoDisplay extends React.Component {
                     <div id='content-text-zone' style={this.state.style}>
                         {this.state.text}
                         {this.state.curentItem >= 0 && this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
-                            (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
-                                {this.state.importedImages}
-                            </Carousel>)
+                            (<div id='galery-container'>
+                                {this.state.galery}
+                            </div>
+                            )
                         }
                         {this.state.curentItem >= 0 && !this.props.content[this.state.curentItem].isGalery && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length &&
                             (<div id="content-images">

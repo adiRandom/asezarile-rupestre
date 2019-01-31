@@ -6,6 +6,8 @@ import MenuPickerInfoDisplay from './MenuPickerInfoDisplay';
 export default class History extends React.Component {
     constructor(props) {
         super(props);
+        console.log("The props")
+        console.log(this.props)
         this.state = {
             paragraphs: [],
             showAllText: false,
@@ -60,6 +62,7 @@ export default class History extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div id='history-info-display-flex-container'>
                 <div id='history-info-display-title-container'>
@@ -71,7 +74,7 @@ export default class History extends React.Component {
                             <img src={this.state.leftBanner} className="banner" alt="left-banner"></img>
                         </div>)}
                         <div id="history-info-display-short-text-wrapper">
-                            {this.props.shortText}
+                            {this.mapNewLineToBr(this.props.shortText)}
                         </div>
                         {this.state.rightBanner && (<div id="history-info-display-full-text-right-banner">
                             <img src={this.state.rightBanner} className="banner" alt="right-banner"></img>
