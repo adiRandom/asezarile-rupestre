@@ -140,7 +140,7 @@ export default class InfoDisplay extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log()
+        console.log(props)
         this.state = {
             splitMedia: null,
             images: [],
@@ -157,10 +157,11 @@ export default class InfoDisplay extends React.Component {
 
 
     mapNewLineToBr = (_text) => {
-        //Map \r\n to <br>
-        return _text.split('\r\n').map((item, key) => {
-            return <span className="paragraph" key={key}>{item}<br /></span>
-        })
+        if (_text)
+            //Map \r\n to <br>
+            return _text.split('\r\n').map((item, key) => {
+                return <span className="paragraph" key={key}>{item}<br /></span>
+            })
     }
 
     async componentDidMount() {
@@ -196,13 +197,17 @@ export default class InfoDisplay extends React.Component {
             })
         }
 
-        this.mapNewLineToBr(this.props.text);
+        this.setState({
+            text: this.mapNewLineToBr(this.props.text)
+        })
         if (this.props.splitMedia)
             this.createSplitMedia(this.props.splitMedia);
     }
 
     async shouldComponentUpdate(nextProps) {
         if (!isObjectEqualTo(nextProps, this.props)) {
+            console.log("Next")
+            console.log(nextProps)
             this.setState({
                 images: [],
                 splitMedia: null,
@@ -210,7 +215,7 @@ export default class InfoDisplay extends React.Component {
                 fullTextDispalyStyle: {
                     display: 'none'
                 },
-                text: "",
+                text: this.mapNewLineToBr(nextProps.text),
                 leftBanner: null,
                 rightBanner: null
             }, async () => {
@@ -249,7 +254,6 @@ export default class InfoDisplay extends React.Component {
                     })
                 }
 
-                this.mapNewLineToBr(nextProps.text)
                 return true;
             });
         }

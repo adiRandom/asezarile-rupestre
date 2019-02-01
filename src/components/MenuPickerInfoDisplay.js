@@ -104,7 +104,7 @@ export default class MenuPickerInfoDisplay extends React.Component {
             menuItems: menu
         });
 
-        for (let image of this.props.content[key].images) {
+        for (let image of this.props.content[0].images) {
             await import(`../assets/img/${image}`).then((res) => {
                 let temp = this.state.importedImages;
                 temp.push(<img src={res} alt="item-image" className="content-image"></img>)
@@ -113,6 +113,8 @@ export default class MenuPickerInfoDisplay extends React.Component {
                 })
             })
         }
+
+        this.displayImages();
     }
 
     render() {
