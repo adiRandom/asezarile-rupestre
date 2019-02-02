@@ -57,3 +57,63 @@ a{
 a:hover{
     color:white!important;
 }
+
+@media  screen and (max-width:800px){
+    #logo-container{
+    width:15vw;
+}
+
+#navbar-container{
+    padding-left: 9.5vw;
+}
+}
+
+@media  screen and (max-width: 600px) {
+
+#logo-container{
+    width:15vw;
+}
+#logo{
+    height:auto;
+    width:24px;
+    margin-top: 15px;
+}
+#name{
+    font-size:1.1rem;
+}
+#navbar-container{
+    padding-right: 0;
+}
+
+#links{
+    padding-left: 0;
+}
+
+}
+
+@media  screen and (max-width: 400px) {
+
+#logo-container{
+    width:16vw;
+}
+#logo{
+    height:auto;
+    width:18px;
+    margin-top: 15px;
+}
+#name{
+    font-size:0.9rem;
+}
+#navbar-container{
+    padding-left: 7vw;
+}
+
+#links{
+    padding-left: 0;
+}
+
+.link-wrapper{
+    font-size:0.8rem;
+}
+}
+

@@ -295,7 +295,6 @@ export default class InfoDisplay extends React.Component {
 
 
     render() {
-        console.log(this.state.splitMedia)
         return (
             <div id='info-display-flex-container'>
                 <div id='info-display-title-container'>

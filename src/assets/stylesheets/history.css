@@ -132,3 +132,32 @@
 #history-info-display-full-text-right-banner{
     grid-column:3/4;
 }
+
+
+
+@media  screen and (max-width:800px){
+#history-info-display-short-text-wrapper{
+    font-size:1.1rem;
+}
+}
+
+/* @media  screen and (max-width:600px){
+    #history-info-display-short-text-wrapper{
+    font-size:0.9rem;
+}
+} */
+
+@media only screen and (max-width:600px){
+    #history-info-display-short-text-wrapper{
+    font-size:0.5rem;
+}
+.paragraph{
+    text-indent:1rem!important;
+}
+
+#read-more-button{
+    font-size:0.7rem;
+}
+
+}
+

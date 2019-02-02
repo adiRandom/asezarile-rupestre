@@ -4,6 +4,7 @@
     overflow-y: hidden;
     height: 100vh;
     width:98vw!important; 
+    margin-bottom: 50px;
 }
 
 #content-menu-bar{
@@ -82,4 +83,14 @@
 .paragraph{
     display:inline-block;
     text-indent:2rem;
+}
+
+@media screen and (max-width:600px){
+    .content-menu-button{
+    font-size: 0.5rem;
+}
+
+#content-text-zone{
+    font-size:0.5rem;
+}
 }
