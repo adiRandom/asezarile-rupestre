@@ -324,7 +324,7 @@ export default class InfoDisplay extends React.Component {
                         </div>
                     }
                     {this.props.images &&
-                        (<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
+                        (<Carousel showIndicators={false} autoPlay={true} showThumbs={false} >
                             {this.state.images}
                         </Carousel>)
                     }

@@ -89,7 +89,7 @@ export default class MenuPickerInfoDisplay extends React.Component {
 
     displayImages=()=>{
         this.setState({
-            galery:(<Carousel showIndicators={false} autoplay={true} showThumbs={false} >
+            galery:(<Carousel showIndicators={false} autoPlay={true} showThumbs={false} >
                 {this.state.importedImages}
             </Carousel>)
         })
