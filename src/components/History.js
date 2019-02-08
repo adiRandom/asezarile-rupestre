@@ -62,7 +62,6 @@ export default class History extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div id='history-info-display-flex-container'>
                 <div id='history-info-display-title-container'>

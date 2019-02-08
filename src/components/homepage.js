@@ -35,6 +35,7 @@ export default class Homepege extends React.Component {
             infoDisplayText: null,
             infoDisplaySplitMedia: null,
             infoDisplayImages: null,
+            infoDislayVideo:null,
             isLegends: false,
             isBibliography: false,
             infoDisplayLeftBanner: null,
@@ -74,6 +75,7 @@ export default class Homepege extends React.Component {
                                 },
                                 infoDisplayShortText: data.shortText,
                                 infoDisplayImages: data.images,
+                                infoDislayVideo:data.video,
                                 infoDisplayLeftBanner: data.leftBanner,
                                 infoDisplayRightBanner: data.rightBanner,
                                 isBibliography: false,
@@ -82,46 +84,13 @@ export default class Homepege extends React.Component {
                             })
                         })
                     }
-                    else {
-                        this.setState({
-                            infoDisplaySplitMedia: {
-                                media: []
-                            },
-                            aux: []
-                        }, async () => {
-                            for (let _media of data.splitMedia.media) {
-                                await import(`../assets/${_media}`).then((res) => {
-                                    let temp = this.state.aux;
-                                    temp.push(res);
-                                    this.setState({
-                                        aux: temp
-                                    })
-                                })
-                            }
-                            this.setState((prev) => ({
-                                infoDisplayTitle: data.title,
-                                infoDisplayText: data.text,
-                                infoDisplaySplitMedia: {
-                                    type: data.splitMedia.type,
-                                    isGallery: data.isGallery,
-                                    media: prev.aux
-                                },
-                                infoDisplayShortText: data.shortText,
-                                infoDisplayImages: data.images,
-                                infoDisplayLeftBanner: data.leftBanner,
-                                infoDisplayRightBanner: data.rightBanner,
-                                isBibliography: false,
-                                isLegends: false,
-                                isHistory: false
-                            }))
-                        })
-                    }
                 }
                 else {
                     this.setState({
                         infoDisplayTitle: data.title,
                         infoDisplayText: data.text,
                         infoDisplayImages: data.images,
+                        infoDislayVideo:data.video,
                         infoDisplayLeftBanner: data.leftBanner,
                         infoDisplayRightBanner: data.rightBanner,
                         isBibliography: false,
@@ -136,6 +105,7 @@ export default class Homepege extends React.Component {
                 this.setState({
                     infoDisplayTitle: data.title,
                     infoDisplayShortText: data.shortText,
+                    infoDislayVideo:data.video,
                     infoDisplayImages: data.images,
                     infoDisplayContent: data.content,
                     infoDisplayLeftBanner: data.leftBanner,
@@ -214,7 +184,7 @@ export default class Homepege extends React.Component {
                 </div>
                 <InfoMenu onClick={this.onClick} icons={this.state.icons} items={this.state.items} />
                 {!this.state.isBibliography && !this.state.isLegends && !this.state.isHistory && this.state.infoDisplayTitle &&
-                    <InfoDisplay leftBanner={this.state.infoDisplayLeftBanner}
+                    <InfoDisplay leftBanner={this.state.infoDisplayLeftBanner} video={this.state.infoDislayVideo}
                         rightBanner={this.state.infoDisplayRightBanner} text={this.state.infoDisplayText}
                         title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText}
                         splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}

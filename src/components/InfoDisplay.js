@@ -144,6 +144,7 @@ export default class InfoDisplay extends React.Component {
         this.state = {
             splitMedia: null,
             images: [],
+            video:null,
             showAllText: false,
             fullTextDispalyStyle: {
                 display: 'none'
@@ -181,6 +182,14 @@ export default class InfoDisplay extends React.Component {
             }
         }
 
+        if(this.props.video){
+            await import(`../assets/video/${this.props.video}`).then((res)=>{
+                this.setState({
+                    video:res
+                })
+            })
+        }
+
         if (this.props.leftBanner) {
             await import(`../assets/img/${this.props.leftBanner}`).then((banner) => {
                 this.setState({
@@ -210,6 +219,7 @@ export default class InfoDisplay extends React.Component {
             console.log(nextProps)
             this.setState({
                 images: [],
+                video:null,
                 splitMedia: null,
                 showAllText: false,
                 fullTextDispalyStyle: {
@@ -250,6 +260,14 @@ export default class InfoDisplay extends React.Component {
                     await import(`../assets/img/${nextProps.rightBanner}`).then((banner) => {
                         this.setState({
                             rightBanner: banner
+                        })
+                    })
+                }
+
+                if(nextProps.video){
+                    await import(`../assets/video/${nextProps.video}`).then((res)=>{
+                        this.setState({
+                            video:res
                         })
                     })
                 }
@@ -327,6 +345,9 @@ export default class InfoDisplay extends React.Component {
                         (<Carousel showIndicators={false} autoPlay={true} showThumbs={false} >
                             {this.state.images}
                         </Carousel>)
+                    }
+                    {this.props.video &&
+                    (<video src={this.state.video} autoPlay={true} className={'gallery-video'} loop={true}/>)
                     }
                 </div>
             </div>
