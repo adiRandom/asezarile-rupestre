@@ -3,18 +3,7 @@
         {
             "title": "Fundătura",
             "text": "\r Fundătura e o bisericuță săpată într-o stâncă de circa 15m lungime, 5m lățime și 10m înălțime, aflată în mijlocul unei poieni. Intrarea se deschide în peretele de vest care arată că a fost conecpută ca un lăcaș de cult. Interiorul arată ca un monobloc cu părți componente: pronaos, naos, altar, care dau aspectul unei biserici de tip roman. \r\n \r Se pare că datarea ei nu poate coborî sub secolului XI și a dăinuit până în secolul XIX. Câteva grafite și vestgii atestă că acea bisericuță a făcut parte dintr-un așezământ monahal, de exemplu pe peretele de est se poate citi „Ghe(o)rghe ier(omonah), Pavel și Hl(i)cherie psalt” cu datele 1820,1858 și 1864.",
-            "images": [
-                "3.Nucu_Fundatura (1).JPG",
-                "Nucu_schitul_Fundatura (9).JPG",
-                "3.Nucu_Fundatura (3).JPG",
-                "3.Nucu_Fundatura (8).JPG",
-                "3.Nucu_Fundatura (17).JPG",
-                "Nucu_schitul_Fundatura (3).JPG",
-                "Nucu_schitul_Fundatura (2).JPG",
-                "Nucu_schitul_Fundatura (4).JPG",
-                "Nucu_schitul_Fundatura (12).JPG"
-            ],
-            "isGalery": true
+            "video":"fundatura.mp4"
         },
         {
             "title": "Schitul Agatonul Vechi",
@@ -55,12 +44,7 @@
         {
             "title": "Chilia lui Dionisie Torcătorul",
             "text": "Chilia lui Dionisie Torcătorul este situată într-o ramificație singuratică a muntelui Crucea Spătarului, greu accesibilă, deasupra unei platforme. Intrarea e flancată de 2 ferestre în arc frânt, care amintesc de goticul secolului IV. Interiorul reprezintă o încăpere aproximativ rectangulară. La baza intrări s-au săpat câte 2 șanțuri pentru fixarea scării de lemn, pe care schimnicul urca aproape 3m și apoi o trăgea la sine. Vorbind despre datare, se pare că a fost lucrată în secolele III-VI.",
-            "images": [
-                "8.Nucu_Chilia_lui_Dionisie (5).JPG",
-                "8.Nucu_Chilia_lui_Dionisie (9).png",
-                "8.Nucu_Chilia_lui_Dionisie (7).JPG"
-                    ],
-            "isGalery": true
+            "video":"dionisie.mp4"
         },
         {
             "title": "Fundul Peșterii",
