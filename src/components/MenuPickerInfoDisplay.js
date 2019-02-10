@@ -27,10 +27,10 @@ export default class MenuPickerInfoDisplay extends React.Component {
                 display: "flex"
             },
             importedImages: [],
-            video:null,
+            video: null,
             curentItem: 0,
             newItemSelected: false,
-            gallery:null,
+            gallery: null,
         }
     }
 
@@ -46,28 +46,28 @@ export default class MenuPickerInfoDisplay extends React.Component {
             importedImages: [],
             curentItem: key,
             text: "",
-            video:null,
+            video: null,
             newItemSelected: true,
         }, async () => {
-            if(!this.props.content[key].video){
+            if (!this.props.content[key].video) {
                 console.log("he");
-            for (let image of this.props.content[key].images) {
-                await import(`../assets/img/${image}`).then((res) => {
-                    let temp = this.state.importedImages;
-                    temp.push(<img src={res} alt="item-image" className="content-image"></img>)
+                for (let image of this.props.content[key].images) {
+                    await import(`../assets/img/${image}`).then((res) => {
+                        let temp = this.state.importedImages;
+                        temp.push(<img src={res} alt="item-image" className="content-image"></img>)
+                        this.setState({
+                            importedImages: temp
+                        })
+                    })
+                }
+            }
+            else {
+                await import(`../assets/video/${this.props.content[key].video}`).then((res) => {
                     this.setState({
-                        importedImages: temp
+                        video: res
                     })
                 })
             }
-        }
-        else{
-            await import(`../assets/video/${this.props.content[key].video}`).then((res)=>{
-                this.setState({
-                    video:res
-                })
-            })
-        }
         });
 
 
@@ -75,7 +75,7 @@ export default class MenuPickerInfoDisplay extends React.Component {
 
     componentDidUpdate() {
         if (this.state.curentItem != -1)
-            if (this.state.newItemSelected && ((this.props.content[this.state.curentItem].images && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length)||(this.state.video))){
+            if (this.state.newItemSelected && ((this.props.content[this.state.curentItem].images && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length) || (this.state.video))) {
                 this.setState({
                     text: (
                         <CSSTransitionGroup
@@ -90,27 +90,32 @@ export default class MenuPickerInfoDisplay extends React.Component {
                         </CSSTransitionGroup>
                     ),
                     newItemSelected: false,
-                    gallery:null
-                },()=>{
-                    setTimeout(this.displayMedia,3000);
+                    gallery: null
+                }, () => {
+                    setTimeout(this.displayMedia, 3000);
                 })
             }
     }
 
-    displayMedia=()=>{
-        if(!this.state.video){
-        this.setState({
-            gallery:(<Carousel showIndicators={false} autoPlay={true} showThumbs={false} >
-                {this.state.importedImages}
-            </Carousel>)
-        })
+    displayMedia = () => {
+        if (!this.state.video) {
+            if (this.state.importedImages.length > 1)
+                this.setState({
+                    gallery: (<Carousel showIndicators={false} autoPlay={true} showThumbs={false} >
+                        {this.state.importedImages}
+                    </Carousel>)
+                })
+            else
+                this.setState({
+                    gallery: this.state.importedImages[0]
+                })
 
-    }
-    else{
-        this.setState({
-            gallery:(<video autoPlay={true} className="gallery-video" src={this.state.video} loop={true}></video>)
-        })
-    }
+        }
+        else {
+            this.setState({
+                gallery: (<video autoPlay={true} className="gallery-video" src={this.state.video} loop={true}></video>)
+            })
+        }
     }
 
     async componentDidMount() {
@@ -122,35 +127,42 @@ export default class MenuPickerInfoDisplay extends React.Component {
             menuItems: menu
         });
 
-        for (let image of this.props.content[0].images) {
-            await import(`../assets/img/${image}`).then((res) => {
-                let temp = this.state.importedImages;
-                temp.push(<img src={res} alt="item-image" className="content-image"></img>)
+        if (this.props.content[0].images)
+            for (let image of this.props.content[0].images) {
+                await import(`../assets/img/${image}`).then((res) => {
+                    let temp = this.state.importedImages;
+                    temp.push(<img src={res} alt="item-image" className="content-image"></img>)
+                    this.setState({
+                        importedImages: temp
+                    })
+                })
+            }
+        else if (this.props.content[0].video)
+            await import(`../assets/video/${this.props.content[0].video}`).then((res) => {
                 this.setState({
-                    importedImages: temp
+                    video: res
                 })
             })
-        }
 
         this.displayMedia();
     }
 
     render() {
         return (
-                <div id="content-main-flex-container">
-                    <div id="content-menu-bar">
-                        {this.state.menuItems}
-                    </div>
-                    <div id='content-text-zone' style={this.state.style}>
-                        {this.state.text}
-                        {this.state.curentItem >= 0 && ((this.props.content[this.state.curentItem].images && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length) || this.state.video) &&
-                            (<div id='gallery-container'>
-                                {this.state.gallery}
-                            </div>
-                            )
-                        }
-                    </div>
+            <div id="content-main-flex-container">
+                <div id="content-menu-bar">
+                    {this.state.menuItems}
                 </div>
+                <div id='content-text-zone' style={this.state.style}>
+                    {this.state.text}
+                    {this.state.curentItem >= 0 && ((this.props.content[this.state.curentItem].images && this.state.importedImages.length === this.props.content[this.state.curentItem].images.length) || this.state.video) &&
+                        (<div id='gallery-container'>
+                            {this.state.gallery}
+                        </div>
+                        )
+                    }
+                </div>
+            </div>
         )
     }
 }
