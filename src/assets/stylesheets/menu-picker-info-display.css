@@ -27,7 +27,7 @@
     text-align: justify;
     width: 80vw;
     height: 100vh;
-    padding: 5vh 5vw;
+    margin: 5vh 5vw;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -89,6 +89,10 @@
 .gallery-video{
     width: 50vw;
     margin-top: 5vh;
+}
+
+span:not(.paragraph):not(.link-wrapper){
+    margin-top:5vh;
 }
 
 @media screen and (max-width:600px){

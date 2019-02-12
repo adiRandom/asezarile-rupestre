@@ -140,7 +140,6 @@ export default class InfoDisplay extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = {
             splitMedia: null,
             images: [],
@@ -191,19 +190,45 @@ export default class InfoDisplay extends React.Component {
         }
 
         if (this.props.leftBanner) {
-            await import(`../assets/img/${this.props.leftBanner}`).then((banner) => {
-                this.setState({
-                    leftBanner: banner
+            if (this.props.leftBanner.type === 'image')
+                await import(`../assets/img/${this.props.leftBanner.source}`).then((banner) => {
+                    this.setState({
+                        leftBanner: {
+                            type: "image",
+                            source: banner
+                        }
+                    })
                 })
-            })
+            else
+                await import(`../assets/video/${this.props.leftBanner.source}`).then((banner) => {
+                    this.setState({
+                        leftBanner: {
+                            type: "video",
+                            source: banner
+                        }
+                    })
+                })
         }
 
         if (this.props.rightBanner) {
-            await import(`../assets/img/${this.props.rightBanner}`).then((banner) => {
-                this.setState({
-                    rightBanner: banner
+            if (this.props.rightBanner.type === "image")
+                await import(`../assets/img/${this.props.rightBanner.source}`).then((banner) => {
+                    this.setState({
+                        rightBanner: {
+                            type: "image",
+                            source: banner
+                        }
+                    })
                 })
-            })
+            else
+                await import(`../assets/video/${this.props.rightBanner.source}`).then((banner) => {
+                    this.setState({
+                        rightBanner: {
+                            type: "video",
+                            source: banner
+                        }
+                    })
+                })
         }
 
         this.setState({
@@ -215,8 +240,6 @@ export default class InfoDisplay extends React.Component {
 
     async shouldComponentUpdate(nextProps) {
         if (!isObjectEqualTo(nextProps, this.props)) {
-            console.log("Next")
-            console.log(nextProps)
             this.setState({
                 images: [],
                 video:null,
@@ -249,19 +272,45 @@ export default class InfoDisplay extends React.Component {
                     this.createSplitMedia(nextProps.splitMedia)
 
                 if (nextProps.leftBanner) {
-                    await import(`../assets/img/${nextProps.leftBanner}`).then((banner) => {
+                    if(nextProps.leftBanner.type === 'image')
+                    await import(`../assets/img/${nextProps.leftBanner.source}`).then((banner) => {
                         this.setState({
-                            leftBanner: banner
+                            leftBanner:{
+                                type:"image",
+                                source:banner
+                            } 
                         })
                     })
+                    else
+                        await import(`../assets/video/${nextProps.leftBanner.source}`).then((banner) => {
+                            this.setState({
+                                leftBanner:{
+                                    type:"video",
+                                    source:banner
+                                }
+                            })
+                        })
                 }
 
                 if (nextProps.rightBanner) {
-                    await import(`../assets/img/${nextProps.rightBanner}`).then((banner) => {
+                    if(nextProps.rightBanner.type === "image")
+                        await import(`../assets/img/${nextProps.rightBanner.source}`).then((banner) => {
                         this.setState({
-                            rightBanner: banner
+                            rightBanner: {
+                                type: "image",
+                                source: banner
+                            } 
                         })
                     })
+                    else
+                        await import(`../assets/video/${nextProps.rightBanner.source}`).then((banner) => {
+                            this.setState({
+                                rightBanner: {
+                                    type: "video",
+                                    source: banner
+                                }
+                            })
+                        })
                 }
 
                 if(nextProps.video){
@@ -324,14 +373,20 @@ export default class InfoDisplay extends React.Component {
                     </div>
                     {this.state.splitMedia}
                     <div id="info-display-full-text-grid" style={this.state.fullTextDispalyStyle}>
-                        {this.state.leftBanner && (<div id="info-display-full-text-left-banner">
-                            <img src={this.state.leftBanner} className="banner" alt="left-banner"></img>
+                        {this.state.leftBanner && this.state.leftBanner.type === "image" && (<div id="info-display-full-text-left-banner">
+                            <img src={this.state.leftBanner.source} className="banner" alt="left-banner"></img>
+                        </div>)}
+                        {this.state.leftBanner && this.state.leftBanner.type === "video" && (<div id="info-display-full-text-left-banner">
+                            <video src={this.state.leftBanner.source} autoplay={true} loop={true} className="banner"></video>
                         </div>)}
                         <div id='info-display-full-text-container' >
                             {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.state.text}</div>)}
                         </div>
-                        {this.state.rightBanner && (<div id="info-display-full-text-right-banner">
-                            <img src={this.state.rightBanner} className="banner" alt="right-banner"></img>
+                        {this.state.rightBanner && this.state.rightBanner.type === "image" && (<div id="info-display-full-text-right-banner">
+                            <img src={this.state.rightBanner.source} className="banner" alt="right-banner"></img>
+                        </div>)}
+                        {this.state.rightBanner && this.state.rightBanner.type === "video" && (<div id="info-display-full-text-left-banner">
+                            <video src={this.state.rightBanner.source} autoplay={true} loop={true} className="banner"></video>
                         </div>)}
                     </div>
                     {this.state.text &&

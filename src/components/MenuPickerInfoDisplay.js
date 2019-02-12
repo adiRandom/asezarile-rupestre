@@ -83,7 +83,10 @@ export default class MenuPickerInfoDisplay extends React.Component {
                             transitionAppear={true}
                             transitionAppearTimeout={3000}
                             transitionEnter={false}
-                            transitionLeave={false}>
+                            transitionLeave={false}
+                            style={{"marginTop":"5vh"}}
+                            className="a-span"
+                            >
                             <div>
                                 {this.mapNewLineToBr(this.props.content[this.state.curentItem].text)}
                             </div>

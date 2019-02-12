@@ -10,9 +10,10 @@ class Bibliography extends React.Component {
         this.credits = this.props.titles.map((value, index) => (<li className="list-item" key={index}
             style={{
                 listStyle: 'khmer',
-                fontSize: '1.2rem',
+                fontSize: '1.5rem',
                 marginBottom: '10vh',
-                float:'none'
+                float:'none',
+                'color':'white'
             }}>{value}</li>)
         )
     }
@@ -26,7 +27,7 @@ class Bibliography extends React.Component {
                 <CSSTransitionGroup
                     transitionName="credits"
                     transitionAppear={true}
-                    transitionAppearTimeout={10500}
+                    transitionAppearTimeout={20000}
                     transitionEnter={false}
                     transitionLeave={false}>
                     <div style={{marginTop:'10vh'}}>
