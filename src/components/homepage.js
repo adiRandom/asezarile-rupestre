@@ -16,17 +16,17 @@ export default class Homepege extends React.Component {
         this.state = {
             redirect: null,
             icons: [
-                "shield",
                 "mt",
                 "path",
+                "shield",
                 "crux",
                 "vase",
                 "book-icon"
             ],
             items: [
-                "Istorie",
                 "Geografie",
                 "Turism",
+                "Istorie",
                 "Religie",
                 "Legende",
                 "Bibliografie"
