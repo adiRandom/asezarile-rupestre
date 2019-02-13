@@ -8,6 +8,7 @@ import InfoDisplay from './InfoDisplay';
 import History from './History'
     ; import Bibliography from "./Bibliography"
 import MenuPickerInfoDisplay from './MenuPickerInfoDisplay';
+import * as goDown from '../assets/img/go-down.gif';
 
 export default class Homepege extends React.Component {
 
@@ -35,12 +36,13 @@ export default class Homepege extends React.Component {
             infoDisplayText: null,
             infoDisplaySplitMedia: null,
             infoDisplayImages: null,
-            infoDislayVideo:null,
+            infoDislayVideo: null,
             isLegends: false,
             isBibliography: false,
             infoDisplayLeftBanner: null,
             infoDisplayRightBanner: null,
-            navbarColor: 'rgba(44, 60, 76, 0.3)'
+            navbarColor: 'rgba(44, 60, 76, 0.3)',
+            goDown: false
         }
     }
     redirectToMap = () => {
@@ -50,11 +52,11 @@ export default class Homepege extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.changeNavbarColor);
+        window.addEventListener('scroll', this.handleScroll);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.changeNavbarColor);
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
 
@@ -75,12 +77,13 @@ export default class Homepege extends React.Component {
                                 },
                                 infoDisplayShortText: data.shortText,
                                 infoDisplayImages: data.images,
-                                infoDislayVideo:data.video,
+                                infoDislayVideo: data.video,
                                 infoDisplayLeftBanner: data.leftBanner,
                                 infoDisplayRightBanner: data.rightBanner,
                                 isBibliography: false,
                                 isLegends: false,
-                                isHistory: false
+                                isHistory: false,
+                                goDown: true
                             })
                         })
                     }
@@ -90,14 +93,15 @@ export default class Homepege extends React.Component {
                         infoDisplayTitle: data.title,
                         infoDisplayText: data.text,
                         infoDisplayImages: data.images,
-                        infoDislayVideo:data.video,
+                        infoDislayVideo: data.video,
                         infoDisplayLeftBanner: data.leftBanner,
                         infoDisplayRightBanner: data.rightBanner,
                         isBibliography: false,
                         isLegends: false,
                         infoDisplaySplitMedia: null,
                         infoDisplayShortText: data.shortText,
-                        isHistory: false
+                        isHistory: false,
+                        goDown: true
                     })
                 }
             }
@@ -105,14 +109,15 @@ export default class Homepege extends React.Component {
                 this.setState({
                     infoDisplayTitle: data.title,
                     infoDisplayShortText: data.shortText,
-                    infoDislayVideo:data.video,
+                    infoDislayVideo: data.video,
                     infoDisplayImages: data.images,
                     infoDisplayContent: data.content,
                     infoDisplayLeftBanner: data.leftBanner,
                     infoDisplayRightBanner: data.rightBanner,
                     isBibliography: false,
                     isLegends: false,
-                    isHistory: true
+                    isHistory: true,
+                    goDown: true
                 });
             }
         });
@@ -137,7 +142,8 @@ export default class Homepege extends React.Component {
                         legends: data.content,
                         isLegends: true,
                         isBibliography: false,
-                        isHistory: false
+                        isHistory: false,
+                        goDown: true
                     });
                 }); break;
 
@@ -147,10 +153,28 @@ export default class Homepege extends React.Component {
                         titles: data.titles,
                         isBibliography: true,
                         isLegends: false,
-                        isHistory: false
+                        isHistory: false,
+                        goDown: true
                     });
                 }); break;
         }
+    }
+
+    componentDidUpdate() {
+        if (this.state.goDown){
+             window.scrollBy(0, Math.max(document.documentElement.clientHeight, window.innerHeight || 0));
+        }
+    }
+
+    handleScroll = () => {
+        this.resetGoDown();
+        this.changeNavbarColor();
+    }
+
+    resetGoDown = () => {
+        this.setState({
+            goDown: false
+        })
     }
 
     changeNavbarColor = () => {
@@ -189,7 +213,7 @@ export default class Homepege extends React.Component {
                         title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText}
                         splitMedia={this.state.infoDisplaySplitMedia} images={this.state.infoDisplayImages}></InfoDisplay>}
                 {this.state.isHistory && <History leftBanner={this.state.infoDisplayLeftBanner}
-                        rightBanner={this.state.infoDisplayRightBanner}  content={this.state.infoDisplayContent}
+                    rightBanner={this.state.infoDisplayRightBanner} content={this.state.infoDisplayContent}
                     title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText} />}
                 {this.state.isLegends && <MenuPickerInfoDisplay placeholder="Selecteaza mai intai o legenda" content={this.state.legends}></MenuPickerInfoDisplay>}
                 {this.state.isBibliography && <Bibliography titles={this.state.titles} />}
