@@ -154,12 +154,13 @@ export default class InfoDisplay extends React.Component {
             rightBanner: null
         }
 
-        if (this.props.splitMedia.type === 'video')
-            this.state.splitMedia = (<video className="split-text-video" controls src={placeholderVideo}></video>);
-        if (this.props.splitMedia.type === 'image')
-            this.state.splitMedia = (<img alt="split-media" className="split-text-picture" src={placeholderImage} />);
-        if (props.splitMedia)
+        if (props.splitMedia) {
+            if (this.props.splitMedia.type === 'video')
+                this.state.splitMedia = (<video className="split-text-video" controls src={placeholderVideo}></video>);
+            if (this.props.splitMedia.type === 'image')
+                this.state.splitMedia = (<img alt="split-media" className="split-text-picture" src={placeholderImage} />);
             this.createSplitMedia(this.props.splitMedia);
+        }
     }
 
 
@@ -275,8 +276,19 @@ export default class InfoDisplay extends React.Component {
                         })
                     }
                 }
-                if (nextProps.splitMedia)
+                if (nextProps.splitMedia) {
+                    if (nextProps.splitMedia.type === 'video') {
+                        this.setState({
+                            splitMedia: (<video className="split-text-video" controls src={placeholderVideo}></video>)
+                        });
+                        console.log(this.state);
+                    }
+                    if (nextProps.splitMedia.type === 'image')
+                        this.setState({
+                            splitMedia: (<img alt="split-media" className="split-text-picture" src={placeholderImage} />)
+                        });
                     this.createSplitMedia(nextProps.splitMedia)
+                }
 
                 if (nextProps.leftBanner) {
                     if (nextProps.leftBanner.type === 'image')
