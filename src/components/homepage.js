@@ -6,9 +6,9 @@ import Navbar from './Navbar';
 import InfoMenu from './InfoMenu.js'
 import InfoDisplay from './InfoDisplay';
 import History from './History'
-    ; import Bibliography from "./Bibliography"
-import MenuPickerInfoDisplay from './MenuPickerInfoDisplay';
-import * as goDown from '../assets/img/go-down.gif';
+import Bibliography from "./Bibliography"
+import Legends from './Legends';
+import * as legendsVideo from '../assets/video/Untitled Project.mp4'
 
 export default class Homepege extends React.Component {
 
@@ -42,7 +42,8 @@ export default class Homepege extends React.Component {
             infoDisplayLeftBanner: null,
             infoDisplayRightBanner: null,
             navbarColor: 'rgba(44, 60, 76, 0.3)',
-            goDown: false
+            goDown: false,
+            displayLegendsVideo:false,
         }
     }
     redirectToMap = () => {
@@ -141,6 +142,7 @@ export default class Homepege extends React.Component {
                     this.setState({
                         legends: data.content,
                         isLegends: true,
+                        displayLegendsVideo:true,
                         isBibliography: false,
                         isHistory: false,
                         goDown: true
@@ -161,8 +163,8 @@ export default class Homepege extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.state.goDown){
-             window.scrollBy(0, Math.max(document.documentElement.clientHeight, window.innerHeight || 0));
+        if (this.state.goDown) {
+            window.scrollBy(0, Math.max(document.documentElement.clientHeight, window.innerHeight || 0));
         }
     }
 
@@ -190,6 +192,12 @@ export default class Homepege extends React.Component {
             })
     }
 
+    goFromVideoToLegends = ()=>{
+        this.setState({
+            displayLegendsVideo:false
+        })
+    }
+
     render() {
         return (
             <div id="main-flex-continer">
@@ -215,7 +223,12 @@ export default class Homepege extends React.Component {
                 {this.state.isHistory && <History leftBanner={this.state.infoDisplayLeftBanner}
                     rightBanner={this.state.infoDisplayRightBanner} content={this.state.infoDisplayContent}
                     title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText} />}
-                {this.state.isLegends && <MenuPickerInfoDisplay placeholder="Selecteaza mai intai o legenda" content={this.state.legends}></MenuPickerInfoDisplay>}
+                {this.state.isLegends && this.state.displayLegendsVideo && 
+                <div id="legends-video-container">
+                <video src={legendsVideo} id="legends-video" autoPlay={true} onEnded={this.goFromVideoToLegends}></video>\
+                </div>
+                }
+                {this.state.isLegends && !this.state.displayLegendsVideo && <Legends placeholder="Selecteaza mai intai o legenda" content={this.state.legends}></Legends>}
                 {this.state.isBibliography && <Bibliography titles={this.state.titles} />}
             </div>
         )
