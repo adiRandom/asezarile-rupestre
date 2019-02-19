@@ -24,7 +24,7 @@ export default class MenuPickerInfoDisplay extends React.Component {
                 </CSSTransitionGroup>
             ),
             style: {
-                display: "flex"
+                display: "grid"
             },
             importedImages: [],
             video: null,

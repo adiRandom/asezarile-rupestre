@@ -6,8 +6,6 @@ import MenuPickerInfoDisplay from './MenuPickerInfoDisplay';
 export default class History extends React.Component {
     constructor(props) {
         super(props);
-        console.log("The props")
-        console.log(this.props)
         this.state = {
             paragraphs: [],
             showAllText: false,
