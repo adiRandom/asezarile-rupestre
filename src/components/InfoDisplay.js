@@ -361,7 +361,7 @@ export default class InfoDisplay extends React.Component {
     }
 
     getButtonMessage = () => {
-        return this.state.showAllText ? 'Vezi mai putin' : 'Vezi mai mult'
+        return this.state.showAllText ? 'Vezi mai putin' : 'Citește mai mult'
     }
 
     toggleFullTextDisplay = () => {
