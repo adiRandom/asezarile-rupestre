@@ -28,7 +28,7 @@ export default class History extends React.Component {
     }
 
     getButtonMessage = () => {
-        return this.state.showAllText ? 'Vezi mai putin' : 'Citește mai mult'
+        return this.state.showAllText ? 'Citește mai putin' : 'Citește mai mult'
     }
 
     toggleFullTextDisplay = () => {
