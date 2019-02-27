@@ -218,6 +218,11 @@ export default class Homepege extends React.Component {
                     title={this.state.infoDisplayTitle} shortText={this.state.infoDisplayShortText} />}
                 {this.state.isLegends && <Legends placeholder="Selecteaza mai intai o legenda" content={this.state.legends}></Legends>}
                 {this.state.isBibliography && <Bibliography titles={this.state.titles} />}
+                <div id="credits">
+                    <p>Web development: Adrian Pascu</p>
+                    <p>Unity development: Rareș Mocanu</p>
+                    <p>Graphic design: Radu Cotorceanu</p>
+                </div>
             </div>
         )
     }

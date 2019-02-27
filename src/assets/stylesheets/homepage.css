@@ -65,15 +65,15 @@ html {
     top: calc(75vh - 64px);
 }
 
-#legends-video{
+#legends-video {
     height: 100vh;
     width: auto;
-    margin:0;
+    margin: 0;
 }
 
-#legends-video-container{
-    height:100vh;
-    text-align:center;
+#legends-video-container {
+    height: 100vh;
+    text-align: center;
 }
 
 @media screen and (max-width: 600px) {
@@ -135,4 +135,12 @@ html {
         left: calc(95vw - 48px);
         top: calc(75vh - 48px);
     }
+}
+
+#credits {
+    background-color: rgb(44, 60, 76);
+    color:white;
+    widows: 100vw;
+    height:20vh;
+    padding:5vh 10vw;
 }
