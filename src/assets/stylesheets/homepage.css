@@ -140,7 +140,7 @@ html {
 #credits {
     background-color: rgb(44, 60, 76);
     color:white;
-    widows: 100vw;
+    width: 100vw;
     height:20vh;
     padding:5vh 10vw;
     font-size: 2rem;

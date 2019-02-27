@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Route, Switch} from "react-router";
 import Homepage from "./components/homepage";
 import MapContainer from "./components/map";
+import Credits from "./components/Credits"
 
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
             <Switch>
                 <Route path={"/"} component={Homepage} exact={true}/>
                 <Route path={"/harta"} component={MapContainer} exact={true}/>
+                <Route path={"/credite"} component={Credits} exact={true}></Route>
             </Switch>
 
         );
