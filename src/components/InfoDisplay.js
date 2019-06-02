@@ -396,7 +396,7 @@ export default class InfoDisplay extends React.Component {
                             <img src={this.state.leftBanner.source} className="banner" alt="left-banner"></img>
                         </div>)}
                         {this.state.leftBanner && this.state.leftBanner.type === "video" && (<div id="info-display-full-text-left-banner">
-                            <video src={this.state.leftBanner.source} autoplay={true} loop={true} className="banner"></video>
+                            <video src={this.state.leftBanner.source} autoPlay={true} loop={true} className="banner"></video>
                         </div>)}
                         <div id='info-display-full-text-container' >
                             {!Array.isArray(this.props.text) && (<div id="info-display-text-wrapper">{this.state.text}</div>)}
@@ -404,8 +404,8 @@ export default class InfoDisplay extends React.Component {
                         {this.state.rightBanner && this.state.rightBanner.type === "image" && (<div id="info-display-full-text-right-banner">
                             <img src={this.state.rightBanner.source} className="banner" alt="right-banner"></img>
                         </div>)}
-                        {this.state.rightBanner && this.state.rightBanner.type === "video" && (<div id="info-display-full-text-left-banner">
-                            <video src={this.state.rightBanner.source} autoplay={true} loop={true} className="banner"></video>
+                        {this.state.rightBanner && this.state.rightBanner.type === "video" && (<div id="info-display-full-text-right-banner">
+                            <video src={this.state.rightBanner.source} autoPlay={true} loop={true} className="banner"></video>
                         </div>)}
                     </div>
                     {this.state.text &&
