@@ -9,9 +9,10 @@ export default class Credits extends React.Component {
                 <Navbar></Navbar>
                 <div id="credits">
                     <h1 id="title">Credite</h1>
-                    <p>Web development: Adrian Pascu</p>
-                    <p>Unity development: Rareș Mocanu</p>
-                    <p>Graphic design: Radu Cotorceanu</p>
+                    <div id="credit-container"><p>Web development: Adrian Pascu</p>
+                        <p>Unity development: Rareș Mocanu</p>
+                        <p>Graphic design: Radu Cotorceanu</p></div>
+                    
                 </div>
             </div>)
     }
