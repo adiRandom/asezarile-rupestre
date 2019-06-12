@@ -8,7 +8,7 @@ export default class Navbar extends React.Component {
         super(props);
     }
 
-    goToTour = ()=>{
+    goToTour = () => {
         window.location.replace("/tur");
     }
 
@@ -31,6 +31,8 @@ export default class Navbar extends React.Component {
                         <span className="link-wrapper">Hartă</span></NavLink></li>
                     <li><NavLink exact={true} to="/tur" activeClassName="selected-link">
                         <span className="link-wrapper" onClick={this.goToTour}>Tur virtual</span></NavLink></li>
+                    <li><NavLink exact={true} to="/evaluare" activeClassName="selected-link">
+                        <span className="link-wrapper">Evaluare</span></NavLink></li>
                     <li><NavLink exact={true} to="/credite" activeClassName="selected-link">
                         <span className="link-wrapper">Credite</span></NavLink></li>
                 </ul>
