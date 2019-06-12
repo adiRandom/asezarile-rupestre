@@ -1,0 +1,100 @@
+{
+    "questions": [
+        {
+            "question": "Primele așezări din zonă au fost în:",
+            "answers": [
+                "Paleolitic",
+                "Neolitic",
+                "Antichitate",
+                "Evul mediu"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "La Chilia lui Dionisie se urcă:",
+            "answers": [
+                "pe o potecă",
+                "pe o scară",
+                "Pe trepte"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "Față de comuna Bozioru, munții sunt situați la:",
+            "answers": [
+                "nord",
+                "sud",
+                "est",
+                "vest"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Bisericuta Agatonul  Vechi  are hramul:",
+            "answers": [
+                "Schimbarea la față",
+                "Sfinții apostoli",
+                "Sfântul Gheorge",
+                "Sfântul Ion Zlataust"
+            ],
+            "correctAnswer": 3
+        },
+        {
+            "question": "Agatonul Nou a fost ctitorit pe vremea voievodului:",
+            "answers": [
+                "Mihnea Turcitul",
+                "Vlad Țepes",
+                "Neagoe Basarab"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "Legendele vorbesc despre comori care au aparținut:",
+            "answers": [
+                "boierilor",
+                "voievodului",
+                "călugărilor"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "Depresiunea Bozioru are origine:",
+            "answers": [
+                "tectonică",
+                "vulcanică",
+                "erozivă",
+                "tectonico-erozivă"
+            ],
+            "correctAnswer": 3
+        },
+        {
+            "question": "Munții au înălțimi cuprinse între:",
+            "answers": [
+                "500-1115m",
+                "750-1020m",
+                "600-980m",
+                "800-1245m"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Schitul Agatonul Nou are:",
+            "answers": [
+                "4 încăperi",
+                "2 încăperi",
+                "3 încăperi"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Peștele incizat se află deasupra intrării în:",
+            "answers": [
+                "Fundătura",
+                "Piatra Îngăurită",
+                "Peștera lui Iosif",
+                "Fundul Peșterii"
+            ],
+            "correctAnswer": 1
+        }
+    ]
+}
