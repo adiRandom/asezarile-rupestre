@@ -19,7 +19,7 @@ export default class Test extends React.Component {
         this.height = document.documentElement.clientHeight;
 
         let answers = [];
-        for(let question of quiz.questions){
+        for (let question of quiz.questions) {
             answers.push(-1);
         }
 
@@ -27,9 +27,9 @@ export default class Test extends React.Component {
             isFront: true,
             title: "",
             backContent: null,
-            score:0,
-            showScore:false,
-            answers:answers
+            score: 0,
+            showScore: false,
+            answers: answers
         }
     }
 
@@ -71,50 +71,115 @@ export default class Test extends React.Component {
                     <img id="banner" src={banner} alt="banner" />
                 )
             }); break;
-            case "Quiz": this.setState({
-                backContent: this.mapQuiz()
-            }); break;
+            case "Quiz": this.setState((prev)=>({
+                backContent: (<form id="quiz" onSubmit={this.checkQuiz}>
+                    {quiz.questions.map((item, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                <h3 className="quiz-header">{item.question}</h3>
+                                {item.answers.map((answer, _index) => {
+                                    return (
+                                        <span key={_index}>
+                                            <input
+                                                onChange={event => this.update(event, index)}
+                                                value={_index}
+                                                checked={prev.answers[index] === _index.toString()}
+                                                type="radio"
+                                                name={`radio-group-${index}`}
+                                            />{" "}
+                                            {answer}
+                                        </span>
+                                    );
+                                })}
+                            </React.Fragment>
+                        )
+                    })}
+                    <input id="quiz-submit" type="submit" value="Verifică" />
+                    <h4 id="quiz-score" style={{
+                        visibility: prev.showScore ? "visible" : "hidden"
+                    }}>{`Felicitari! Ai optinut ${prev.score}/${quiz.questions.length} răspunsuri corecte!`} </h4>
+                </form>)
+            })); break;
             default: break;
         }
     }
 
-    update = (e,i)=>{
-        e.preventDefault();
+    update = (e, i) => {
         const answers = this.state.answers;
         answers[i] = e.target.value;
-        
-        this.setState({
-            answers:answers
-        })
-    }
 
-    mapQuiz(){
-        return(
-            <form id="quiz" onSubmit={this.checkQuiz}>
-                {quiz.questions.map((item,index)=>{
+        this.setState((prev)=>({
+            answers: answers,
+            //Rerender the form
+            backContent: (<form id="quiz" onSubmit={this.checkQuiz}>
+                {quiz.questions.map((item, index) => {
                     return (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                             <h3 className="quiz-header">{item.question}</h3>
-                            {item.answers.map((answer,_index)=>{
+                            {item.answers.map((answer, _index) => {
                                 return (
-                                    <span>
-                                        <input onChange={(event) => this.update(event, index)} value={_index.toString()} checked={
-                                        this.state.answers[index] == _index.toString()
-                                        } type="radio" name={`radio-group-${index}`}/> {answer}
+                                    <span key={_index}>
+                                        <input
+                                            onChange={event => this.update(event, index)}
+                                            value={_index}
+                                            checked={prev.answers[index] === _index.toString()}
+                                            type="radio"
+                                            name={`radio-group-${index}`}
+                                        />{" "}
+                                        {answer}
                                     </span>
                                 );
                             })}
                         </React.Fragment>
                     )
                 })}
-                <input id="quiz-submit" type="submit" value="Verifică"/>
+                <input id="quiz-submit" type="submit" value="Verifică" />
                 <h4 id="quiz-score" style={{
-                    visibility:this.state.showScore?"visible":"hidden"
-                }}>{`Felicitari! Ai optinut ${this.state.score}/${quiz.questions.length} răspunsuri corecte!`} </h4>
-            </form>
-        )
+                    visibility: prev.showScore ? "visible" : "hidden"
+                }}>{`Felicitari! Ai optinut ${prev.score}/${quiz.questions.length} răspunsuri corecte!`} </h4>
+            </form>)
+        }))
     }
-    chekcQuiz(){}
+
+    checkQuiz = (e)=> { 
+        let score = 0;
+        for(let i = 0;i<this.state.answers.length;i++)
+            if(this.state.answers[i] === quiz.questions[i].correctAnswer.toString())
+                score++;
+        
+        this.setState((prev)=>({
+            showScore:true,
+            score:score,
+            //Rerender the form
+            backContent: (<form id="quiz" onSubmit={this.checkQuiz}>
+                {quiz.questions.map((item, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <h3 className="quiz-header">{item.question}</h3>
+                            {item.answers.map((answer, _index) => {
+                                return (
+                                    <span key={_index}>
+                                        <input
+                                            onChange={event => this.update(event, index)}
+                                            value={_index}
+                                            checked={prev.answers[index] === _index.toString()}
+                                            type="radio"
+                                            name={`radio-group-${index}`}
+                                        />{" "}
+                                        {answer}
+                                    </span>
+                                );
+                            })}
+                        </React.Fragment>
+                    )
+                })}
+                <input id="quiz-submit" type="submit" value="Verifică" />
+                <h4 id="quiz-score"
+                >{`Felicitari! Ai optinut ${score}/${quiz.questions.length} răspunsuri corecte!`} </h4>
+            </form>)
+        }))
+        e.preventDefault();
+    }
 
     back = () => {
         this.setState({
