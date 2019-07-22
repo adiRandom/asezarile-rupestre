@@ -5,7 +5,6 @@ import Circle from "./Circle";
 import * as backButton from "../assets/icons/back-button.svg"
 import * as article from "../assets/img/article.png"
 import * as tvShow from "../assets/img/tv-show.jpeg"
-import * as magazine from "../assets/img/revista.PNG"
 import * as flayer1 from "../assets/img/flayer1.png"
 import * as drawing from "../assets/img/drawing.jpg"
 import * as banner from "../assets/img/afis muzeu.jpg"
@@ -49,11 +48,6 @@ export default class Test extends React.Component {
             case "Emisiune TV locală": this.setState({
                 backContent: (
                     <img id="tv-show" src={tvShow} alt="tv-show" />
-                )
-            }); break;
-            case "Revisă": this.setState({
-                backContent: (
-                    <img id="magazine" src={magazine} alt="magazine" />
                 )
             }); break;
             case "Flyere": this.setState({
@@ -226,7 +220,7 @@ export default class Test extends React.Component {
                                 fill="cornflowerblue" r="50">Istorie și societate în dimensiune virtuala</Circle>
                             <Circle className="circle" cx={this.width / 2 - 200} cy={this.height / 2 + 100}
                                 fill="cornflowerblue" r="50">Promovare</Circle>
-                            <Circle onClick={() => this.handle("Revistă")} className="circle" cx={this.width / 2 - 320} cy={this.height / 2 + 260}
+                            <Circle  className="circle" cx={this.width / 2 - 320} cy={this.height / 2 + 260}
                                 fill="cornflowerblue" r="50">Revistă</Circle>
                             <Circle onClick={() => this.handle("Articole în presa locala")} className="circle" cx={this.width / 2 - 200} cy={this.height / 2 + 260}
                                 fill="cornflowerblue" r="50">Articole în presa locala</Circle>
