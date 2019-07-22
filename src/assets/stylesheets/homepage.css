@@ -139,9 +139,20 @@ html {
 
 #credits {
     background-color: rgb(44, 60, 76);
-    color:white;
+    color: white;
     width: 100vw;
-    height:20vh;
-    padding:5vh 10vw;
+    height: 20vh;
+    padding: 5vh 10vw;
     font-size: 2rem;
+}
+
+div, span {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
 }

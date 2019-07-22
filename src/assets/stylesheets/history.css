@@ -1,39 +1,37 @@
-
-
-#history-info-display-flex-container{
-    display:flex;
+#history-info-display-flex-container {
+    display: flex;
     flex-direction: column;
-    align-items:center;
-    background-color:white;
-    color:black;
+    align-items: center;
+    background-color: white;
+    color: black;
 }
 
-#history-info-display-title-container{
-    margin:5vh 0;
+#history-info-display-title-container {
+    margin: 5vh 0;
 }
 
-#info-displa-title{
+#info-displa-title {
     font-size: 2rem;
 }
 
-#history-info-display-text-wrapper{
+#history-info-display-text-wrapper {
     width: 50vw;
     text-align: justify;
-    font-size:1.2rem;
+    font-size: 1.2rem;
 }
 
-.history-info-display-image{
-    width:auto!important;
+.history-info-display-image {
+    width: auto!important;
     height: 50vh;
 }
 
-.carousel{
-    width:50vw!important;
-    margin:10vh 0!important;
-    height:50vh!important;
+.carousel {
+    width: 50vw!important;
+    margin: 10vh 0!important;
+    height: 50vh!important;
 }
 
-.slide{
+.slide {
     background-color: rgba(44, 60, 76, 0.3)!important;
     height: 100vh;
 }
@@ -42,49 +40,48 @@
     background: transparent!important;
 }
 
-#history-info-display-slide{
-    height:50vh;
+#history-info-display-slide {
+    height: 50vh;
 }
 
-#split-text-video{
-    width:50vw;
-}
-
-
-#history-info-display-split-media-container{
-    display: flex;
-    flex-direction: column;
-    width:50vw;
-    margin:5vh 0;
-}
-
-.split-text-picture,.split-text-video{
+#split-text-video {
     width: 50vw;
 }
 
-#read-more-button{
+#history-info-display-split-media-container {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: 5vh 0;
+}
+
+.split-text-picture, .split-text-video {
+    width: 50vw;
+}
+
+#read-more-button {
     border-radius: 30px;
     background-color: transparent;
     border-color: rgb(44, 60, 76);
-    color:rgb(44, 60, 76);
+    color: rgb(44, 60, 76);
     text-align: center;
 }
 
-#read-more-button:focus{
-    outline:none;
+#read-more-button:focus {
+    outline: none;
 }
 
-#read-more-button-wrapper{
+#read-more-button-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom:50px;
+    margin-bottom: 50px;
 }
 
-.paragraph-container{
-    display:flex;
+.paragraph-container {
+    display: flex;
     flex-direction: column;
-    align-items:center;
-    font-size:1.2rem;
+    align-items: center;
+    font-size: 1.2rem;
     margin-bottom: 3vh;
 }
 
@@ -103,42 +100,40 @@
     align-self: center;
     grid-column: 2/3
     /* margin: 0; */
-    }
-
-    hr{
-        border-top: 3px solid rgba(0, 0, 0, 0.1);
-    }
-
-.paragraph{
-    display:inline-block;
-    text-indent:2rem;
 }
 
-.banner{
+hr {
+    border-top: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+.paragraph {
+    display: inline-block;
+    text-indent: 2rem;
+}
+
+.banner {
     max-width: 20vw;
     margin: 0 2vw;
 }
 
-#history-info-display-short-text-grid{
-    display:grid;
+#history-info-display-short-text-grid {
+    display: grid;
     grid-template-columns: 25fr 50fr 25fr;
     align-items: center;
 }
 
-#history-info-display-full-text-left-banner{
-    grid-column:1/2;
+#history-info-display-full-text-left-banner {
+    grid-column: 1/2;
 }
 
-#history-info-display-full-text-right-banner{
-    grid-column:3/4;
+#history-info-display-full-text-right-banner {
+    grid-column: 3/4;
 }
 
-
-
-@media  screen and (max-width:800px){
-#history-info-display-short-text-wrapper{
-    font-size:1.1rem;
-}
+@media screen and (max-width:800px) {
+    #history-info-display-short-text-wrapper {
+        font-size: 1.1rem;
+    }
 }
 
 /* @media  screen and (max-width:600px){
@@ -147,17 +142,25 @@
 }
 } */
 
-@media only screen and (max-width:600px){
-    #history-info-display-short-text-wrapper{
-    font-size:0.5rem;
-}
-.paragraph{
-    text-indent:1rem!important;
-}
-
-#read-more-button{
-    font-size:0.7rem;
-}
-
+@media only screen and (max-width:600px) {
+    #history-info-display-short-text-wrapper {
+        font-size: 0.5rem;
+    }
+    .paragraph {
+        text-indent: 1rem!important;
+    }
+    #read-more-button {
+        font-size: 0.7rem;
+    }
 }
 
+div, span {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+}

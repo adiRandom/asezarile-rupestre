@@ -1,28 +1,39 @@
-#info-menu-flex-container{
-    display:flex;
+#info-menu-flex-container {
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
-    height:20vh;
+    height: 20vh;
     background-color: rgb(44, 60, 76);
     align-items: center;
 }
 
-.item{
-    display:flex;
-    flex-direction:column;
-    color:white;
+.item {
+    display: flex;
+    flex-direction: column;
+    color: white;
     align-items: center;
 }
 
-.item:hover .item-name{
-    color:rgb(156, 186, 216)
+.item:hover .item-name {
+    color: rgb(156, 186, 216)
 }
 
-.icon{
-    height:32px;
-    width:32px;
+.icon {
+    height: 32px;
+    width: 32px;
 }
 
-.active-item{
+.active-item {
     background-color: rgb(99, 128, 156);
+}
+
+div, span {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
 }

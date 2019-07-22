@@ -1,41 +1,41 @@
 @import url("./fonts.css");
-
 .title {
-
     font-weight: bold;
     color: white;
     margin-left: 12vw;
     font-family: Bookman Old Style;
-
 }
 
 .text {
-
     color: white;
     margin-left: 8vw;
     font-family: Century Gothic;
-
 }
 
 #title-bot {
-
     margin-bottom: 50px;
-
 }
 
 #title-top {
-
     margin-top: 14vh;
-
 }
 
 .btn {
-
     margin-left: 8vw;
     border-radius: 30px !important;
     font-family: Century Gothic;
     font-weight: bold !important;
     font-size: 1.8rem !important;
     padding: 15px !important;
+}
 
+div, span {
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
 }
