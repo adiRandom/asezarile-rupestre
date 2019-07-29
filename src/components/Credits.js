@@ -12,8 +12,8 @@ export default class Credits extends React.Component {
                     <div id="credit-container"><p>Web development: Adrian Pascu</p>
                         <p>Unity development: Rareș Mocanu</p>
                         <p>Graphic design: Radu Cotorceanu</p></div>
-                    
+                    <p>Profesor coordonator: Ana Preda Tudor</p>
                 </div>
-            </div>)
+            </div >)
     }
 }
