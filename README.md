@@ -1,3 +1,3 @@
 # asezarile-rupestre
 
-Un site de prezentare al locatiei
+Un site de prezentare al comunei Bozioru din judetul Buzau
