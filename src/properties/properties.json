@@ -2,7 +2,7 @@
 {
 
     "maps_url": "https://maps.googleapis.com/maps/api/js?key=AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0&callback=initMap",
-    "maps_api_key": "AIzaSyD6maRCH9aI1K0sWA_FRdjIQv9AJgP7aQ0",
+    "maps_api_key": "AIzaSyDQd2wi8lYz8426h8nUQDG_1DHNZZbu8qw",
     "romania_map_properties": {
 
         "center": {
