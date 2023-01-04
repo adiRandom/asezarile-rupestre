@@ -15,7 +15,7 @@
     "react-responsive-carousel": "^3.1.43",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "5.0.1",
     "react-scroll": "^1.7.10",
     "react-transition-group": "^1.2.1"
   },
@@ -26,7 +26,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "webpack": "3.8.1",
+    "webpack": "5.75.0",
     "webpack-dev-server": "2.11.3"
   }
 }
